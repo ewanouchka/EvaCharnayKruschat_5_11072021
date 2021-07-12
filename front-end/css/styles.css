@@ -21,6 +21,17 @@ body {
   color: var(--color-text);
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+a:hover,
+a:active {
+  color: var(--color-secondary);
+}
+
 header,
 main,
 footer {
@@ -31,7 +42,7 @@ footer {
 header {
   background: var(--color-background);
   font-family: var(--font-title);
-  font-size: 2rem;
+  font-size: 4rem;
   height: var(--head-foot-height);
   display: flex;
   justify-content: center;
@@ -50,15 +61,31 @@ main {
   justify-content: center;
 }
 
-#products {
+#products,
+#product-detail,
+#basket,
+#order-confirm {
   margin: 2rem;
 }
 
 footer {
+  text-align: center;
   background: var(--color-footer);
   height: var(--head-foot-height);
 }
 
+footer ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+footer li a {
+  display: flex;
+  align-items: center;
+}
+
 .icons {
   width: 30px;
+  margin: 0.5rem;
 }
