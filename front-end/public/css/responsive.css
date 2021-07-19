@@ -1,0 +1,21 @@
+@media all and (max-width: 425px) {
+  header {
+    font-size: 3rem;
+  }
+
+  main {
+    min-height: 50vh;
+  }
+  .footer__list {
+    flex-direction: column;
+  }
+  footer {
+    height: auto;
+  }
+}
+
+@media all and (min-width: 426px) and (max-width: 1024px) {
+  main {
+    min-height: 50vh;
+  }
+}

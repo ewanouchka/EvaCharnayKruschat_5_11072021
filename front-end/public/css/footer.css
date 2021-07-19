@@ -1,0 +1,23 @@
+footer {
+  max-width: 1440px;
+  margin: auto;
+  text-align: center;
+  background: var(--color-footer);
+  height: var(--head-foot-height);
+}
+
+.footer__list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer__list__link {
+  display: flex;
+  align-items: center;
+}
+
+.icons {
+  width: 30px;
+  margin: 0.5rem;
+}

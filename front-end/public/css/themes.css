@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "Belligerent";
+  src: url("../fonts/belligerent.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --color-background: #f3e9f1;
+  --color-footer: #e0e0e0;
+  --color-text: #333;
+  --color-primary: #e7901a;
+  --color-secondary: #8f5bfe;
+  --font-title: "Belligerent";
+  --font-text: "Trebuchet MS";
+  --font-size: 16px;
+  --head-foot-height: 10rem;
+  --size-xs: 2rem;
+  --size-sm: 200px;
+  --size-xl: 330px;
+  --teddy-Tan: #d2b48c;
+  --teddy-Chocolate: #3d1f0a;
+  --teddy-Black: #000000;
+  --teddy-White: #ffffff;
+  --teddy-palebrown: #794b2a;
+  --teddy-darkbrown: #241002;
+  --teddy-brown: #522b2b;
+  --teddy-blue: #66a8ff;
+  --teddy-pink: #f7a0f0;
+  --teddy-beige: beige;
+}
+
+body {
+  font-size: var(--font-size);
+  font-family: var(--font-text);
+  color: var(--color-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+a:hover,
+a:active {
+  color: var(--color-primary);
+}

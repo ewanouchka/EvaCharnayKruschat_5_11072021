@@ -1,0 +1,19 @@
+main {
+  max-width: 1440px;
+  margin: auto;
+  min-height: calc(100vh - 2rem - 2 * var(--head-foot-height));
+}
+
+#products,
+#product-detail,
+#cart,
+#order-confirm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem;
+}
+
+#products {
+  align-content: stretch;
+}

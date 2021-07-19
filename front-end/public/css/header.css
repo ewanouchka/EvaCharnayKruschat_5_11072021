@@ -1,0 +1,17 @@
+header {
+  max-width: 1440px;
+  margin: auto;
+  background: var(--color-background);
+  font-family: var(--font-title);
+  font-size: 4rem;
+  height: var(--head-foot-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-icon {
+  width: 100px;
+  height: auto;
+  margin: 2rem;
+}
