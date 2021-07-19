@@ -7,6 +7,11 @@
   width: var(--size-xl);
 }
 
+.teddyItem:hover {
+  transform: scale(1.05);
+  color: inherit;
+}
+
 .teddyId {
 }
 
