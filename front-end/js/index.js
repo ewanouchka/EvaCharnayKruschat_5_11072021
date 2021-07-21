@@ -4,7 +4,11 @@ const displayTeddies = async (teddies) => {
   teddiesElement.innerHTML = teddies
     .map(
       (teddies) =>
-        `<a href="pages/product.html?id=${teddies.id}" class="teddyItem" id="${teddies.id}"><img src="${teddies.img}" class="teddyImg" /><h1 class="teddyName">${teddies.name}</h1><h2 class="teddyPrice">${teddies.price}</h2><div class="teddyColor">Coloris disponibles : ${teddies.colors}</div></a>`
+        `<a href="pages/product.html?id=${teddies.id}" class="teddyItem" id="${teddies.id}">
+        <img src="${teddies.img}" class="teddyImg" />
+        <h1 class="teddyName">${teddies.name}</h1>
+        <h2 class="teddyPrice">${teddies.price}</h2>
+        <div class="teddyColor">Coloris disponibles : ${teddies.colors}</div></a>`
     )
     .join("");
 };
