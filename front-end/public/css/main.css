@@ -1,7 +1,7 @@
 main {
   max-width: 1440px;
   margin: auto;
-  min-height: calc(100vh - 2rem - 2 * var(--head-foot-height));
+  min-height: calc(100vh - 3rem - 2rem - 2 * var(--head-foot-height));
 }
 
 #products,
