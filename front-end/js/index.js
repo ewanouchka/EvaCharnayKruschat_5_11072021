@@ -5,7 +5,7 @@ const displayTeddies = async (teddies) => {
     .map(
       (teddies) =>
         `<a href="pages/product.html?id=${teddies.id}" class="teddyItem" id="${teddies.id}">
-        <img src="${teddies.img}" class="teddyImg" />
+        <img src="${teddies.img}" class="teddyImg" alt="image ourson ${teddies.name}" />
         <h1 class="teddyName">${teddies.name}</h1>
         <h2 class="teddyPrice">${teddies.price}</h2>
         <div class="teddyColor">Coloris disponibles : ${teddies.colors}</div></a>`

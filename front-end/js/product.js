@@ -2,7 +2,7 @@ const displayOneTeddy = async (teddy) => {
   const teddyElement = document.querySelector("#product-detail");
 
   teddyElement.innerHTML = `<form class="teddyItem">
-  <img src="${teddy.img}" class="teddyImg" />
+  <img src="${teddy.img}" class="teddyImg" alt="image ourson ${teddy.name}" />
   <div class="teddyDetail">
   <div class="teddyId">Ref : ${teddy.id}</div>
           <h1 class="teddyName">${teddy.name}</h1>
