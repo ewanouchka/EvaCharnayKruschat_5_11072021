@@ -12,8 +12,17 @@ const displayOneTeddy = async (teddy) => {
           ${teddy.description}</p>
           <div class="teddyOptions">
           <h3>Options :</h3> 
-          <div class="teddyColor">Coloris disponibles : ${teddy.colors}</div>
-          <div class="teddyQuantity">Quantité : - </div></div></form>`;
+          <div class="teddyColor">Coloris disponibles : <div id="teddyColor"></div></div>
+          <div class="teddyQuantity">Quantité : <select id="teddyQuantity"><option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option></select></div></div></form>`;
 
   teddyElement.innerHTML += `<button class="button">Ajouter au panier</button>`;
 };
@@ -26,45 +35,34 @@ const getOneTeddy = async (url = "http://localhost:3000/api/teddies/") => {
 
 const formatData = async (oneTeddyJSON) => {
   let teddy = oneTeddyJSON;
-  let { _id, name, price, imageUrl, colors, description } = teddy;
-  const id = _id;
-  const img = imageUrl;
+  let { _id: id, name, price, imageUrl: img, colors, description } = teddy;
 
-  const changePrice = () => {
-    const euro = new Intl.NumberFormat("fr-FR", {
+  const getFormattedPrice = (format = "fr-FR") => {
+    const euro = new Intl.NumberFormat(format, {
       style: "currency",
       currency: "EUR",
       minimumFractionDigits: 2,
     });
     return euro.format(price / 100);
   };
-  price = changePrice(teddy);
 
-  teddy = { id, name, price, img, colors: colors.join(", "), description };
+  teddy = { id, name, price: getFormattedPrice(teddy), img, colors, description };
 
   return { teddy };
 };
 
-const loadScript = async () => {
-  const { teddy } = await formatData(await getOneTeddy());
-  displayOneTeddy(teddy);
-};
-
-loadScript();
-
-/*
-const getColor = async () => {
-  const { teddy } = await formatData(await getOneTeddy());
-  const colorElement = document.querySelector(".teddyColor");
+const getColor = async (teddy) => {
   const { colors } = teddy;
-
-  console.log(colorElement);
-  console.log(teddy);
-  console.log(colors);
-
+  const colorElement = document.querySelector("#teddyColor");
   for (const color of colors) {
-    colorElement.classList.add(color);
+    const lowercase_color = color.toLowerCase().replace(/ /g, "");
+
+    colorElement.innerHTML += `<div class="teddyColor__bullet teddyColor__bullet-${lowercase_color}"></div>`;
   }
 };
-getColor();
-*/
+
+(async () => {
+  const { teddy } = await formatData(await getOneTeddy());
+  displayOneTeddy(teddy);
+  getColor(teddy);
+})();
