@@ -8,6 +8,7 @@
   --color-background: #f3e9f1;
   --color-footer: #e0e0e0;
   --color-text: #333;
+  --color-light: #fff;
   --color-primary: #e7901a;
   --color-secondary: #8f5bfe;
   --font-title: "Belligerent";
@@ -16,11 +17,12 @@
   --head-foot-height: 10rem;
   --size-xs: 2rem;
   --size-sm: 200px;
-  --size-xl: 330px;
-  --teddy-Tan: #d2b48c;
-  --teddy-Chocolate: #3d1f0a;
-  --teddy-Black: #000000;
-  --teddy-White: #ffffff;
+  --size-md: 400px;
+  --size-xl: 600px;
+  --teddy-tan: #d2b48c;
+  --teddy-chocolate: #3d1f0a;
+  --teddy-black: #000000;
+  --teddy-white: #ffffff;
   --teddy-palebrown: #794b2a;
   --teddy-darkbrown: #241002;
   --teddy-brown: #522b2b;
@@ -44,4 +46,11 @@ a {
 a:hover,
 a:active {
   color: var(--color-primary);
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 2rem 0 1rem 0;
+  width: 100%;
 }

@@ -1,11 +1,21 @@
 const displayOneTeddy = async (teddy) => {
   const teddyElement = document.querySelector("#product-detail");
 
-  teddyElement.innerHTML = `<a href="pages/product.html?id=${teddy.id}" class="teddyItem" id="${teddy.id}">
-          <img src="${teddy.img}" class="teddyImg" />
+  teddyElement.innerHTML = `<form class="teddyItem">
+  <img src="${teddy.img}" class="teddyImg" />
+  <div class="teddyDetail">
+  <div class="teddyId">Ref : ${teddy.id}</div>
           <h1 class="teddyName">${teddy.name}</h1>
           <h2 class="teddyPrice">${teddy.price}</h2>
-          <div class="teddyColor">Coloris disponibles : ${teddy.colors}</div></a>`;
+          <p class="teddyDesc">
+          <h3>Description du produit :</h3>
+          ${teddy.description}</p>
+          <div class="teddyOptions">
+          <h3>Options :</h3> 
+          <div class="teddyColor">Coloris disponibles : ${teddy.colors}</div>
+          <div class="teddyQuantity">Quantité : - </div></div></form>`;
+
+  teddyElement.innerHTML += `<button class="button">Ajouter au panier</button>`;
 };
 
 const getOneTeddy = async (url = "http://localhost:3000/api/teddies/") => {
@@ -30,7 +40,7 @@ const formatData = async (oneTeddyJSON) => {
   };
   price = changePrice(teddy);
 
-  teddy = { id, name, price, img, colors, description };
+  teddy = { id, name, price, img, colors: colors.join(", "), description };
 
   return { teddy };
 };

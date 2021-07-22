@@ -1,0 +1,37 @@
+.teddyItem {
+  background: var(--color-background);
+  border-radius: 1rem;
+  box-shadow: 0 0 6px var(--color-footer);
+  padding: 0 0 1rem 0;
+  margin: 1rem;
+  width: var(--size-md);
+}
+
+.teddyItem:hover {
+  transform: scale(1.05);
+  color: inherit;
+}
+
+.teddyImg {
+  object-fit: cover;
+  width: var(--size-md);
+  height: var(--size-sm);
+  border-radius: 8px 8px 0 0;
+}
+
+.teddyName {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.teddyPrice {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.teddyColor {
+  margin: 1rem 1rem 0 1rem;
+  font-size: 0.85rem;
+}

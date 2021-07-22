@@ -11,7 +11,7 @@ header {
   align-items: center;
 }
 
-.header-icon {
+.header-logo {
   width: 100px;
   margin: 2rem;
 }
@@ -25,4 +25,9 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header-nav__icon {
+  font-size: 2rem;
+  padding: 0 1rem;
 }
