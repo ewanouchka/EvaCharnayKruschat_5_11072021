@@ -24,24 +24,20 @@ const formatData = async (teddyApiJSON) => {
 
   const teddies = await Promise.all(
     results.map((teddies) => {
-      let { _id, name, price, imageUrl, colors, description } = teddies;
-      const id = _id;
-      const img = imageUrl;
-
-      const changePrice = () => {
-        const euro = new Intl.NumberFormat("fr-FR", {
+      const getFormattedPrice = (format = "fr-FR") => {
+        const euro = new Intl.NumberFormat(format, {
           style: "currency",
           currency: "EUR",
           minimumFractionDigits: 2,
         });
         return euro.format(price / 100);
       };
-      price = changePrice(teddies);
+      const { _id: id, name, price, imageUrl: img, colors, description } = teddies;
 
       return {
         id,
         name,
-        price,
+        price: getFormattedPrice(teddies),
         img,
         colors: colors.join(", "),
         description,
@@ -54,9 +50,7 @@ const formatData = async (teddyApiJSON) => {
   };
 };
 
-const loadScript = async () => {
+(async () => {
   const { teddies } = await formatData(await getTeddies());
   displayTeddies(teddies);
-};
-
-loadScript();
+})();
