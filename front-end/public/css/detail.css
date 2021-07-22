@@ -62,14 +62,16 @@
   width: var(--size-xs);
   height: var(--size-xs);
   border-radius: var(--size-xs);
-  border: 2px solid var(--color-text);
+  border: 2px solid var(--color-footer);
   box-shadow: 0 0 3px var(--color-footer);
   margin: 0.3rem;
   opacity: 0.5;
   transition: all 0.2s;
 }
 
-.teddyColor__bullet:hover {
+.teddyColor__bullet:hover,
+.teddyColor__bullet:focus,
+.teddyColor__bullet:focus-visible {
   opacity: 1;
 }
 
@@ -113,4 +115,17 @@
   margin: 0.3rem;
   width: calc(2 * var(--size-xs));
   height: var(--size-xs);
+  border-radius: var(--size-xs);
+  border: 2px solid var(--color-footer);
+  box-shadow: 0 0 3px var(--color-footer);
+  opacity: 0.5;
+  transition: all 0.2s;
+}
+
+#teddyQuantity:target,
+#teddyQuantity:focus-visible,
+#teddyQuantity:focus,
+#teddyQuantity:active {
+  outline: transparent;
+  opacity: 1;
 }
