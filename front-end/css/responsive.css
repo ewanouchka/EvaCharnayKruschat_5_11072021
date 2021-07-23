@@ -1,6 +1,11 @@
 @media all and (max-width: 425px) {
   header {
     font-size: 3rem;
+    height: auto;
+  }
+
+  .header-logo {
+    margin: 0;
   }
 
   main {
