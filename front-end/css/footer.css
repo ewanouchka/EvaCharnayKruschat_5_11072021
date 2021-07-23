@@ -1,3 +1,5 @@
+/* afichage du footer */
+
 footer {
   max-width: 1440px;
   margin: auto;
@@ -16,11 +18,13 @@ footer {
   justify-content: space-around;
 }
 
+/* bloc du milieu du footer A propos */
 .footer__list__center {
   display: flex;
   flex-direction: column;
 }
 
+/* espacement des liens A propos */
 .footer__list__center > .footer__list__link:nth-child(2),
 .footer__list__center > .footer__list__link:nth-child(4) {
   margin: 0.8rem 0;
@@ -31,6 +35,7 @@ footer {
   align-items: center;
 }
 
+/* icons liens vers les autres univers Orinoco */
 .icons {
   width: 2rem;
   height: 2rem;
@@ -43,6 +48,7 @@ footer {
   opacity: 1;
 }
 
+/* icons réseaux sociaux */
 .social {
   color: transparent;
   font-size: 2.25rem;

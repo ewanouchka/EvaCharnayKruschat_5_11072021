@@ -1,3 +1,5 @@
+/* affichage boutons */
+
 .button {
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   border: 0;

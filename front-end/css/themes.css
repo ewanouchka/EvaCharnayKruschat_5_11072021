@@ -1,25 +1,35 @@
+/* importation police titre */
+
 @font-face {
   font-family: "Belligerent";
   src: url("../public/fonts/belligerent.ttf") format("truetype");
   font-display: swap;
 }
 
+/* variables */
 :root {
+  /* couleurs */
   --color-background: #f3e9f1;
   --color-footer: #e0e0e0;
   --color-text: #333;
   --color-light: #fff;
   --color-primary: #e7901a;
   --color-secondary: #8f5bfe;
+
+  /* polices */
   --font-title: "Belligerent";
   --font-text: "Trebuchet MS";
   --font-size: 16px;
+
+  /* tailles blocs */
   --header-height: 10rem;
   --footer-height: 16rem;
   --size-xs: 2rem;
   --size-sm: 200px;
   --size-md: 400px;
   --size-xl: 600px;
+
+  /* couleurs des produits */
   --teddy-tan: #d2b48c;
   --teddy-chocolate: #3d1f0a;
   --teddy-black: #000000;
@@ -32,12 +42,14 @@
   --teddy-beige: beige;
 }
 
+/* base du body */
 body {
   font-size: var(--font-size);
   font-family: var(--font-text);
   color: var(--color-text);
 }
 
+/* design des liens */
 a {
   color: inherit;
   text-decoration: none;
@@ -49,6 +61,7 @@ a:active {
   color: var(--color-primary);
 }
 
+/* design de base des sous-titres */
 h2 {
   font-size: 1.1rem;
   font-weight: bold;

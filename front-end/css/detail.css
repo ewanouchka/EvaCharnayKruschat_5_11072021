@@ -1,3 +1,6 @@
+/* affichage d'un produit */
+
+/* bloc extérieur */
 .teddyItem {
   background: var(--color-background);
   border-radius: 10px;
@@ -15,6 +18,7 @@
   border-radius: 8px 0 0 8px;
 }
 
+/* bloc intérieur ensemble de la description du produit */
 .teddyDetail {
   padding: 1rem;
   width: 100%;
@@ -38,10 +42,12 @@
   text-align: center;
 }
 
+/* paragraphe descriptif */
 .teddyDesc {
   margin: 1rem 0;
 }
 
+/* paragraphe options à choisir */
 .teddyOptions {
   margin: 1rem 0;
   display: flex;
@@ -49,6 +55,7 @@
   justify-content: space-between;
 }
 
+/* choix des couleurs */
 .teddyColor {
   margin: 1rem 1rem 0 1rem;
 }
@@ -57,6 +64,7 @@
   display: flex;
 }
 
+/* design global des pastilles de couleur */
 .teddyColor__bullet {
   background-color: transparent;
   width: var(--size-xs);
@@ -75,6 +83,7 @@
   opacity: 1;
 }
 
+/* coloris des pastilles */
 .teddyColor__bullet-tan {
   background-color: var(--teddy-tan);
 }
@@ -106,10 +115,12 @@
   background-color: var(--teddy-beige);
 }
 
+/* choix des options */
 .teddyQuantity {
   margin: 1rem 1rem 0 1rem;
 }
 
+/* bouton sélecteur quantité */
 #teddyQuantity {
   display: flex;
   margin: 0.3rem;
@@ -128,6 +139,6 @@
 #teddyQuantity:focus,
 #teddyQuantity:active,
 #teddyQuantity:visited {
-  outline: transparent;
+  outline: transparent; /* suppression du contour au focus */
   opacity: 1;
 }

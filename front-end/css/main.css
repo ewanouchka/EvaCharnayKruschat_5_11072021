@@ -1,9 +1,14 @@
+/* affichage du bloc principal */
+
 main {
   max-width: 1440px;
   margin: auto;
-  min-height: calc(100vh - 3rem - 2rem - var(--header-height) - var(--footer-height));
+  min-height: calc(
+    100vh - 3rem - 2rem - var(--header-height) - var(--footer-height)
+  ); /* taille adaptée pour repousser le footer en bas de page */
 }
 
+/* ajustement des marges des blocs modifiables en JS */
 #products,
 #product-detail,
 #cart,
@@ -14,6 +19,7 @@ main {
   margin: 2rem;
 }
 
+/* ajustement des blocs cartes sur une même hauteur */
 #products {
   align-content: stretch;
 }
