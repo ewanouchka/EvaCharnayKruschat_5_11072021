@@ -139,6 +139,5 @@
 #teddyQuantity:focus,
 #teddyQuantity:active,
 #teddyQuantity:visited {
-  outline: transparent; /* suppression du contour au focus */
   opacity: 1;
 }
