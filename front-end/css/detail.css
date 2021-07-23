@@ -113,19 +113,21 @@
 #teddyQuantity {
   display: flex;
   margin: 0.3rem;
-  width: calc(2 * var(--size-xs));
+  width: 7rem;
   height: var(--size-xs);
   border-radius: var(--size-xs);
   border: 2px solid var(--color-footer);
   box-shadow: 0 0 3px var(--color-footer);
-  opacity: 0.5;
+  opacity: 0.75;
   transition: all 0.2s;
 }
 
 #teddyQuantity:target,
 #teddyQuantity:focus-visible,
+#teddyQuantity:focus-within,
 #teddyQuantity:focus,
-#teddyQuantity:active {
+#teddyQuantity:active,
+#teddyQuantity:visited {
   outline: transparent;
   opacity: 1;
 }
