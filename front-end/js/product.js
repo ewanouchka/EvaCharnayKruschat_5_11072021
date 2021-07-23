@@ -13,7 +13,7 @@ const displayOneTeddy = async (teddy) => {
           <div class="teddyOptions">
           <h3>Options :</h3> 
           <div class="teddyColor">Coloris disponibles : <div id="teddyColor"></div></div>
-          <div class="teddyQuantity">Quantité : <select id="teddyQuantity"><option>-</option>
+          <div class="teddyQuantity">Quantité : <select id="teddyQuantity" label="quantité"><option>-</option>
           <option>1</option>
           <option>2</option>
           <option>3</option>

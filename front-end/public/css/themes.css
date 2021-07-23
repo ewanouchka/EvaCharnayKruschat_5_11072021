@@ -14,7 +14,8 @@
   --font-title: "Belligerent";
   --font-text: "Trebuchet MS";
   --font-size: 16px;
-  --head-foot-height: 10rem;
+  --header-height: 10rem;
+  --footer-height: 15rem;
   --size-xs: 2rem;
   --size-sm: 200px;
   --size-md: 400px;
@@ -46,6 +47,12 @@ a {
 a:hover,
 a:active {
   color: var(--color-primary);
+}
+
+h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0 0 1rem 0;
 }
 
 h3 {

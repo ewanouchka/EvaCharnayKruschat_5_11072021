@@ -3,13 +3,18 @@ footer {
   margin: auto;
   text-align: center;
   background: var(--color-footer);
-  height: var(--head-foot-height);
+  height: var(--footer-height);
 }
 
 .footer__list {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+}
+
+.footer__list__center {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .footer__list__link {
@@ -18,6 +23,29 @@ footer {
 }
 
 .icons {
-  width: 30px;
+  width: 2rem;
   margin: 0.5rem;
+  opacity: 0.75;
+  transition: all 0.2s;
+}
+
+.footer__list__link:hover > .icons {
+  opacity: 1;
+}
+
+.social {
+  color: transparent;
+  font-size: 2.25rem;
+  margin: 0.5rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -moz-background-clip: text;
+  -o-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.75;
+  transition: all 0.2s;
+}
+
+.social:hover {
+  opacity: 1;
 }

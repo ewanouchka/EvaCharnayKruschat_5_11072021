@@ -4,7 +4,7 @@ header {
   background: var(--color-background);
   font-family: var(--font-title);
   font-size: 4rem;
-  height: var(--head-foot-height);
+  height: var(--header-height);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

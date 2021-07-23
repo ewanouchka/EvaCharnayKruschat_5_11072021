@@ -6,11 +6,40 @@
   main {
     min-height: 50vh;
   }
+
+  #product-detail,
+  #products {
+    margin: 0.5rem;
+  }
+
+  .teddyItem {
+    flex-direction: column;
+  }
+
+  .teddyImg {
+    width: 100%;
+    height: var(--size-sm);
+  }
+
+  .teddyDetail {
+    width: auto;
+  }
+
+  footer {
+    height: auto;
+  }
+
   .footer__list {
     flex-direction: column;
   }
-  footer {
-    height: auto;
+  .footer__list__link {
+    justify-content: center;
+    align-self: center;
+  }
+
+  .footer__list__center {
+    height: 10rem;
+    margin: 1rem 0 1.8rem 0;
   }
 }
 
