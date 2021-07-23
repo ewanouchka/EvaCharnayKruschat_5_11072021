@@ -51,10 +51,17 @@
   }
 }
 
-/* affichage écran tablette et laptop */
+/* affichage écran tablette et petits écrans style laptop */
 
 @media all and (min-width: 426px) and (max-width: 1024px) {
   main {
     min-height: 50vh; /* augmentation de la hauteur du bloc principal pour y intégrer les cartes sans dépassement */
+  }
+
+  #product-detail,
+  #products,
+  #cart,
+  #order-confirm {
+    margin: 0.5rem; /* réduction des marges autour des blocs modifiables en JS */
   }
 }
