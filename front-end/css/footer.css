@@ -6,6 +6,11 @@ footer {
   height: var(--footer-height);
 }
 
+.footer-logo {
+  width: auto;
+  height: auto;
+}
+
 .footer__list {
   display: flex;
   justify-content: space-around;
@@ -14,7 +19,6 @@ footer {
 .footer__list__center {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around;*/
 }
 
 .footer__list__center > .footer__list__link:nth-child(2),
@@ -29,6 +33,7 @@ footer {
 
 .icons {
   width: 2rem;
+  height: 2rem;
   margin: 0.5rem;
   opacity: 0.75;
   transition: all 0.2s;
