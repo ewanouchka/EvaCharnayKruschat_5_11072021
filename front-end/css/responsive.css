@@ -8,7 +8,9 @@
   }
 
   #product-detail,
-  #products {
+  #products,
+  #cart,
+  #order-confirm {
     margin: 0.5rem;
   }
 
@@ -38,8 +40,7 @@
   }
 
   .footer__list__center {
-    height: 10rem;
-    margin: 1rem 0 1.8rem 0;
+    margin: 1.5rem 0;
   }
 }
 

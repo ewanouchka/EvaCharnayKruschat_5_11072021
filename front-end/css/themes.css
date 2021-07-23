@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Belligerent";
-  src: url("../fonts/belligerent.ttf") format("truetype");
+  src: url("../public/fonts/belligerent.ttf") format("truetype");
   font-display: swap;
 }
 
@@ -15,7 +15,7 @@
   --font-text: "Trebuchet MS";
   --font-size: 16px;
   --header-height: 10rem;
-  --footer-height: 15rem;
+  --footer-height: 16rem;
   --size-xs: 2rem;
   --size-sm: 200px;
   --size-md: 400px;
