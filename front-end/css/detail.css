@@ -82,6 +82,7 @@
 /* design du message d'erreur */
 .error-hidden {
   opacity: 0;
+  width: 100%;
 }
 
 .error-visible {
