@@ -96,7 +96,6 @@ const selectColor = async (teddy) => {
     });
   })();
 };
-
 // fonction sur le bouton Ajouter au panier
 const addToCart = async (teddy) => {
   const addToCartButton = document.querySelector("#addToCart");
@@ -115,20 +114,34 @@ const addToCart = async (teddy) => {
 
     // affichage du message d'erreur si absence de couleur sélectionnée
     const error = document.querySelector("#color-error");
+
     if (optionsArticle.color == "") {
       error.classList.remove("error-hidden");
       error.classList.add("error-visible");
     } else {
+      // si tout ok, ne pas afficher le message d'erreur
       error.classList.remove("error-visible");
       error.classList.add("error-hidden");
-    }
 
-    console.log(optionsArticle);
-    return optionsArticle, { optionsArticle };
+      // et envoyer l'objet au local storage
+
+      let itemLocalStorage = JSON.parse(localStorage.getItem("selectedArticles"));
+
+      if (!itemLocalStorage) {
+        // si le panier est vide
+        itemLocalStorage = []; // création de la variable
+        itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné
+        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de l'item dans le localStorage
+      } else {
+        // si le panier n'est pas vide
+        itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné
+        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de l'item dans le localStorage
+      }
+    }
   });
 };
 
-// appel des fonctions
+// appel global des fonctions
 (async () => {
   const { teddy } = await formatData(await getOneTeddy());
   displayOneTeddy(teddy); // affichage du bloc produit
