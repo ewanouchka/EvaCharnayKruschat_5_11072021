@@ -13,21 +13,22 @@ const displayOneTeddy = async (teddy) => {
           ${teddy.description}</p>
           <div class="teddyOptions">
           <h3>Options :</h3> 
-          <div class="teddyColor">Coloris disponibles : <div id="teddyColor"></div></div>
+          <div class="teddyColor">Coloris disponibles :
+          <div id="teddyColor"></div></div>
           <div class="teddyQuantity"><label for="teddyQuantity">Quantité choisie :</label>
-          <select id="teddyQuantity"><option>-</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option></select></div></div></form>`;
+          <select id="teddyQuantity"><option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option></select></div>
+          <div id="color-error" class="error-hidden">Veuillez choisir une couleur.</div></div></form>`;
 
-  teddyElement.innerHTML += `<button class="button" id="addToCart">Ajouter au panier</button>`; // ajout du bouton "ajout au panier"
+  teddyElement.innerHTML += `<button class="button" id="addToCart"><span>Ajouter au panier</span></button>`; // ajout du bouton "ajout au panier"
 };
 
 // récupération des données de l'api pour l'id concernée
@@ -58,19 +59,79 @@ const formatData = async (oneTeddyJSON) => {
 };
 
 // fonction affichage de la pastille de couleur en fonction des données colors
-const getColor = async (teddy) => {
+let choiceColor = "";
+
+const selectColor = async (teddy) => {
   const { colors } = teddy;
   const colorElement = document.querySelector("#teddyColor");
   for (const color of colors) {
-    const lowercase_color = color.toLowerCase().replace(/ /g, ""); // transposition du nom de la couleur en bas de casse sans espace
+    const lowercaseColor = color.toLowerCase().replace(/ /g, ""); // transposition du nom de la couleur en bas de casse sans espace
 
-    colorElement.innerHTML += `<div class="teddyColor__bullet teddyColor__bullet-${lowercase_color}"></div>`;
+    colorElement.innerHTML += `<label for="toggle-${lowercaseColor}" id="toggle-${lowercaseColor}-label" class="teddyColor__bullet teddyColor__bullet-${lowercaseColor}" title="${color}">
+    </label>
+    <input type="radio" name="teddyColor__bullet" id="toggle-${lowercaseColor}" class="visually-hidden" title="${color}">`;
   }
+
+  // fonction pour sélectionner la couleur de la pastille active
+  (async () => {
+    const selectedColor = document.querySelector(`#teddyColor`); // la pastille de la couleur sur laquelle on clique
+    const otherColor = document.querySelectorAll(`.teddyColor__bullet`); // un tableau des autres pastilles
+
+    selectedColor.addEventListener("change", () => {
+      const elts = document.querySelectorAll("input");
+      // on écoute au changement de sélection de pastille de couleur
+      otherColor.forEach((element) => element.classList.remove("teddyColor__bullet-active")); // on enlève la class pastille active potentiellement rajoutée au précédent changement de sélection de pastille de couleur
+
+      for (let i = 0; i < elts.length; i++) {
+        // on boucle sur les inputs liés à toutes les pastilles
+        if (elts[i].checked === true) {
+          // on vérifie que l'input radio est sélectionné
+          const idSelected = "#" + elts[i].id + "-label"; // on sélectionne la class du label correspondant
+          document.querySelector(idSelected).classList.add("teddyColor__bullet-active"); // on ajoute la class pastille active
+          choiceColor = elts[i].title;
+          break;
+        }
+      }
+      return choiceColor;
+    });
+  })();
 };
 
-// appel de la fonction affichage du bloc produit
+// fonction sur le bouton Ajouter au panier
+const addToCart = async (teddy) => {
+  const addToCartButton = document.querySelector("#addToCart");
+
+  addToCartButton.addEventListener("click", () => {
+    // on écoute le clic sur le bouton Ajouter au panier
+    const choiceQuantity = document.querySelector("#teddyQuantity").value; // on retient la valeur de la quantité sélectionnée
+    const optionsArticle = {
+      // on crée un objet recensant les informations du produit à ajouter au panier
+      name: teddy.name,
+      id: teddy.id,
+      color: choiceColor,
+      quantity: choiceQuantity,
+      price: teddy.price,
+    };
+
+    // affichage du message d'erreur si absence de couleur sélectionnée
+    const error = document.querySelector("#color-error");
+    if (optionsArticle.color == "") {
+      error.classList.remove("error-hidden");
+      error.classList.add("error-visible");
+    } else {
+      error.classList.remove("error-visible");
+      error.classList.add("error-hidden");
+    }
+
+    console.log(optionsArticle);
+    return optionsArticle, { optionsArticle };
+  });
+};
+
+// appel des fonctions
 (async () => {
   const { teddy } = await formatData(await getOneTeddy());
-  displayOneTeddy(teddy);
-  getColor(teddy);
+  displayOneTeddy(teddy); // affichage du bloc produit
+  selectColor(teddy); // affichage des pastilles de couleur
+  addToCart(teddy); // bouton Ajouter au panier
 })();
