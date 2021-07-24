@@ -5,7 +5,7 @@ const displayTeddies = async (teddies) => {
   teddiesElement.innerHTML = teddies
     .map(
       (teddies) =>
-        `<a href="pages/product.html?id=${teddies.id}" class="teddyItem">
+        `<a href="front-end/pages/product.html?id=${teddies.id}" class="teddyItem">
         <img src="${teddies.img}" class="teddyImg" alt="image ourson ${teddies.name}" />
         <h1 class="teddyName">${teddies.name}</h1>
         <h2 class="teddyPrice">${teddies.price}</h2>
