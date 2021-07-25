@@ -16,21 +16,21 @@
     </label>
     <input name="Surname" id="Surname" class="blocForm__input-large">
     
-    <label for="Name" id="Name" class="blocForm__input-large">Votre nom :
+    <label for="Address" id="Address" class="blocForm__input-large">Votre adresse :
     </label>
     <input name="Address" id="Address" class="blocForm__input-large">
     
-    <label for="Address" id="Address" class="blocForm__input-large">Votre adresse :
-    </label>
-    <input name="Postcode" id="Postcode" class="blocForm__input-large">
-    
     <label for="Postcode" id="Postcode" class="blocForm__input-large">Votre code postal :
     </label>
-    <input name="Town" id="Town" class="blocForm__input-large">
+    <input name="Postcode" id="Postcode" class="blocForm__input-large">
     
     <label for="Town" id="Town" class="blocForm__input-large">Votre ville :
     </label>
     <input name="Town" id="Town" class="blocForm__input-large">
+    
+    <label for="Email" id="Email" class="blocForm__input-large">Votre e-mail :
+    </label>
+    <input name="Email" id="Email" class="blocForm__input-large">
     </section>`;
 
     blocForm.innerHTML += `<button class="button" id="order-confirm"><span>Valider la commande</span></button>`; // ajout du bouton "Valider la commande"
