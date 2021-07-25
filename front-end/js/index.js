@@ -2,6 +2,9 @@
 const displayTeddies = async (teddies) => {
   const teddiesElement = document.querySelector("#products");
 
+  console.log(teddiesElement);
+  console.log(teddies);
+
   teddiesElement.innerHTML = teddies
     .map(
       (teddies) =>
