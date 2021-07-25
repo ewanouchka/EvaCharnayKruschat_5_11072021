@@ -6,7 +6,7 @@ main {
   min-height: calc(
     100vh - 3rem - var(--header-height) - var(--footer-height)
   ); /* taille adaptée pour repousser le footer en bas de page */
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   display: flex;
   flex-direction: column;
