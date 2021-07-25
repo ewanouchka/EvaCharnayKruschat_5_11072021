@@ -4,7 +4,7 @@ main {
   max-width: 1440px;
   margin: auto;
   min-height: calc(
-    100vh - 3rem - 2rem - var(--header-height) - var(--footer-height)
+    100vh - 3rem - var(--header-height) - var(--footer-height)
   ); /* taille adaptée pour repousser le footer en bas de page */
   justify-content: center;
   align-items: center;
