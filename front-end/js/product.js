@@ -103,13 +103,14 @@ const addToCart = async (teddy) => {
   addToCartButton.addEventListener("click", () => {
     // on écoute le clic sur le bouton Ajouter au panier
     const choiceQuantity = document.querySelector("#teddyQuantity").value; // on retient la valeur de la quantité sélectionnée
+    const priceArticle = teddy.price.replace(/,00+\s+€/, ""); // on remodifie le prix en chiffres sans les centiments ni le symbole € uniquement pour le panier
     const optionsArticle = {
       // on crée un objet recensant les informations du produit à ajouter au panier
       name: teddy.name,
       id: teddy.id,
       color: choiceColor,
       quantity: choiceQuantity,
-      price: teddy.price,
+      price: priceArticle,
     };
 
     // affichage du message d'erreur si absence de couleur sélectionnée
@@ -129,7 +130,7 @@ const addToCart = async (teddy) => {
 
       if (!itemLocalStorage) {
         // si le panier est vide
-        itemLocalStorage = []; // création de la variable
+        itemLocalStorage = []; // création de l'array pour la variable
         itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné
         localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de l'item dans le localStorage
       } else {
@@ -137,6 +138,8 @@ const addToCart = async (teddy) => {
         itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné
         localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de l'item dans le localStorage
       }
+
+      // popup de confirmation d'ajout de l'article au panier
     }
   });
 };
