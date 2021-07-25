@@ -92,6 +92,7 @@
   width: 100%;
 }
 
+/* on cache les boutons radio */
 .visually-hidden {
   opacity: 0;
   position: relative;
@@ -99,6 +100,7 @@
   top: 1rem;
 }
 
+/* design global des pastilles de couleur */
 .teddyColor__bullet-active,
 .teddyColor__bullet:hover,
 .teddyColor__bullet:focus,
