@@ -36,7 +36,3 @@ input.blocForm__input-large {
 .visually-hidden {
   display: none;
 }
-
-#order-confirm {
-  width: inherit;
-}

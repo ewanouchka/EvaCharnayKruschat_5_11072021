@@ -60,6 +60,10 @@
     width: 2rem;
   }
 
+  #order-form {
+    width: 100%;
+  }
+
   footer {
     height: auto;
   }
