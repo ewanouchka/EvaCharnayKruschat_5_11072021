@@ -1,0 +1,78 @@
+/* affichage du panier */
+
+/* première ligne tableau */
+.cartHead {
+  background: var(--color-background);
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 0 6px var(--color-footer);
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.cartHead li {
+  padding: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.cartHead li:last-of-type,
+.cartHead li:nth-of-type(4) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* lignes produits */
+.cartList {
+  background: var(--color-footer);
+  box-shadow: 0 0 6px var(--color-footer);
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cartList:last-of-type {
+  border-radius: 0 0 10px 10px;
+}
+
+.cartArticle {
+  width: 25%;
+  text-align: center;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.cartInfo {
+  text-align: center;
+  padding: 1rem;
+}
+
+.cartTotal {
+  font-weight: bold;
+}
+
+.cartSuppr {
+  width: 4rem;
+}
+
+/* ligne de total */
+
+.lastLineCart {
+  width: 100%;
+  text-align: right;
+  margin: 1rem;
+}
+
+.lastLineTotal {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -moz-background-clip: text;
+  -o-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.25rem;
+}
