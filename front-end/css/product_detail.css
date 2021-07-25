@@ -152,6 +152,7 @@
   height: var(--size-xs);
   border-radius: var(--size-xs);
   border: 2px solid var(--color-footer);
+  background: var(--color-light);
   box-shadow: 0 0 3px var(--color-footer);
   opacity: 0.75;
   transition: all 0.2s;
