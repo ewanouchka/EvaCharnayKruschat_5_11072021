@@ -135,3 +135,8 @@ table {
 :visited {
   outline: transparent; /* suppression du contour au focus */
 }
+
+button {
+  border: none;
+  background: transparent;
+}
