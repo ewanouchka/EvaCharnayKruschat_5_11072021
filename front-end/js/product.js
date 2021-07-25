@@ -124,6 +124,39 @@ const addToCart = async (teddy) => {
       error.classList.remove("error-visible");
       error.classList.add("error-hidden");
 
+      // fonction pour ouvrir le popup de confirmation de l'ajout au panier
+      let popupContainer = document.createElement("div");
+      popupContainer.setAttribute("id", "popup");
+
+      const createPopup = () => {
+        popupContainer.innerHTML = `<p>L'ourson <span class="teddyName">${optionsArticle.name}</span> (${optionsArticle.color})<br />a bien été ajouté au panier !</p>`;
+        popupContainer.innerHTML +=
+          '<a href="cart.html"><button class="button button-popup" id="goToCart">Voir le panier</button></a>';
+        popupContainer.innerHTML +=
+          '<a href="../../index.html"><button class="button button-popup" id="continueShopping">Continuer votre shopping</button></a>';
+        openPopup();
+      };
+
+      // fonction pour ouvrir le popup de confirmation de l'ajout au panier
+      function openPopup() {
+        document.getElementById("product-detail").prepend(popupContainer);
+
+        document.getElementById("continueShopping").addEventListener("click", function () {
+          closePopup();
+        });
+        document.getElementById("goToCart").addEventListener("click", function () {
+          closePopup();
+        });
+      }
+
+      // fonction pour fermer le popup de confirmation au clic
+      function closePopup() {
+        while (popupContainer.hasChildNodes()) {
+          popupContainer.removeChild(popupContainer.firstChild);
+        }
+        document.getElementById("product-detail").removeChild(popupContainer);
+      }
+
       // et envoyer l'objet au local storage
 
       let itemLocalStorage = JSON.parse(localStorage.getItem("selectedArticles"));
@@ -133,10 +166,12 @@ const addToCart = async (teddy) => {
         itemLocalStorage = []; // création de l'array pour la variable
         itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné
         localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de l'item dans le localStorage
+        createPopup(); // ouverture du popup de confirmation d'ajout au panier
       } else {
         // si le panier n'est pas vide
         itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné
         localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de l'item dans le localStorage
+        createPopup(); // ouverture du popup de confirmation d'ajout au panier
       }
 
       // popup de confirmation d'ajout de l'article au panier

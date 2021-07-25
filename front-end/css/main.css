@@ -17,6 +17,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   margin: 2rem;
+  position: relative;
 }
 
 /* ajustement des blocs cartes sur une même hauteur */
