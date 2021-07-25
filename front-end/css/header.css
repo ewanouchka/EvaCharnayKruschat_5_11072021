@@ -36,3 +36,17 @@ header {
   font-size: 2rem;
   padding: 0 1rem;
 }
+
+#cartLogo {
+  position: relative;
+}
+
+.cartNumber {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-light);
+  border-radius: 1rem;
+  padding: 0.2rem 0.5rem;
+  position: absolute;
+  top: 0.9rem;
+  left: 1.75rem;
+}
