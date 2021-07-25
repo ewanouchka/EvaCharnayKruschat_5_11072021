@@ -1,4 +1,4 @@
-/* affichage boutons */
+/* affichage grands boutons */
 
 .button {
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
@@ -14,4 +14,15 @@
 
 .button:hover {
   transform: scale(1.05);
+}
+
+.mini-button {
+  margin: 0.25rem;
+  transition: all 0.2s;
+  font-weight: bold;
+  padding: 0.25rem;
+}
+.mini-button:hover {
+  transform: scale(1.35);
+  color: var(--color-primary);
 }
