@@ -105,6 +105,8 @@ const formatData = async (itemLocalStorage) => {
   };
   nombreProduits();
 
-  const cartLogo = document.querySelector("#cartLogo"); // on sélectionne la logo du panier
+  const cartLogo = document.querySelector("#cartLogo"); // on sélectionne le logo du panier
   cartLogo.innerHTML += `<span class="cartNumber">` + nombreProduits() + `</span>`; // on affiche le nombre d'articles dans le panier
 })();
+
+// fonctions modifications des produits à voir

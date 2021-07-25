@@ -1,0 +1,42 @@
+#order-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blocForm {
+  background: var(--color-background);
+  border-radius: 10px;
+  box-shadow: 0 0 6px var(--color-footer);
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.blocForm__title {
+  width: 100%;
+  text-align: center;
+}
+
+.blocForm__input-large {
+  width: 100%;
+}
+
+label.blocForm__input-large {
+  padding: 0 0.75rem;
+}
+
+input.blocForm__input-large {
+  margin: 0 0 1rem 0;
+  border: 1px solid var(--color-footer);
+  border-radius: 1rem;
+  padding: 0.5rem 0;
+}
+
+.visually-hidden {
+  display: none;
+}
+
+#order-confirm {
+  width: inherit;
+}
