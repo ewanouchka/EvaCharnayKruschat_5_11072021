@@ -36,6 +36,7 @@ input.blocForm__input {
 
 input.blocForm__input:focus:invalid {
   border: 1px solid var(--color-invalid);
+  box-shadow: 0 0 6px var(--color-invalid);
 }
 
 input.blocForm__input::placeholder {
