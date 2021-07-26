@@ -8,7 +8,7 @@ const displayOneTeddy = async (teddy) => {
   <div class="teddyDetail">
   <div class="teddyId">Ref : ${teddy.id}</div>
           <h1 class="teddyName">${teddy.name}</h1>
-          <h2 class="teddyPrice">${teddy.price}</h2>
+          <h2 class="teddyPrice">${teddy.price} €</h2>
           <p class="teddyDesc">
           <h3>Description du produit :</h3>
           ${teddy.description}</p>
@@ -47,17 +47,7 @@ const formatData = async (oneTeddyJSON) => {
   let teddy = oneTeddyJSON;
   let { _id: id, name, price, imageUrl: img, colors, description } = teddy;
 
-  const getFormattedPrice = (format = "fr-FR") => {
-    // fonction changement du format du prix 0000 -> 00.00 €
-    const euro = new Intl.NumberFormat(format, {
-      style: "currency",
-      currency: "EUR",
-      minimumFractionDigits: 2,
-    });
-    return euro.format(price / 100);
-  };
-
-  teddy = { id, name, price: getFormattedPrice(teddy), img, colors, description };
+  teddy = { id, name, price: getFormattedPrice(price / 100), img, colors, description };
 
   return { teddy };
 };
@@ -86,13 +76,13 @@ const selectColor = async (teddy) => {
       // on écoute au changement de sélection de pastille de couleur
       otherColor.forEach((element) => element.classList.remove("teddyColor__bullet-active")); // on enlève la class pastille active potentiellement rajoutée au précédent changement de sélection de pastille de couleur
 
-      for (let i = 0; i < elts.length; i++) {
+      for (let m = 0; m < elts.length; m++) {
         // on boucle sur les inputs liés à toutes les pastilles
-        if (elts[i].checked === true) {
+        if (elts[m].checked === true) {
           // on vérifie que l'input radio est sélectionné
-          const idSelected = "#" + elts[i].id + "-label"; // on sélectionne la class du label correspondant
+          const idSelected = "#" + elts[m].id + "-label"; // on sélectionne la class du label correspondant
           document.querySelector(idSelected).classList.add("teddyColor__bullet-active"); // on ajoute la class pastille active
-          choiceColor = elts[i].title;
+          choiceColor = elts[m].title;
           break;
         }
       }
@@ -100,6 +90,7 @@ const selectColor = async (teddy) => {
     });
   })();
 };
+
 // fonction sur le bouton Ajouter au panier
 const addToCart = async (teddy) => {
   const addToCartButton = document.querySelector("#addToCart");
@@ -107,14 +98,14 @@ const addToCart = async (teddy) => {
   addToCartButton.addEventListener("click", () => {
     // on écoute le clic sur le bouton Ajouter au panier
     const choiceQuantity = document.querySelector("#teddyQuantity").value; // on retient la valeur de la quantité sélectionnée
-    const priceArticle = teddy.price.replace(/,00+\s+€/, ""); // on remodifie le prix en chiffres sans les centiments ni le symbole € uniquement pour le panier
+    // const priceArticle = teddy.price; // on remodifie le prix en chiffres sans les centiments ni le symbole € uniquement pour le panier
     const optionsArticle = {
       // on crée un objet recensant les informations du produit à ajouter au panier
       name: teddy.name,
       id: teddy.id,
       color: choiceColor,
       quantity: choiceQuantity,
-      price: priceArticle,
+      price: teddy.price,
     };
 
     // affichage du message d'erreur si absence de couleur sélectionnée
@@ -161,26 +152,35 @@ const addToCart = async (teddy) => {
         document.getElementById("product-detail").removeChild(popupContainer);
       }
 
-      // et envoyer l'objet au local storage
-
+      // fonction pour envoyer l'objet au local storage
       let itemLocalStorage = JSON.parse(localStorage.getItem("selectedArticles"));
 
       const addSelectedArticle = () => {
-        itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné
-        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de l'item dans le localStorage
+        for (let n = 0; n < itemLocalStorage.length; n++) {
+          if (itemLocalStorage[n].color !== optionsArticle.color || itemLocalStorage[n].id !== optionsArticle.id) {
+            itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné à la liste du localStorage
+          }
+          break;
+        }
+        if (!itemLocalStorage[0]) {
+          itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné à la liste du localStorage
+        }
       };
-      if (!itemLocalStorage) {
-        // si le panier est vide
-        itemLocalStorage = []; // création de l'array pour la variable
-        addSelectedArticle();
-        createPopup(); // ouverture du popup de confirmation d'ajout au panier
-      } else {
-        // si le panier n'est pas vide
-        addSelectedArticle();
-        createPopup(); // ouverture du popup de confirmation d'ajout au panier
-      }
 
-      // popup de confirmation d'ajout de l'article au panier
+      // fonction pour modifier le nombre d'article d'un item déjà présent en au moins un exemplaire au panier
+      const modifySelectedArticle = () => {
+        for (let n = 0; n < itemLocalStorage.length; n++) {
+          if (!(itemLocalStorage[n].color !== optionsArticle.color || itemLocalStorage[n].id !== optionsArticle.id)) {
+            itemLocalStorage[n].quantity =
+              parseInt(itemLocalStorage[n].quantity, 10) + parseInt(optionsArticle.quantity, 10);
+            break;
+          }
+        }
+      };
+      modifySelectedArticle();
+      addSelectedArticle();
+      localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
+      createPopup(); // ouverture du popup de confirmation d'ajout au panier
     }
   });
 };

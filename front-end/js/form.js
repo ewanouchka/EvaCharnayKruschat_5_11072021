@@ -1,12 +1,15 @@
 // affichage du formulaire
 
-(async () => {
-  // on sélectionne le bouton "Valider le panier"
-  const validate1 = document.getElementById("validateCart");
-  validate1.addEventListener("click", function () {
-    const blocForm = document.getElementById("order-form");
+// on vérifie la présence du bouton valider le panier
+if (document.getElementById("validateCart")) {
+  (async () => {
+    // on sélectionne le bouton "Valider le panier"
+    const validate1 = document.getElementById("validateCart");
+    validate1.addEventListener("click", function () {
+      const blocForm = document.getElementById("order-form");
 
-    blocForm.innerHTML = `<section class="blocForm">
+      //on crée le bloc formulaire avec les champs requis
+      blocForm.innerHTML = `<section class="blocForm">
     <h2 class="blocForm__title">Merci de remplir ce formulaire pour valider votre commande</h2>
     <label for="Name" class="blocForm__input">Votre nom :
     </label>
@@ -37,10 +40,11 @@
     <input placeholder="0123456789" name="Phone" id="Phone" class="blocForm__input" type="text" pattern="[0-9]*">
     </section>`;
 
-    blocForm.innerHTML += `<button class="button" id="order-confirm"><span>Valider la commande</span></button>`; // ajout du bouton "Valider la commande"
+      blocForm.innerHTML += `<button class="button" id="order-confirm"><span>Valider la commande</span></button>`; // ajout du bouton "Valider la commande"
 
-    blocForm.classList.remove("visually-hidden");
-  });
-})();
+      blocForm.classList.remove("visually-hidden"); // on enlève la classe qui dissimule le bloc formulaire lorsque le panier est vide
+    });
+  })();
+}
 
 // validation du formulaire

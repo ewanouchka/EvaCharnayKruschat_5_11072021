@@ -1,3 +1,8 @@
+// récupération des articles dans le localStorage
+const getArticles = async () => {
+  return itemLocalStorage;
+};
+
 // fonction affichage du panier
 const displayCart = async (articles) => {
   const cartElement = document.querySelector("#cart"); // on sélectionne la section du panier
@@ -19,9 +24,9 @@ const displayCart = async (articles) => {
         <a href="product.html?id=${article.id}" class="cartArticle">
         <div class="cartName">Ourson ${article.name}</div></a>
         <div class="cartInfo">${article.color}</div>
-        <div class="cartInfo">${article.price}</div>
-        <div class="cartInfo"><button class="mini-button">-</button>${article.quantity}<button class="mini-button">+</button></div>
-        <div class="cartTotal cartInfo">${article.total}</div>
+        <div class="cartInfo">${article.price} €</div>
+        <div class="cartInfo"><button class="mini-button minus">-</button>${article.quantity}<button class="mini-button plus">+</button></div>
+        <div class="cartTotal cartInfo">${article.total} €</div>
         <button class="fas fa-trash-alt cartSuppr mini-button"></button></section>`
     )
     .join("");
@@ -29,24 +34,72 @@ const displayCart = async (articles) => {
   const somme = () => {
     // fonction calculant le prix total du panier
     let tableauTotaux = [];
-    tableauTotaux = articles.map((article) => `${article.total}`.replace(/,00+\s+€/, "")); // on récupère les valeurs totales pour chaque ligne d'article
+    tableauTotaux = articles.map((article) => `${article.total}`); // on récupère les valeurs totales pour chaque ligne d'article
 
     const sommeTotale = tableauTotaux.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10)); // on additionne toutes les valeurs de l'array, ramenées en nombres en base 10
-    return sommeTotale;
+
+    return getFormattedPrice(sommeTotale);
   };
 
   cartElement.innerHTML +=
-    `<h2 class="cartTotal lastLineCart">Total : <span class="lastLineTotal">` + somme() + `,00 €</span></h2>`; // on affiche le total du panier
+    `<h2 class="cartTotal lastLineCart">Total : <span class="lastLineTotal">` + somme() + ` €</span></h2>`; // on affiche le total du panier
+
+  cartElement.innerHTML += `<a href="cart.html"><button class="button" id="emptyCart"><span>Vider le panier</span></button></a>`; // ajout du bouton "Vider le panier"
 
   cartElement.innerHTML += `<button class="button" id="validateCart"><span>Valider le panier</span></button>`; // ajout du bouton "Valider le panier"
-};
 
-// récupération des articles dans le localStorage
+  // fonctions modifications des produits du panier
 
-const getArticles = async () => {
-  const itemLocalStorage = JSON.parse(localStorage.getItem("selectedArticles"));
+  // fonction suppression d'un article au clic sur la petite corbeille
+  const supprButton = document.querySelectorAll(".cartSuppr");
 
-  return itemLocalStorage;
+  for (let i = 0; i < supprButton.length; i++) {
+    supprButton[i].addEventListener("click", () => {
+      articles.splice(i, 1);
+      itemLocalStorage = articles;
+      localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
+      window.location.reload();
+    });
+  }
+
+  // fonction suppression de tous les articles du panier
+  const supprAll = document.getElementById("emptyCart");
+
+  supprAll.addEventListener("click", () => {
+    itemLocalStorage = [];
+    localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
+  });
+
+  // fonction ajout quantité +
+  const plusOne = document.querySelectorAll(".plus");
+
+  for (let j = 0; j < plusOne.length; j++) {
+    plusOne[j].addEventListener("click", () => {
+      articles[j].quantity = parseInt(articles[j].quantity, 10) + 1;
+      console.log(articles[j].quantity);
+      itemLocalStorage = articles;
+      localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
+      window.location.reload();
+    });
+  }
+
+  // fonction retrait quantité -
+  const minusOne = document.querySelectorAll(".minus");
+  for (let k = 0; k < minusOne.length; k++) {
+    minusOne[k].addEventListener("click", () => {
+      articles[k].quantity = parseInt(articles[k].quantity, 10) - 1;
+      if (articles[k].quantity == 0) {
+        articles.splice(k, 1);
+        itemLocalStorage = articles;
+        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
+        window.location.reload();
+      } else {
+        itemLocalStorage = articles;
+        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
+        window.location.reload();
+      }
+    });
+  }
 };
 
 // mise en forme des données de l'api pour l'id concernée
@@ -57,32 +110,13 @@ const formatData = async (itemLocalStorage) => {
     results.map((articles) => {
       const { name, id, color, price, quantity } = articles;
 
-      const getFormattedPrice = (format = "fr-FR") => {
-        // fonction changement du format du prix 0000 -> 00.00 €
-        const euro = new Intl.NumberFormat(format, {
-          style: "currency",
-          currency: "EUR",
-          minimumFractionDigits: 2,
-        });
-        return euro.format(price);
-      };
-      const getFormattedTotal = (format = "fr-FR") => {
-        // fonction changement du format du prix 0000 -> 00.00 €
-        const euro = new Intl.NumberFormat(format, {
-          style: "currency",
-          currency: "EUR",
-          minimumFractionDigits: 2,
-        });
-        return euro.format(price * quantity);
-      };
-
       return {
         name,
         id,
         color,
-        price: getFormattedPrice(articles),
+        price: getFormattedPrice(price),
         quantity,
-        total: getFormattedTotal(articles),
+        total: getFormattedPrice(price * quantity),
       };
     })
   );
@@ -93,7 +127,8 @@ const formatData = async (itemLocalStorage) => {
 // appel de la fonction affichage du panier
 (async () => {
   const articles = await formatData(await getArticles());
-  displayCart(articles);
+  if (!articles[0]) {
+  } else {
+    displayCart(articles);
+  }
 })();
-
-// fonctions modifications des produits à voir

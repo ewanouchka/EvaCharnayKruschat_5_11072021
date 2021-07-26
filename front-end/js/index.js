@@ -8,7 +8,7 @@ const displayTeddies = async (teddies) => {
         `<a href="front-end/pages/product.html?id=${teddies.id}" class="teddyItem">
         <img src="${teddies.img}" class="teddyImg" alt="image ourson ${teddies.name}" />
         <h1 class="teddyName">${teddies.name}</h1>
-        <h2 class="teddyPrice">${teddies.price}</h2>
+        <h2 class="teddyPrice">${teddies.price} €</h2>
         <div class="teddyColor">Coloris disponibles : ${teddies.colors}</div></a>`
     )
     .join("");
@@ -27,21 +27,12 @@ const formatData = async (teddyApiJSON) => {
 
   const teddies = await Promise.all(
     results.map((teddies) => {
-      const getFormattedPrice = (format = "fr-FR") => {
-        // fonction changement du format du prix 0000 -> 00.00 €
-        const euro = new Intl.NumberFormat(format, {
-          style: "currency",
-          currency: "EUR",
-          minimumFractionDigits: 2,
-        });
-        return euro.format(price / 100);
-      };
       const { _id: id, name, price, imageUrl: img, colors, description } = teddies;
 
       return {
         id,
         name,
-        price: getFormattedPrice(teddies),
+        price: getFormattedPrice(price / 100),
         img,
         colors: colors.join(", "),
         description,
