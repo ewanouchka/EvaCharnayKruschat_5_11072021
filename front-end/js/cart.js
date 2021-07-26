@@ -29,8 +29,9 @@ const displayCart = async (articles) => {
   const somme = () => {
     // fonction calculant le prix total du panier
     let tableauTotaux = [];
-    tableauTotaux = articles.map((article) => `${article.total}`); // on récupère les valeurs totales pour chaque ligne d'article
+    tableauTotaux = articles.map((article) => `${article.total}`.replace(/,00+\s+€/, "")); // on récupère les valeurs totales pour chaque ligne d'article
 
+    console.log(tableauTotaux);
     const sommeTotale = tableauTotaux.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10)); // on additionne toutes les valeurs de l'array, ramenées en nombres en base 10
     return sommeTotale;
   };
