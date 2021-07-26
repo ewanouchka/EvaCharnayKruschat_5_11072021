@@ -2,6 +2,7 @@
 const displayOneTeddy = async (teddy) => {
   const teddyElement = document.querySelector("#product-detail");
 
+  // on ajoute le bloc du produit sélectionné
   teddyElement.innerHTML = `<form class="teddyItem">
   <img src="${teddy.img}" class="teddyImg" alt="image ourson ${teddy.name}" />
   <div class="teddyDetail">
@@ -16,17 +17,20 @@ const displayOneTeddy = async (teddy) => {
           <div class="teddyColor">Coloris disponibles :
           <div id="teddyColor"></div></div>
           <div class="teddyQuantity"><label for="teddyQuantity">Quantité choisie :</label>
-          <select id="teddyQuantity"><option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option></select></div>
+          <select id="teddyQuantity"></select></div>
           <div id="color-error" class="error-hidden">Veuillez choisir une couleur.</div></div></form>`;
+
+  // on crée un tableau supplémentaire pour le choix de la quantité
+  const optionQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let blocOptionQuantity = [];
+
+  // on passe par toutes les valeurs du tableau pour créer les lignes <option>
+  for (let i = 0; i < optionQuantity.length; i++) {
+    blocOptionQuantity = blocOptionQuantity + `<option value="${i + 1}">${optionQuantity[i]}</option>`;
+  }
+
+  // on intègre le bloc quantité dans le bloc produit
+  document.getElementById("teddyQuantity").innerHTML += blocOptionQuantity;
 
   teddyElement.innerHTML += `<button class="button" id="addToCart"><span>Ajouter au panier</span></button>`; // ajout du bouton "ajout au panier"
 };
@@ -161,16 +165,18 @@ const addToCart = async (teddy) => {
 
       let itemLocalStorage = JSON.parse(localStorage.getItem("selectedArticles"));
 
+      const addSelectedArticle = () => {
+        itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné
+        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de l'item dans le localStorage
+      };
       if (!itemLocalStorage) {
         // si le panier est vide
         itemLocalStorage = []; // création de l'array pour la variable
-        itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné
-        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de l'item dans le localStorage
+        addSelectedArticle();
         createPopup(); // ouverture du popup de confirmation d'ajout au panier
       } else {
         // si le panier n'est pas vide
-        itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné
-        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de l'item dans le localStorage
+        addSelectedArticle();
         createPopup(); // ouverture du popup de confirmation d'ajout au panier
       }
 
