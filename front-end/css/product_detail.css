@@ -86,8 +86,8 @@
 }
 
 .error-visible {
-  color: var(--color-primary);
-  font-size: 1.5rem;
+  color: var(--color-invalid);
+  font-size: 1.25rem;
   text-align: center;
   width: 100%;
 }

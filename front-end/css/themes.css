@@ -15,6 +15,7 @@
   --color-light: #fff;
   --color-primary: #e7901a;
   --color-secondary: #8f5bfe;
+  --color-invalid: crimson;
 
   /* polices */
   --font-title: "Belligerent";
