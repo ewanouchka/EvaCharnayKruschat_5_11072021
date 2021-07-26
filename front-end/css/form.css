@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .blocForm {
@@ -18,19 +19,29 @@
   text-align: center;
 }
 
-.blocForm__input-large {
-  width: 100%;
+.blocForm__input {
+  width: calc(100% - 2 * 0.2rem);
 }
 
-label.blocForm__input-large {
+label.blocForm__input {
   padding: 0 0.75rem;
 }
 
-input.blocForm__input-large {
+input.blocForm__input {
   margin: 0 0 1rem 0;
   border: 1px solid var(--color-footer);
   border-radius: 1rem;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.2rem;
+}
+
+input.blocForm__input:focus:invalid {
+  border: 1px solid var(--color-invalid);
+}
+
+input.blocForm__input::placeholder {
+  color: var(--color-footer);
+  font-weight: bold;
+  text-align: center;
 }
 
 .visually-hidden {

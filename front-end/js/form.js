@@ -2,35 +2,39 @@
 
 (async () => {
   // on sélectionne le bouton "Valider le panier"
-  const validate1 = document.querySelector("#validateCart");
+  const validate1 = document.getElementById("validateCart");
   validate1.addEventListener("click", function () {
     const blocForm = document.getElementById("order-form");
 
     blocForm.innerHTML = `<section class="blocForm">
     <h2 class="blocForm__title">Merci de remplir ce formulaire pour valider votre commande</h2>
-    <label for="Name" id="Name" class="blocForm__input-large">Votre nom :
+    <label for="Name" class="blocForm__input">Votre nom :
     </label>
-    <input name="Name" id="Name" class="blocForm__input-large">
+    <input placeholder="ex: Dupont" name="Name" id="Name" class="blocForm__input" type="text" required>
 
-    <label for="Surname" id="Surname" class="blocForm__input-large">Votre prénom :
+    <label for="Surname" class="blocForm__input">Votre prénom :
     </label>
-    <input name="Surname" id="Surname" class="blocForm__input-large">
+    <input placeholder="ex: Jeanne" name="Surname" id="Surname" class="blocForm__input" type="text" required>
     
-    <label for="Address" id="Address" class="blocForm__input-large">Votre adresse :
+    <label for="Address" class="blocForm__input">Votre adresse :
     </label>
-    <input name="Address" id="Address" class="blocForm__input-large">
+    <input placeholder="ex: 1 place du marché" name="Address" id="Address" class="blocForm__input" type="text" required>
     
-    <label for="Postcode" id="Postcode" class="blocForm__input-large">Votre code postal :
+    <label for="Postcode" class="blocForm__input">Votre code postal :
     </label>
-    <input name="Postcode" id="Postcode" class="blocForm__input-large">
+    <input placeholder="ex: 75001" name="Postcode" id="Postcode" class="blocForm__input" type="text" pattern="[0-9]*" required>
     
-    <label for="Town" id="Town" class="blocForm__input-large">Votre ville :
+    <label for="Town" class="blocForm__input">Votre ville :
     </label>
-    <input name="Town" id="Town" class="blocForm__input-large">
+    <input placeholder="ex: Paris" name="Town" id="Town" class="blocForm__input" type="text" required>
     
-    <label for="Email" id="Email" class="blocForm__input-large">Votre e-mail :
+    <label for="Email" class="blocForm__input">Votre e-mail :
     </label>
-    <input name="Email" id="Email" class="blocForm__input-large">
+    <input placeholder="contact@orinoco.fr" name="Email" id="Email" class="blocForm__input" type="email" required>
+    
+    <label for="Phone" class="blocForm__input">Votre téléphone (facultatif) :
+    </label>
+    <input placeholder="0123456789" name="Phone" id="Phone" class="blocForm__input" type="text" pattern="[0-9]*">
     </section>`;
 
     blocForm.innerHTML += `<button class="button" id="order-confirm"><span>Valider la commande</span></button>`; // ajout du bouton "Valider la commande"
