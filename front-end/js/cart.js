@@ -94,19 +94,6 @@ const formatData = async (itemLocalStorage) => {
 (async () => {
   const articles = await formatData(await getArticles());
   displayCart(articles);
-
-  const nombreProduits = () => {
-    // fonction calculant le prix total du panier
-    let tableauNombres = [];
-    tableauNombres = articles.map((article) => `${article.quantity}`); // on récupère les valeurs totales pour chaque ligne d'article
-
-    const sommeProduits = tableauNombres.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10)); // on additionne toutes les valeurs de l'array, ramenées en nombres en base 10
-    return sommeProduits;
-  };
-  nombreProduits();
-
-  const cartLogo = document.querySelector("#cartLogo"); // on sélectionne le logo du panier
-  cartLogo.innerHTML += `<span class="cartNumber">` + nombreProduits() + `</span>`; // on affiche le nombre d'articles dans le panier
 })();
 
 // fonctions modifications des produits à voir
