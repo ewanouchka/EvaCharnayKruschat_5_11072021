@@ -1,8 +1,3 @@
-// récupération des articles dans le localStorage
-const getArticles = async () => {
-  return itemLocalStorage;
-};
-
 // fonction affichage du panier
 const displayCart = async (articles) => {
   const cartElement = document.querySelector("#cart"); // on sélectionne la section du panier
@@ -100,28 +95,6 @@ const displayCart = async (articles) => {
       }
     });
   }
-};
-
-// mise en forme des données de l'api pour l'id concernée
-const formatData = async (itemLocalStorage) => {
-  let results = itemLocalStorage;
-
-  const articles = await Promise.all(
-    results.map((articles) => {
-      const { name, id, color, price, quantity } = articles;
-
-      return {
-        name,
-        id,
-        color,
-        price: getFormattedPrice(price),
-        quantity,
-        total: getFormattedPrice(price * quantity),
-      };
-    })
-  );
-
-  return articles;
 };
 
 // appel de la fonction affichage du panier
