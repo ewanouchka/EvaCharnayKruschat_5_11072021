@@ -43,7 +43,7 @@ const getOneTeddy = async (url = "http://localhost:3000/api/teddies/") => {
 };
 
 // mise en forme des données de l'api pour l'id concernée
-const formatData = async (oneTeddyJSON) => {
+const formatDataProduct = async (oneTeddyJSON) => {
   let teddy = oneTeddyJSON;
   let { _id: id, name, price, imageUrl: img, colors, description } = teddy;
 
@@ -95,17 +95,16 @@ const selectColor = async (teddy) => {
 const addToCart = async (teddy) => {
   const addToCartButton = document.querySelector("#addToCart");
 
-  addToCartButton.addEventListener("click", () => {
+  addToCartButton.addEventListener("click", async () => {
     // on écoute le clic sur le bouton Ajouter au panier
-    const choiceQuantity = document.querySelector("#teddyQuantity").value; // on retient la valeur de la quantité sélectionnée
-    // const priceArticle = teddy.price; // on remodifie le prix en chiffres sans les centiments ni le symbole € uniquement pour le panier
+    const choiceQuantity = parseInt(document.querySelector("#teddyQuantity").value); // on retient la valeur de la quantité sélectionnée et on la convertit en nombre
     const optionsArticle = {
       // on crée un objet recensant les informations du produit à ajouter au panier
       name: teddy.name,
       id: teddy.id,
       color: choiceColor,
-      quantity: choiceQuantity,
       price: teddy.price,
+      quantity: choiceQuantity,
     };
 
     // affichage du message d'erreur si absence de couleur sélectionnée
@@ -153,33 +152,26 @@ const addToCart = async (teddy) => {
       }
 
       // fonction pour envoyer l'objet au local storage
-      let itemLocalStorage = JSON.parse(localStorage.getItem("selectedArticles"));
+
+      const articles = await formatData(await getArticles());
+      // fonction pour modifier le nombre d'article d'un item déjà présent en au moins un exemplaire au panier
 
       const addSelectedArticle = () => {
-        for (let n = 0; n < itemLocalStorage.length; n++) {
-          if (itemLocalStorage[n].color !== optionsArticle.color || itemLocalStorage[n].id !== optionsArticle.id) {
-            itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné à la liste du localStorage
-          }
-          break;
-        }
         if (!itemLocalStorage[0]) {
           itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné à la liste du localStorage
-        }
-      };
-
-      // fonction pour modifier le nombre d'article d'un item déjà présent en au moins un exemplaire au panier
-      const modifySelectedArticle = () => {
-        for (let n = 0; n < itemLocalStorage.length; n++) {
-          if (!(itemLocalStorage[n].color !== optionsArticle.color || itemLocalStorage[n].id !== optionsArticle.id)) {
-            itemLocalStorage[n].quantity =
-              parseInt(itemLocalStorage[n].quantity, 10) + parseInt(optionsArticle.quantity, 10);
-            break;
+        } else if (articles.every((value) => value.color !== optionsArticle.color || value.id !== optionsArticle.id)) {
+          itemLocalStorage.push(optionsArticle); // ajout de l'article sélectionné à la liste du localStorage
+        } else {
+          for (let n = 0; n < articles.length; n++) {
+            if (articles[n].color === optionsArticle.color && articles[n].id === optionsArticle.id) {
+              itemLocalStorage[n].quantity = parseInt(articles[n].quantity, 10) + parseInt(optionsArticle.quantity, 10);
+            }
           }
         }
+        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage)
       };
-      modifySelectedArticle();
+
       addSelectedArticle();
-      localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
       createPopup(); // ouverture du popup de confirmation d'ajout au panier
     }
   });
@@ -187,7 +179,7 @@ const addToCart = async (teddy) => {
 
 // appel global des fonctions
 (async () => {
-  const { teddy } = await formatData(await getOneTeddy());
+  const { teddy } = await formatDataProduct(await getOneTeddy());
   displayOneTeddy(teddy); // affichage du bloc produit
   selectColor(teddy); // affichage des pastilles de couleur
   addToCart(teddy); // bouton Ajouter au panier
