@@ -1,5 +1,4 @@
 // fonction affichage du nombre de produits dans le panier dans la barre de nav et appel générique du localStorage
-let itemLocalStorage = JSON.parse(localStorage.getItem("selectedArticles"));
 
 if (!itemLocalStorage) {
   // si le panier est vide
