@@ -1,7 +1,7 @@
 /* affichage grands boutons */
 
 .button {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: var(--color-gradient);
   border: 0;
   border-radius: 3rem;
   box-shadow: 0 0 6px var(--color-footer);

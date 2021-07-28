@@ -16,6 +16,7 @@
   --color-primary: #e7901a;
   --color-secondary: #8f5bfe;
   --color-invalid: crimson;
+  --color-gradient: linear-gradient(135deg, var(--color-primary), 50%, var(--color-secondary));
 
   /* polices */
   --font-title: "Belligerent";

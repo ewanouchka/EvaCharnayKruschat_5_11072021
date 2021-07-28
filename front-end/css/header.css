@@ -42,7 +42,7 @@ header {
 }
 
 .cartNumber {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: var(--color-gradient);
   color: var(--color-light);
   border-radius: 1rem;
   padding: 0.2rem 0.5rem;

@@ -77,7 +77,7 @@
 }
 
 .lastLineTotal {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: var(--color-gradient);
   -moz-background-clip: text;
   -o-background-clip: text;
   -webkit-background-clip: text;
