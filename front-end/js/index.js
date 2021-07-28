@@ -22,7 +22,7 @@ const getTeddies = async (url) => {
 };
 
 // mise en forme des données de l'api
-const formatData = async (teddyApiJSON) => {
+const formatDataTeddies = async (teddyApiJSON) => {
   const results = teddyApiJSON;
 
   const teddies = await Promise.all(
@@ -47,6 +47,6 @@ const formatData = async (teddyApiJSON) => {
 
 // appel de la fonction affichage des cartes des teddies
 (async () => {
-  const { teddies } = await formatData(await getTeddies());
+  const { teddies } = await formatDataTeddies(await getTeddies());
   displayTeddies(teddies);
 })();
