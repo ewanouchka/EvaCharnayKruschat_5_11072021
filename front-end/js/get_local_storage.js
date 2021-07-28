@@ -1,4 +1,6 @@
 // récupération des articles dans le localStorage
+let itemLocalStorage = JSON.parse(localStorage.getItem("selectedArticles"));
+
 const getArticles = async () => {
   return itemLocalStorage;
 };
