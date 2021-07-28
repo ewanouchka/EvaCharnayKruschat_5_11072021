@@ -76,7 +76,7 @@ if (validate1)
       // message d'erreur pour le nom
       let inputName = document.getElementById("Name");
 
-      inputName.addEventListener("keyup", function (event) {
+      inputName.addEventListener("keyup", function () {
         if (inputName.validity.patternMismatch) {
           inputName.setCustomValidity(
             'Le nom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-".'
@@ -89,7 +89,7 @@ if (validate1)
       // message d'erreur pour le prénom
       let inputSurname = document.getElementById("Surname");
 
-      inputSurname.addEventListener("keyup", function (event) {
+      inputSurname.addEventListener("keyup", function () {
         if (inputSurname.validity.patternMismatch) {
           inputSurname.setCustomValidity(
             'Le prénom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-".'
@@ -102,7 +102,7 @@ if (validate1)
       // message d'erreur pour l'adresse
       let inputAddress = document.getElementById("Address");
 
-      inputAddress.addEventListener("keyup", function (event) {
+      inputAddress.addEventListener("keyup", function () {
         if (inputAddress.validity.patternMismatch) {
           inputAddress.setCustomValidity("Merci de saisir votre adresse complète.");
         } else {
@@ -113,7 +113,7 @@ if (validate1)
       // message d'erreur pour le code postal
       let inputPostcode = document.getElementById("Postcode");
 
-      inputPostcode.addEventListener("keyup", function (event) {
+      inputPostcode.addEventListener("keyup", function () {
         if (inputPostcode.validity.patternMismatch) {
           inputPostcode.setCustomValidity("Le code postal doit comporter quatre ou cinq chiffres.");
         } else {
@@ -124,7 +124,7 @@ if (validate1)
       // message d'erreur pour la ville
       let inputTown = document.getElementById("Town");
 
-      inputTown.addEventListener("keyup", function (event) {
+      inputTown.addEventListener("keyup", function () {
         if (inputTown.validity.patternMismatch) {
           inputTown.setCustomValidity(
             "La ville doit être composée uniquement de lettres, accentuées ou non, espaces et/ou -."
@@ -137,7 +137,7 @@ if (validate1)
       // message d'erreur pour l'e-mail
       let inputEmail = document.getElementById("Email");
 
-      inputEmail.addEventListener("keyup", function (event) {
+      inputEmail.addEventListener("keyup", function () {
         if (inputEmail.validity.patternMismatch) {
           inputEmail.setCustomValidity('Un e-mail doit comporter un "@" et un ".".');
         } else {
@@ -148,7 +148,7 @@ if (validate1)
       // message d'erreur pour le téléphone
       let inputPhone = document.getElementById("Phone");
 
-      inputPhone.addEventListener("keyup", function (event) {
+      inputPhone.addEventListener("keyup", function () {
         if (inputPhone.validity.patternMismatch) {
           inputPhone.setCustomValidity("Le numéro de téléphone doit comporter 10 chiffres.");
         } else {
