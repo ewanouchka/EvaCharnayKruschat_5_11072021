@@ -46,52 +46,57 @@ const displayCart = async (articles) => {
   // fonctions modifications des produits du panier
 
   // fonction suppression d'un article au clic sur la petite corbeille
-  const supprButton = document.querySelectorAll(".cartSuppr");
+  const supprButton = document.querySelectorAll(".cartSuppr"); // on sélectionne les icônes de suppression d'un élément
 
   for (let i = 0; i < supprButton.length; i++) {
+    // on boucle sur toutes les lignes
     supprButton[i].addEventListener("click", () => {
-      articles.splice(i, 1);
-      itemLocalStorage = articles;
-      localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
+      articles.splice(i, 1); // on supprime la ligne sur laquelle on a cliqué
+      itemLocalStorage = articles; // on change la valeur de la variable à renvoyer au localStorage
+      localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // on ajoute la nouvelle valeur de la liste du localStorage dans le localStorage
       window.location.reload();
     });
   }
 
   // fonction suppression de tous les articles du panier
-  const supprAll = document.getElementById("emptyCart");
+  const supprAll = document.getElementById("emptyCart"); // on sélectionne le bouton "vider le panier"
 
   supprAll.addEventListener("click", () => {
-    itemLocalStorage = [];
-    localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
+    itemLocalStorage = []; // on donne une valeur vide à la variable du localStorage
+    localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // on ajoute la nouvelle valeur de la liste du localStorage dans le localStorage
   });
 
   // fonction ajout quantité +
-  const plusOne = document.querySelectorAll(".plus");
+  const plusOne = document.querySelectorAll(".plus"); // on sélectionne les icônes "+"
 
   for (let j = 0; j < plusOne.length; j++) {
+    // on boucle sur toutes les lignes
     plusOne[j].addEventListener("click", () => {
-      articles[j].quantity = parseInt(articles[j].quantity, 10) + 1;
-      console.log(articles[j].quantity);
-      itemLocalStorage = articles;
-      localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
-      window.location.reload();
+      articles[j].quantity = parseInt(articles[j].quantity, 10) + 1; // on ajoute 1 à la quantité déjà présente dans la ligne
+      itemLocalStorage = articles; // on change la valeur de la variable à renvoyer au localStorage
+      localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // on ajoute la nouvelle valeur de la liste du localStorage dans le localStorage
+      window.location.reload(); // on recharge la page avec les nouvelles informations
     });
   }
 
   // fonction retrait quantité -
-  const minusOne = document.querySelectorAll(".minus");
+  const minusOne = document.querySelectorAll(".minus"); // on sélectionne les icônes "-"
+
   for (let k = 0; k < minusOne.length; k++) {
+    // on boucle sur toutes les lignes
     minusOne[k].addEventListener("click", () => {
-      articles[k].quantity = parseInt(articles[k].quantity, 10) - 1;
+      articles[k].quantity = parseInt(articles[k].quantity, 10) - 1; // on retire 1 à la quantité déjà présente dans la ligne
       if (articles[k].quantity == 0) {
+        // si on arrive à 0, on supprime la ligne
         articles.splice(k, 1);
-        itemLocalStorage = articles;
-        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
+        itemLocalStorage = articles; // on change la valeur de la variable à renvoyer au localStorage
+        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // on ajoute la nouvelle valeur de la liste du localStorage dans le localStorage
         window.location.reload();
       } else {
-        itemLocalStorage = articles;
-        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // ajout de la nouvelle valeur de la liste du localStorage dans le localStorage
-        window.location.reload();
+        // sinon, on change juste la valeur
+        itemLocalStorage = articles; // on change la valeur de la variable à renvoyer au localStorage
+        localStorage.setItem("selectedArticles", JSON.stringify(itemLocalStorage)); // on ajoute la nouvelle valeur de la liste du localStorage dans le localStorage
+        window.location.reload(); // on recharge la page avec les nouvelles informations
       }
     });
   }
@@ -101,6 +106,7 @@ const displayCart = async (articles) => {
 (async () => {
   const articles = await formatData(await getArticles());
   if (!articles[0]) {
+    // on affiche la page que s'il existe des articles au panier
   } else {
     displayCart(articles);
   }

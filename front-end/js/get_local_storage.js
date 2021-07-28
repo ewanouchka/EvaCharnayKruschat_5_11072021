@@ -11,20 +11,21 @@ const formatData = async (itemLocalStorage) => {
 
   const articles = await Promise.all(
     results.map((articles) => {
-      const { name, id, color, price, quantity } = articles;
+      const { name, id, color, price, quantity } = articles; // on déstructure articles
 
       return {
+        // on met en forme les éléments
         name,
         id,
         color,
-        price: getFormattedPrice(price),
+        price: getFormattedPrice(price), // on intègre le prix au format 00.00
         quantity,
-        total: getFormattedPrice(price * quantity),
+        total: getFormattedPrice(price * quantity), // on intègre le total au format 00.00
       };
     })
   );
 
-  return articles;
+  return articles; // on retourne l'objet
 };
 
 // appel des fonctions

@@ -16,7 +16,7 @@ const formatDataCart = async (itemLocalStorage) => {
 
   const articles = await Promise.all(
     results.map((articles) => {
-      const { quantity, ...rest } = articles;
+      const { quantity, ...rest } = articles; // ici on n'a besoin que de la quantité
 
       return {
         quantity,
@@ -33,6 +33,7 @@ const formatDataCart = async (itemLocalStorage) => {
   const nombreProduits = () => {
     // fonction calculant le nombre total de produits dans le panier
     if (!articles[0]) {
+      // s'il n'y a pas d'article, on affiche 0
       return 0;
     } else {
       let tableauNombres = [];

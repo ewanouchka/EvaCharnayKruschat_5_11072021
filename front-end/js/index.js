@@ -1,8 +1,8 @@
 // fonction affichage des cartes des teddies
 const displayTeddies = async (teddies) => {
-  const teddiesElement = document.querySelector("#products");
+  const teddiesElement = document.querySelector("#products"); // on sélectionne le bloc products
 
-  teddiesElement.innerHTML = teddies
+  teddiesElement.innerHTML = teddies // on change son contenu avec les informations récupérées des teddies, en liste
     .map(
       (teddies) =>
         `<a href="front-end/pages/product.html?id=${teddies.id}" class="teddyItem">
@@ -27,14 +27,15 @@ const formatDataTeddies = async (teddyApiJSON) => {
 
   const teddies = await Promise.all(
     results.map((teddies) => {
-      const { _id: id, name, price, imageUrl: img, colors, description } = teddies;
+      const { _id: id, name, price, imageUrl: img, colors, description } = teddies; // on déstructure teddies
 
       return {
+        // on met en forme les éléments
         id,
         name,
-        price: getFormattedPrice(price / 100),
+        price: getFormattedPrice(price / 100), // on intègre le total au format 00.00
         img,
-        colors: colors.join(", "),
+        colors: colors.join(", "), // on insère les couleurs en liste séparée par des ","
         description,
       };
     })
