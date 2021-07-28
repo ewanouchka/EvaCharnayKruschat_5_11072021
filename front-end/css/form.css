@@ -12,6 +12,7 @@
   box-shadow: 0 0 6px var(--color-footer);
   padding: 1rem;
   margin: 1rem;
+  position: relative;
 }
 
 .blocForm__title {
@@ -34,7 +35,7 @@ input.blocForm__input {
   padding: 0.5rem 0.2rem;
 }
 
-input.blocForm__input:focus:invalid {
+input.blocForm__input:not(:placeholder-shown):invalid {
   border: 1px solid var(--color-invalid);
   box-shadow: 0 0 6px var(--color-invalid);
 }
@@ -43,6 +44,22 @@ input.blocForm__input::placeholder {
   color: var(--color-footer);
   font-weight: bold;
   text-align: center;
+}
+
+.checkTrue {
+  color: #0a0;
+  font-size: 2em;
+  position: absolute;
+  right: 1.5rem;
+  z-index: 500;
+}
+
+.checkFalse {
+  color: crimson;
+  font-size: 2em;
+  position: absolute;
+  right: 1.5rem;
+  z-index: 500;
 }
 
 .visually-hidden {
