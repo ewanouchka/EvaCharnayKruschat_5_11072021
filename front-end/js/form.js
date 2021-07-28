@@ -14,17 +14,17 @@ if (validate1)
     <h2 class="blocForm__title">Merci de remplir ce formulaire pour valider votre commande</h2>
     <label for="Name" class="blocForm__input">Votre nom :
     </label>
-    <input placeholder="ex: Dupont" name="Name" id="Name" class="blocForm__input" type="text" required pattern="^[a-zA-Z\-\ ]{2,}$">
+    <input placeholder="ex: Dupont" name="Name" id="Name" class="blocForm__input" type="text" required pattern="^[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z\-\ ]{2,}$">
     </input>
 
     <label for="Surname" class="blocForm__input">Votre prénom :
     </label>
-    <input placeholder="ex: Jeanne" name="Surname" id="Surname" class="blocForm__input" type="text" required pattern="^[a-zA-Z\-]{2,}$">
+    <input placeholder="ex: Jeanne" name="Surname" id="Surname" class="blocForm__input" type="text" required pattern="^[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z\-]{2,}$">
     </input>
     
     <label for="Address" class="blocForm__input">Votre adresse :
     </label>
-    <input placeholder="ex: 1 place du marché" name="Address" id="Address" class="blocForm__input" type="text" required pattern="^.*[a-zA-Z0-9]+.*$">
+    <input placeholder="ex: 1 place du marché" name="Address" id="Address" class="blocForm__input" type="text" required pattern="^.+[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z0-9]+.+$">
     </input>
     
     <label for="Postcode" class="blocForm__input">Votre code postal :
@@ -34,7 +34,7 @@ if (validate1)
     
     <label for="Town" class="blocForm__input">Votre ville :
     </label>
-    <input placeholder="ex: Paris" name="Town" id="Town" class="blocForm__input" type="text" required pattern="^[a-zA-Z]+[a-zA-Z\-\ ]*[a-zA-Z]+$">
+    <input placeholder="ex: Paris" name="Town" id="Town" class="blocForm__input" type="text" required pattern="^[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z]+[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z\-\ ]*[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z]+$">
     </input>
     
     <label for="Email" class="blocForm__input">Votre e-mail :
@@ -70,5 +70,90 @@ if (validate1)
           eachInput.parentNode.insertBefore(inputChecked, eachInput);
         });
       }
+
+      // personnalisation des messages d'erreur
+
+      // message d'erreur pour le nom
+      let inputName = document.getElementById("Name");
+
+      inputName.addEventListener("keyup", function (event) {
+        if (inputName.validity.patternMismatch) {
+          inputName.setCustomValidity(
+            'Le nom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-".'
+          );
+        } else {
+          inputName.setCustomValidity("");
+        }
+      });
+
+      // message d'erreur pour le prénom
+      let inputSurname = document.getElementById("Surname");
+
+      inputSurname.addEventListener("keyup", function (event) {
+        if (inputSurname.validity.patternMismatch) {
+          inputSurname.setCustomValidity(
+            'Le prénom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-".'
+          );
+        } else {
+          inputSurname.setCustomValidity("");
+        }
+      });
+
+      // message d'erreur pour l'adresse
+      let inputAddress = document.getElementById("Address");
+
+      inputAddress.addEventListener("keyup", function (event) {
+        if (inputAddress.validity.patternMismatch) {
+          inputAddress.setCustomValidity("Merci de saisir votre adresse complète.");
+        } else {
+          inputAddress.setCustomValidity("");
+        }
+      });
+
+      // message d'erreur pour le code postal
+      let inputPostcode = document.getElementById("Postcode");
+
+      inputPostcode.addEventListener("keyup", function (event) {
+        if (inputPostcode.validity.patternMismatch) {
+          inputPostcode.setCustomValidity("Le code postal doit comporter quatre ou cinq chiffres.");
+        } else {
+          inputPostcode.setCustomValidity("");
+        }
+      });
+
+      // message d'erreur pour la ville
+      let inputTown = document.getElementById("Town");
+
+      inputTown.addEventListener("keyup", function (event) {
+        if (inputTown.validity.patternMismatch) {
+          inputTown.setCustomValidity(
+            "La ville doit être composée uniquement de lettres, accentuées ou non, espaces et/ou -."
+          );
+        } else {
+          inputTown.setCustomValidity("");
+        }
+      });
+
+      // message d'erreur pour l'e-mail
+      let inputEmail = document.getElementById("Email");
+
+      inputEmail.addEventListener("keyup", function (event) {
+        if (inputEmail.validity.patternMismatch) {
+          inputEmail.setCustomValidity('Un e-mail doit comporter un "@" et un ".".');
+        } else {
+          inputEmail.setCustomValidity("");
+        }
+      });
+
+      // message d'erreur pour le téléphone
+      let inputPhone = document.getElementById("Phone");
+
+      inputPhone.addEventListener("keyup", function (event) {
+        if (inputPhone.validity.patternMismatch) {
+          inputPhone.setCustomValidity("Le numéro de téléphone doit comporter 10 chiffres.");
+        } else {
+          inputPhone.setCustomValidity("");
+        }
+      });
     });
   })();
