@@ -19,7 +19,7 @@ if (validate1)
 
     <label for="Surname" class="blocForm__input">Votre prénom :
     </label>
-    <input placeholder="ex: Jeanne" name="Surname" id="Surname" class="blocForm__input" type="text" required pattern="^[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z\-]{2,}$">
+    <input placeholder="ex: Jeanne" name="Surname" id="Surname" class="blocForm__input" type="text" required pattern="^[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z\-\ ]{2,}$">
     </input>
     
     <label for="Address" class="blocForm__input">Votre adresse :
@@ -54,13 +54,13 @@ if (validate1)
 
       // ajout d'une icone à la modification des champs du formulaire
       const inputToCheck = document.getElementsByTagName("input"); // on sélectionne les input
-      let inputChecked = document.createElement("div"); // on crée une div supplémentaire
+      const inputChecked = document.createElement("div"); // on crée une div supplémentaire
 
-      for (let eachInput of inputToCheck) {
+      for (const eachInput of inputToCheck) {
         // on boucle sur les input
         eachInput.addEventListener("change", function () {
-          if (eachInput.validity.patternMismatch) {
-            // si la fonction n'est pas valide
+          if (eachInput.validity.patternMismatch || eachInput.validity.valueMissing) {
+            // si le libellé du champ ne correspond pas au pattern (=) n'est pas valide) ou si le champ est vide
             inputChecked.classList.add("checkFalse"); // on applique la class invalide
             inputChecked.innerHTML = `&#xD7;`; // on insère une croix dans la div vide
           } else {
@@ -73,105 +73,75 @@ if (validate1)
       }
 
       // personnalisation des messages d'erreur
+      const checkValidity = (inputId, errorMess) => {
+        const inputName = document.getElementById(`${inputId}`); // on récupère le champ à partir de son ID
+
+        inputName.addEventListener("keyup", function () {
+          // on écoute au changement du champ
+          if (inputName.validity.patternMismatch) {
+            // si le champ n'est pas valide
+            inputName.setCustomValidity(
+              // on change le texte du message d'erreur
+              `${errorMess}`
+            );
+          } else {
+            // si le champ est valide
+            inputName.setCustomValidity(""); // on laisse vide
+          }
+        });
+      };
 
       // message d'erreur pour le nom
-      let inputName = document.getElementById("Name"); // on récupère le champ nom
-
-      inputName.addEventListener("keyup", function () {
-        if (inputName.validity.patternMismatch) {
-          // si le champ n'est pas valide
-          inputName.setCustomValidity(
-            // on change le texte du message d'erreur
-            'Le nom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-".'
-          );
-        } else {
-          // sinon on laisse vide
-          inputName.setCustomValidity("");
-        }
-      });
+      checkValidity("Name", 'Le nom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-".');
 
       // message d'erreur pour le prénom
-      let inputSurname = document.getElementById("Surname"); // on récupère le champ prénom
-
-      inputSurname.addEventListener("keyup", function () {
-        if (inputSurname.validity.patternMismatch) {
-          // si le champ n'est pas valide
-          inputSurname.setCustomValidity(
-            // on change le texte du message d'erreur
-            'Le prénom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-".'
-          );
-        } else {
-          // sinon on laisse vide
-          inputSurname.setCustomValidity("");
-        }
-      });
+      checkValidity(
+        "Surname",
+        'Le prénom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-".'
+      );
 
       // message d'erreur pour l'adresse
-      let inputAddress = document.getElementById("Address"); // on récupère le champ adresse
-
-      inputAddress.addEventListener("keyup", function () {
-        if (inputAddress.validity.patternMismatch) {
-          // si le champ n'est pas valide
-          inputAddress.setCustomValidity("Merci de saisir votre adresse complète."); // on change le texte du message d'erreur
-        } else {
-          // sinon on laisse vide
-          inputAddress.setCustomValidity("");
-        }
-      });
+      checkValidity("Address", "Merci de saisir votre adresse complète.");
 
       // message d'erreur pour le code postal
-      let inputPostcode = document.getElementById("Postcode"); // on récupère le champ code postal
-
-      inputPostcode.addEventListener("keyup", function () {
-        if (inputPostcode.validity.patternMismatch) {
-          // si le champ n'est pas valide
-          inputPostcode.setCustomValidity("Le code postal doit comporter quatre ou cinq chiffres."); // on change le texte du message d'erreur
-        } else {
-          // sinon on laisse vide
-          inputPostcode.setCustomValidity("");
-        }
-      });
+      checkValidity("Postcode", "Le code postal doit comporter quatre ou cinq chiffres.");
 
       // message d'erreur pour la ville
-      let inputTown = document.getElementById("Town"); // on récupère le champ ville
-
-      inputTown.addEventListener("keyup", function () {
-        if (inputTown.validity.patternMismatch) {
-          // si le champ n'est pas valide
-          inputTown.setCustomValidity(
-            // on change le texte du message d'erreur
-            "La ville doit être composée uniquement de lettres, accentuées ou non, espaces et/ou -."
-          );
-        } else {
-          // sinon on laisse vide
-          inputTown.setCustomValidity("");
-        }
-      });
+      checkValidity("Town", "La ville doit être composée uniquement de lettres, accentuées ou non, espaces et/ou -.");
 
       // message d'erreur pour l'e-mail
-      let inputEmail = document.getElementById("Email"); // on récupère le champ e-mail
-
-      inputEmail.addEventListener("keyup", function () {
-        if (inputEmail.validity.patternMismatch) {
-          // si le champ n'est pas valide
-          inputEmail.setCustomValidity('Un e-mail doit comporter un "@" et un ".".'); // on change le texte du message d'erreur
-        } else {
-          // sinon on laisse vide
-          inputEmail.setCustomValidity("");
-        }
-      });
+      checkValidity("Email", 'Un e-mail doit comporter un "@" et un ".".');
 
       // message d'erreur pour le téléphone
-      let inputPhone = document.getElementById("Phone"); // on récupère le champ téléphone
+      checkValidity("Phone", "Le numéro de téléphone doit comporter 10 chiffres.");
 
-      inputPhone.addEventListener("keyup", function () {
-        if (inputPhone.validity.patternMismatch) {
-          // si le champ n'est pas valide
-          inputPhone.setCustomValidity("Le numéro de téléphone doit comporter 10 chiffres."); // on change le texte du message d'erreur
-        } else {
-          // sinon on laisse vide
-          inputPhone.setCustomValidity("");
-        }
+      // récupération des valeurs du formulaire et envoi au localStorage au clic sur le bouton "Valider la commande"
+
+      const validate2 = document.getElementById("order-confirm");
+      validate2.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const getInputValue = (inputId) => {
+          const inputValue = document.getElementById(`${inputId}`).value; // on récupère le champ à partir de son ID
+          return inputValue;
+        };
+
+        const formularData = {
+          // on construit un objet à partir des informations récupérées dans le formulaire
+          name: getInputValue("Name"),
+          surname: getInputValue("Surname"),
+          address: getInputValue("Address"),
+          postcode: getInputValue("Postcode"),
+          town: getInputValue("Town"),
+          email: getInputValue("Email"),
+          phone: getInputValue("Phone"),
+        };
+
+        (async () => {
+          localStorage.setItem("formularDataSent", JSON.stringify(formularData)); // on ajoute les infos du formulaire dans une nouvelle clé dans le localStorage
+        })();
       });
+
+      // fin des scripts
     });
   })();
