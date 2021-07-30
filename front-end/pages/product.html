@@ -2,7 +2,6 @@
 <html lang="fr">
   <head>
     <!-- liens css -->
-    <link rel="stylesheet" type="text/css" href="../css/reset.css" />
     <link rel="stylesheet" type="text/css" href="../css/product.css" />
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="../public/icons/teddy.png" />
@@ -20,10 +19,6 @@
     <!-- importation javascripts -->
     <link rel="preconnect" href="https://ka-f.fontawesome.com" />
     <script src="https://kit.fontawesome.com/ea9c752e95.js" crossorigin="anonymous"></script>
-    <script src="../js/get_formatted_price.js"></script>
-    <script src="../js/get_local_storage.js"></script>
-    <script src="../js/cart_number.js" async></script>
-    <script src="../js/product.js" async></script>
   </head>
 
   <body>
@@ -37,39 +32,39 @@
     <nav class="header-nav">
       <a href="../../index.html" alt="index" title="index"><i class="fas fa-home header-nav__icon"></i></a>
       Le teddy bear par Orinoco
-      <a href="../pages/cart.html" id="cartLogo" alt="panier" title="panier"
+      <a href="../pages/cart.html" id="cart-logo" class="cart-logo" alt="panier" title="panier"
         ><i class="fas fa-shopping-bag header-nav__icon"></i
       ></a>
     </nav>
     <!-- fin barre de navigation -->
     <!-- début bloc principal -->
     <main>
-      <div id="product-detail">
-        <p>Produit non trouvé !<br />Désolés...</p>
+      <div id="product-detail" class="product-detail">
+        <!-- créer un loader -->
       </div>
     </main>
     <!-- fin bloc principal -->
     <!-- début footer -->
     <footer>
       <img src="../public/icons/logo.png" class="footer-logo" alt="logo Orinoco" />
-      <ul class="footer__list">
+      <ul class="footer-list">
         <!-- début bloc gauche = liens vers les autres sites Orinoco -->
         <li>
           <h2>Découvrez nos autres univers</h2>
-          <a class="footer__list__link" href="https://www.oricam.fr/"
+          <a class="footer-list__link" href="https://www.oricam.fr/"
             ><img src="../public/icons/camera.png" class="icons" alt="logo OriCam" />Appareils photos vintage</a
           >
-          <a class="footer__list__link" href="https://www.orifurni.fr/"
+          <a class="footer-list__link" href="https://www.orifurni.fr/"
             ><img src="../public/icons/table.png" class="icons" alt="logo OriFurni" />Meubles en bois</a
           >
         </li>
         <!-- fin bloc gauche = liens vers les autres sites Orinoco -->
         <!-- début bloc central = mentions légales et à propos -->
-        <li class="footer__list__center">
-          <h2 class="footer__list__link">A propos</h2>
-          <a class="footer__list__link" href="legal_notice.html">Mentions légales</a>
-          <a class="footer__list__link" href="confidentiality.html">Confidentialité</a>
-          <a class="footer__list__link" href="mailto:contact@orinoco.fr">Contact</a>
+        <li class="footer-list__center">
+          <h2 class="footer-list__link">A propos</h2>
+          <a class="footer-list__link" href="legal_notice.html">Mentions légales</a>
+          <a class="footer-list__link" href="confidentiality.html">Confidentialité</a>
+          <a class="footer-list__link" href="mailto:contact@orinoco.fr">Contact</a>
         </li>
         <!-- fin bloc central = mentions légales et à propos -->
         <!-- début bloc droite = réseaux sociaux -->
@@ -86,5 +81,6 @@
       </ul>
     </footer>
     <!-- fin footer -->
+    <script type="module" src="../js/product.js" async></script>
   </body>
 </html>

@@ -37,11 +37,11 @@ header {
   padding: 0 1rem;
 }
 
-#cartLogo {
+.cart-logo {
   position: relative;
 }
 
-.cartNumber {
+.cart-logo__number {
   background: var(--color-gradient);
   color: var(--color-light);
   border-radius: 1rem;

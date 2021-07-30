@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Belligerent";
-  src: url("../public/fonts/belligerent.ttf") format("truetype");
+  src: url("../../public/fonts/belligerent.ttf") format("truetype");
   font-display: swap;
 }
 
@@ -29,7 +29,8 @@
   --size-xs: 2rem;
   --size-sm: 200px;
   --size-md: 360px;
-  --size-xl: 600px;
+  --size-xl: 450px;
+  --size-xxl: 600px;
 
   /* couleurs des produits */
   --teddy-tan: #d2b48c;

@@ -14,57 +14,56 @@
     min-height: 50vh; /* augmentation de la hauteur du bloc principal pour y intégrer les cartes sans dépassement */
   }
 
-  #product-detail,
-  #products,
-  #cart,
-  #order-confirm {
+  .product-detail,
+  .products,
+  .cart,
+  .order-confirm {
     margin: 0.5rem; /* réduction des marges autour des blocs modifiables en JS */
   }
 
-  .teddyItem {
+  .teddy__item {
     flex-direction: column; /* affichage du contenu des cartes et bloc produit en colonne */
   }
 
-  #product-detail .teddyImg {
+  .product-detail .teddyteddy__item__img {
     border-radius: 8px 8px 0 0;
   }
 
-  .teddyImg {
+  .teddy__item__img {
     width: 100%;
     height: var(--size-sm);
   }
 
-  .teddyDetail {
+  .teddy__item__detail {
     width: auto;
   }
 
-  #cart {
+  .cart {
     font-size: 0.75rem;
   }
 
-  .cartHead li:first-of-type {
-    min-width: 45%;
+  .cart-head__label:first-child {
+    min-width: 40%;
   }
 
-  .cartCouleur {
+  .cart-head__label:nth-child(2) {
     display: none;
   }
 
-  .cartInfo {
-    max-width: 8%;
-    padding: 1rem 0.5rem;
+  .cart-list__info:nth-child(n + 1) {
+    padding: 1rem 0rem;
   }
 
-  .cartInfo:nth-of-type(3) {
+  .cart-list__info:nth-child(4) {
     display: flex;
     flex-direction: column-reverse;
   }
 
-  .cartSuppr {
+  .cart-list__info:last-child {
     width: 2rem;
   }
 
-  #order-form {
+  .order-form {
     width: 100%;
   }
 
@@ -72,15 +71,15 @@
     height: auto;
   }
 
-  .footer__list {
+  .footer-list {
     flex-direction: column; /* affichage du contenu du footer en colonne */
   }
-  .footer__list__link {
+  .footer-list__link {
     justify-content: center; /* centrage des liens */
     align-self: center;
   }
 
-  .footer__list__center {
+  .footer-list__center {
     margin: 1.5rem 0; /* ajout d'une marge au bloc A propos */
   }
 }
@@ -88,17 +87,17 @@
 /* ajustement pour tout petit écran mobile */
 
 @media all and (max-width: 325px) {
-  .cartHead li:last-of-type,
-  .cartSuppr {
+  .cart-head__label:last-child,
+  .cart-list__info:last-child {
     width: 1.5rem;
   }
 
-  .cartList .cartArticle {
+  .cart-list__info:first-child {
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .cartInfo:first-of-type {
+  .cart-list__info:nth-child(n + 1) {
     padding: 0 1rem 0 0;
   }
 }
@@ -110,18 +109,18 @@
     min-height: 50vh; /* augmentation de la hauteur du bloc principal pour y intégrer les cartes sans dépassement */
   }
 
-  #product-detail,
-  #products,
-  #cart,
-  #order-confirm {
+  .product-detail,
+  .products,
+  .cart,
+  .order-confirm {
     margin: 0.5rem; /* réduction des marges autour des blocs modifiables en JS */
   }
 
-  .cartInfo:nth-of-type(3) {
+  .cart-list:nth-child(3) {
     white-space: nowrap;
   }
 
-  #order-form {
+  .order-form {
     width: 100%;
   }
 }

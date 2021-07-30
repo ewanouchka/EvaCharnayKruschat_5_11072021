@@ -1,0 +1,26 @@
+/* affichage du bloc principal */
+
+main {
+  max-width: 1440px;
+  margin: auto;
+  min-height: calc(100vh - 3rem - var(--header-height) - var(--footer-height));
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.products,
+.product-detail,
+.cart,
+.order-confirm {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem;
+  position: relative;
+}
+
+.products {
+  align-content: stretch;
+}

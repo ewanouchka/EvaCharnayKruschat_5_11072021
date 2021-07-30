@@ -1,53 +1,33 @@
-// fonction affichage des cartes des teddies
-const displayTeddies = async (teddies) => {
-  const teddiesElement = document.querySelector("#products"); // on sélectionne le bloc products
+import { getTeddies, formatDataTeddies } from "./modules/getTeddies.js";
+import { getFormattedPrice } from "./modules/getFormattedPrice.js";
+import { articles } from "./modules/getCart.js";
+import { displayTotalQuantity } from "./modules/getNumberOfArticles.js";
 
-  teddiesElement.innerHTML = teddies // on change son contenu avec les informations récupérées des teddies, en liste
+const displayTeddies = (teddy) => {
+  const teddyElement = document.querySelector("#products");
+
+  teddyElement.innerHTML = teddy
     .map(
-      (teddies) =>
-        `<a href="front-end/pages/product.html?id=${teddies.id}" class="teddyItem">
-        <img src="${teddies.img}" class="teddyImg" alt="image ourson ${teddies.name}" />
-        <h1 class="teddyName">${teddies.name}</h1>
-        <h2 class="teddyPrice">${teddies.price} €</h2>
-        <div class="teddyColor">Coloris disponibles : ${teddies.colors}</div></a>`
+      (teddy) =>
+        `<a href="front-end/pages/product.html?id=${teddy.id}" class="teddy-item">
+        <img src="${teddy.img}" class="teddy-item__img" alt="image ourson ${teddy.name}" />
+        <h1 class="teddy-item__name">${teddy.name}</h1>
+        <h2 class="teddy-item__price">` +
+        getFormattedPrice(`${teddy.price}`) +
+        ` €</h2>
+        <div class="teddy-item__color">Coloris disponibles : ${teddy.colors}</div></a>`
     )
     .join("");
 };
 
-// récupération des données de l'api
-const getTeddies = async (url) => {
-  const teddies = await fetch((url = "http://localhost:3000/api/teddies"));
-
-  return teddies.json();
+const displayColors = async (teddy) => {
+  teddy.map((teddy) => (teddy.colors = teddy.colors.toString().replace(/,/g, ", ")));
 };
 
-// mise en forme des données de l'api
-const formatDataTeddies = async (teddyApiJSON) => {
-  const results = teddyApiJSON;
-
-  const teddies = await Promise.all(
-    results.map((teddies) => {
-      const { _id: id, name, price, imageUrl: img, colors, description } = teddies; // on déstructure teddies
-
-      return {
-        // on met en forme les éléments
-        id,
-        name,
-        price: getFormattedPrice(price / 100), // on intègre le total au format 00.00
-        img,
-        colors: colors.join(", "), // on insère les couleurs en liste séparée par des ","
-        description,
-      };
-    })
-  );
-
-  return {
-    teddies,
-  };
-};
-
-// appel de la fonction affichage des cartes des teddies
 (async () => {
-  const { teddies } = await formatDataTeddies(await getTeddies());
-  displayTeddies(teddies);
+  const { teddy } = await formatDataTeddies(await getTeddies("http://localhost:3000/api/teddies"));
+  displayColors(teddy);
+  displayTeddies(teddy);
 })();
+
+displayTotalQuantity();

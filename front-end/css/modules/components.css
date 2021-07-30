@@ -22,12 +22,13 @@
   font-weight: bold;
   padding: 0.25rem;
 }
+
 .mini-button:hover {
   transform: scale(1.35);
   color: var(--color-primary);
 }
 
-#popup {
+.popup-bloc {
   position: absolute;
   left: 33%;
   top: 20%;
@@ -41,7 +42,7 @@
   padding: 2rem;
 }
 
-.button-popup {
+.popup-button {
   font-size: 1rem;
   margin: 1rem;
 }

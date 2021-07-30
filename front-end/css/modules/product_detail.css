@@ -1,7 +1,7 @@
 /* affichage d'un produit */
 
 /* bloc extérieur */
-.teddyItem {
+.teddy-item {
   background: var(--color-background);
   border-radius: 10px;
   box-shadow: 0 0 6px var(--color-footer);
@@ -11,45 +11,43 @@
   display: flex;
 }
 
-.teddyImg {
+.teddy-item__img {
   object-fit: cover;
-  width: var(--size-md);
-  height: var(--size-xl);
+  width: var(--size-xl);
+  height: var(--size-xxl);
   border-radius: 8px 0 0 8px;
 }
 
 /* bloc intérieur ensemble de la description du produit */
-.teddyDetail {
+.teddy-item__detail {
   padding: 1rem;
   width: 100%;
 }
 
-.teddyId {
+.teddy-item__id {
   margin: 0 0 1rem 0;
   font-size: 0.85rem;
   text-align: right;
 }
 
-.teddyName {
+.teddy-item__name {
   font-family: var(--font-title);
   font-size: 2rem;
   text-align: center;
   width: 100%;
 }
 
-.teddyPrice {
+.teddy-item__price {
   font-size: 1.2rem;
   text-align: center;
   font-weight: normal;
 }
 
-/* paragraphe descriptif */
-.teddyDesc {
+.teddy-item__description {
   margin: 1rem 0;
 }
 
-/* paragraphe options à choisir */
-.teddyOptions {
+.teddy-item__options {
   margin: 1rem 0;
   display: flex;
   flex-wrap: wrap;
@@ -57,17 +55,17 @@
   width: 100%;
 }
 
-/* choix des couleurs */
-.teddyColor {
+.teddy-item__color {
   margin: 1rem 1rem 0 1rem;
 }
 
-#teddyColor {
+.teddy-item__color__list {
   display: flex;
 }
 
 /* design global des pastilles de couleur */
-.teddyColor__bullet {
+
+.teddy-item__color__list__bullet {
   background-color: transparent;
   width: var(--size-xs);
   height: var(--size-xs);
@@ -96,58 +94,60 @@
 .visually-hidden {
   opacity: 0;
   position: relative;
-  left: -2rem;
-  top: 1rem;
+  left: -2.7rem;
+  top: 0.1rem;
+  width: var(--size-xs);
+  height: var(--size-xs);
+  margin: 0.3rem;
 }
 
 /* design global des pastilles de couleur */
-.teddyColor__bullet-active,
-.teddyColor__bullet:hover,
-.teddyColor__bullet:focus,
-.teddyColor__bullet:focus-visible {
+.teddy-item__color__list__bullet--active,
+.teddy-item__color__list__bullet:active,
+.teddy-item__color__list__bullet:hover,
+.teddy-item__color__list__bullet:focus,
+.teddy-item__color__list__bullet:focus-visible {
   border: 2px solid var(--color-secondary);
   opacity: 1;
 }
 
 /* coloris des pastilles */
-.teddyColor__bullet-tan {
+.teddy-item__color__list__bullet--tan {
   background-color: var(--teddy-tan);
 }
-.teddyColor__bullet-chocolate {
+.teddy-item__color__list__bullet--chocolate {
   background-color: var(--teddy-chocolate);
 }
-.teddyColor__bullet-black {
+.teddy-item__color__list__bullet--black {
   background-color: var(--teddy-black);
 }
-.teddyColor__bullet-white {
+.teddy-item__color__list__bullet--white {
   background-color: var(--teddy-white);
 }
-.teddyColor__bullet-palebrown {
+.teddy-item__color__list__bullet--palebrown {
   background-color: var(--teddy-palebrown);
 }
-.teddyColor__bullet-darkbrown {
+.teddy-item__color__list__bullet--darkbrown {
   background-color: var(--teddy-darkbrown);
 }
-.teddyColor__bullet-brown {
+.teddy-item__color__list__bullet--brown {
   background-color: var(--teddy-brown);
 }
-.teddyColor__bullet-blue {
+.teddy-item__color__list__bullet--blue {
   background-color: var(--teddy-blue);
 }
-.teddyColor__bullet-pink {
+.teddy-item__color__list__bullet--pink {
   background-color: var(--teddy-pink);
 }
-.teddyColor__bullet-beige {
+.teddy-item__color__list__bullet--beige {
   background-color: var(--teddy-beige);
 }
 
-/* choix des quantités */
-.teddyQuantity {
+.teddy-item__quantity {
   margin: 1rem 1rem 0 1rem;
 }
 
-/* bouton sélecteur quantité */
-#teddyQuantity {
+.teddy-item__quantity__selector {
   display: flex;
   margin: 0.3rem;
   width: 7rem;
@@ -160,11 +160,11 @@
   transition: all 0.2s;
 }
 
-#teddyQuantity:target,
-#teddyQuantity:focus-visible,
-#teddyQuantity:focus-within,
-#teddyQuantity:focus,
-#teddyQuantity:active,
-#teddyQuantity:visited {
+.teddy-item__quantity__selector:target,
+.teddy-item__quantity__selector:focus-visible,
+.teddy-item__quantity__selector:focus-within,
+.teddy-item__quantity__selector:focus,
+.teddy-item__quantity__selector:active,
+.teddy-item__quantity__selector:visited {
   opacity: 1;
 }

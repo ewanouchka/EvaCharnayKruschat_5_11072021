@@ -1,6 +1,6 @@
 /* cartes teddy sur page d'accueil */
 
-.teddyItem {
+.teddy-item {
   background: var(--color-background);
   border-radius: 1rem;
   box-shadow: 0 0 6px var(--color-footer);
@@ -9,32 +9,32 @@
   width: var(--size-md);
 }
 
-.teddyItem:hover {
+.teddy-item:hover {
   transform: scale(1.05);
   color: inherit;
 }
 
-.teddyImg {
+.teddy-item__img {
   object-fit: cover;
   width: var(--size-md);
   height: var(--size-sm);
   border-radius: 8px 8px 0 0;
 }
 
-.teddyName {
+.teddy-item__name {
   font-family: var(--font-title);
   font-size: 1.5rem;
   text-align: center;
   width: 100%;
 }
 
-.teddyPrice {
+.teddy-item__price {
   font-size: 1.2rem;
   text-align: center;
   font-weight: normal;
 }
 
-.teddyColor {
+.teddy-item__color {
   margin: 1rem 1rem 0 1rem;
   font-size: 0.85rem;
 }

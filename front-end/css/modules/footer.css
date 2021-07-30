@@ -13,29 +13,26 @@ footer {
   height: 110px;
 }
 
-.footer__list {
+.footer-list {
   display: flex;
   justify-content: space-around;
 }
 
-/* bloc du milieu du footer A propos */
-.footer__list__center {
+.footer-list__center {
   display: flex;
   flex-direction: column;
 }
 
-/* espacement des liens A propos */
-.footer__list__center > .footer__list__link:nth-child(2),
-.footer__list__center > .footer__list__link:nth-child(4) {
+.footer-list__center > .footer-list__link:nth-child(2),
+.footer-list__center > .footer-list__link:nth-child(4) {
   margin: 0.8rem 0;
 }
 
-.footer__list__link {
+.footer-list__link {
   display: flex;
   align-items: center;
 }
 
-/* icons liens vers les autres univers Orinoco */
 .icons {
   width: 2rem;
   height: 2rem;
@@ -44,11 +41,10 @@ footer {
   transition: all 0.2s;
 }
 
-.footer__list__link:hover > .icons {
+.footer-list__link:hover > .icons {
   opacity: 1;
 }
 
-/* icons réseaux sociaux */
 .social {
   color: transparent;
   font-size: 2.25rem;
@@ -57,6 +53,7 @@ footer {
   -moz-background-clip: text;
   -o-background-clip: text;
   -webkit-background-clip: text;
+  background-clip: text;
   opacity: 0.75;
   transition: all 0.2s;
 }
