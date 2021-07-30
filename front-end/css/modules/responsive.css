@@ -21,20 +21,24 @@
     margin: 0.5rem; /* réduction des marges autour des blocs modifiables en JS */
   }
 
-  .teddy__item {
+  .teddy-item {
     flex-direction: column; /* affichage du contenu des cartes et bloc produit en colonne */
+    margin: 1rem 0;
+    width: var(--size-md);
   }
 
-  .product-detail .teddyteddy__item__img {
-    border-radius: 8px 8px 0 0;
+  .product-detail {
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: space-between;
   }
 
-  .teddy__item__img {
-    width: 100%;
+  .teddy-item__img {
+    width: inherit;
     height: var(--size-sm);
   }
 
-  .teddy__item__detail {
+  .teddy-item__detail {
     width: auto;
   }
 
