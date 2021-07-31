@@ -28,11 +28,20 @@
   color: var(--color-primary);
 }
 
-.popup-bloc {
+.popup-container {
+  background: var(--color-transparent);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  left: 33%;
-  top: 20%;
+  top: 0;
+  left: 0;
   z-index: 50;
+}
+
+.popup-bloc {
   height: auto;
   width: 34%;
   background: var(--color-light);

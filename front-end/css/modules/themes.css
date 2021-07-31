@@ -13,6 +13,7 @@
   --color-footer: #e0e0e0;
   --color-text: #333;
   --color-light: #fff;
+  --color-transparent: rgba(255, 255, 255, 0.75);
   --color-primary: #e7901a;
   --color-secondary: #8f5bfe;
   --color-invalid: crimson;

@@ -115,21 +115,24 @@ const addToCart = async (teddy) => {
       // fonction pour ouvrir le popup de confirmation de l'ajout au panier
       let popupContainer = document.createElement("div"); // on crée une nouvelle div
       popupContainer.setAttribute("id", "popup"); // on lui attribue un id = "popup"
-      popupContainer.classList.add("popup-bloc"); // on lui attribue une class = "bloc-popup"
+      popupContainer.classList.add("popup-container"); // on lui attribue une class = "popup-container"
+      let popupBloc = document.createElement("div"); // on crée une div à l'intérieur du container
+      popupBloc.classList.add("popup-bloc"); // on lui attribue une class = "popup-bloc"
 
       const createPopup = () => {
         // on intègre le contenu du popup dans la nouvelle div
-        popupContainer.innerHTML = `<p>L'ourson <span class="teddy-item__name">${optionsArticle.name}</span> (${optionsArticle.color})<br />a bien été ajouté au panier !</p>`;
-        popupContainer.innerHTML +=
+        popupBloc.innerHTML = `<p>L'ourson <span class="teddy-item__name">${optionsArticle.name}</span> (${optionsArticle.color})<br />a bien été ajouté au panier !</p>`;
+        popupBloc.innerHTML +=
           '<a href="cart.html"><button class="button popup-button" id="go-to-cart">Voir le panier</button></a>'; // on ajoute le bouton "voir le panier"
-        popupContainer.innerHTML +=
+        popupBloc.innerHTML +=
           '<a href="../../index.html"><button class="button popup-button" id="continue-shopping">Continuer votre shopping</button></a>'; // on ajoute le bouton "continuer votre shopping"
         openPopup(); // on applique la fonction pour ouvrir le popup créé
       };
 
       // fonction pour ouvrir le popup de confirmation de l'ajout au panier
       function openPopup() {
-        document.getElementById("product-detail").prepend(popupContainer); // on ajoute la nouvelle div au DOM
+        document.body.append(popupContainer); // on ajoute la nouvelle div au DOM
+        popupContainer.append(popupBloc); // on ajoute la nouvelle div au DOM
 
         document.getElementById("continue-shopping").addEventListener("click", function () {
           // on écoute au clic sur le bouton "continuer votre shopping"

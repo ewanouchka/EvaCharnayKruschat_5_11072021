@@ -42,6 +42,12 @@
     width: auto;
   }
 
+  .popup-bloc {
+    width: calc(100vw);
+    left: 0;
+    padding: 0;
+    top: 50%;
+  }
   .cart {
     font-size: 0.75rem;
   }
