@@ -133,12 +133,11 @@ table {
 :focus,
 :active,
 :visited {
-  outline: transparent; /* suppression du contour au focus */
+  outline: transparent;
 }
 
 button,
 select {
-  /* suppression bordures et fond des boutons et champs select */
   border: none;
   background: transparent;
 }

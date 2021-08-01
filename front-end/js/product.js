@@ -3,12 +3,12 @@ import { articles } from "./modules/getCart.js";
 import { getFormattedPrice } from "./modules/getFormattedPrice.js";
 import { displayTotalQuantity } from "./modules/getNumberOfArticles.js";
 
-// fonction affichage du bloc produit
+// affichage du bloc produit
+
 const displayOneTeddy = async (teddy) => {
   teddy = teddy[0];
   const teddyElement = document.querySelector("#product-detail");
 
-  // on change son contenu avec les informations récupérées du teddy
   teddyElement.innerHTML =
     `<form class="teddy-item">
   <img src="${teddy.img}" class="teddy-item__img" alt="image ourson ${teddy.name}" />
@@ -29,150 +29,120 @@ const displayOneTeddy = async (teddy) => {
           <select id="teddy-item__quantity" class="teddy-item__quantity__selector"></select></div>
           <div id="color-error" class="error-hidden">Veuillez choisir une couleur.</div></div></form>`;
 
-  // on crée un tableau supplémentaire pour le choix de la quantité
   const optionQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   let blocOptionQuantity = [];
-
-  // on passe par toutes les valeurs du tableau pour créer les lignes <option>
   for (let i = 0; i < optionQuantity.length; i++) {
     blocOptionQuantity = blocOptionQuantity + `<option value="${i + 1}">${optionQuantity[i]}</option>`;
   }
-
-  // on intègre le bloc quantité dans le bloc produit
   document.getElementById("teddy-item__quantity").innerHTML += blocOptionQuantity;
 
-  teddyElement.innerHTML += `<button class="button" id="add-to-cart"><span>Ajouter au panier</span></button>`; // on ajoute le bouton "Ajouter au panier"
+  teddyElement.innerHTML += `<button class="button" id="add-to-cart"><span>Ajouter au panier</span></button>`;
 };
 
 // fonction affichage de la pastille de couleur en fonction des données colors
-let choiceColor = "";
 
+let choiceColor = "";
 const selectColor = async (teddy) => {
   teddy = teddy[0];
-  const colorElement = document.querySelector("#teddy-item__color__list"); // on sélectionne le bloc teddyColor
+  const colorElement = document.querySelector("#teddy-item__color__list");
   for (const color of teddy.colors) {
-    // on boucle sur les couleurs
-    const lowercaseColor = color.toLowerCase().replace(/ /g, ""); // on transpose le nom de la couleur en bas de casse sans espace
-
-    // on intègre les pastilles de couleur dans le bloc teddyColor
+    const lowercaseColor = color.toLowerCase().replace(/ /g, "");
     colorElement.innerHTML += `<label for="toggle-${lowercaseColor}" id="toggle-${lowercaseColor}-label" class="teddy-item__color__list__bullet teddy-item__color__list__bullet--${lowercaseColor}" title="${color}">
     </label><input type="radio" name="teddy-item__color__list" id="toggle-${lowercaseColor}" class="visually-hidden" title="${color}">`;
   }
 
-  // fonction pour sélectionner la couleur de la pastille active
   (async () => {
-    const selectedColor = document.querySelector("#teddy-item__color__list"); // on sélectionne la pastille de la couleur sur laquelle on a cliqué
-    const otherColor = document.querySelectorAll(".teddy-item__color__list__bullet"); // on crée une variable tableau de toutes les pastilles
-
+    const selectedColor = document.querySelector("#teddy-item__color__list");
+    const otherColor = document.querySelectorAll(".teddy-item__color__list__bullet");
     selectedColor.addEventListener("change", () => {
-      // on écoute au changement de sélection de pastille de couleur
-      const elts = document.querySelectorAll("input"); // on sélectionne tous les boutons radio cachés liés à toutes les pastilles
-      otherColor.forEach((element) => element.classList.remove("teddy-item__color__list__bullet--active")); // on enlève la class pastille active potentiellement rajoutée au précédent changement de sélection de pastille de couleur
-
+      const elts = document.querySelectorAll("input");
+      otherColor.forEach((element) => element.classList.remove("teddy-item__color__list__bullet--active"));
       for (let m = 0; m < elts.length; m++) {
-        // on boucle sur tous les boutons radio cachés liés à toutes les pastilles
         if (elts[m].checked === true) {
-          // on vérifie que l'input radio est sélectionné
-          const idSelected = "#" + elts[m].id + "-label"; // on sélectionne la class du label correspondant
-          document.querySelector(idSelected).classList.add("teddy-item__color__list__bullet--active"); // on ajoute la class pastille active
-          choiceColor = elts[m].title; // on crée une variable qui reprend le titre de la couleur sélectionnée
+          const idSelected = "#" + elts[m].id + "-label";
+          document.querySelector(idSelected).classList.add("teddy-item__color__list__bullet--active");
+          choiceColor = elts[m].title;
           break;
         }
       }
-      return choiceColor; // on retourne cette couleur
+      return choiceColor;
     });
   })();
 };
 
-// fonction sur le bouton Ajouter au panier
+// fonction Ajouter au panier
+
 const addToCart = async (teddy) => {
   teddy = teddy[0];
-  const addToCartButton = document.querySelector("#add-to-cart"); // on sélectionne le bouton "Ajouter au panier"
-
+  const addToCartButton = document.querySelector("#add-to-cart");
   addToCartButton.addEventListener("click", async () => {
-    // on écoute le clic sur le bouton "Ajouter au panier"
-    const choiceQuantity = parseInt(document.querySelector("#teddy-item__quantity").value); // on retient la valeur de la quantité sélectionnée et on convertit la chaîne en nombre
+    const choiceQuantity = parseInt(document.querySelector("#teddy-item__quantity").value);
     const optionsArticle = {
-      // on crée un objet recensant les informations du produit à ajouter au panier
       name: teddy.name,
       id: teddy.id,
       color: choiceColor,
       price: teddy.price,
       quantity: choiceQuantity,
     };
-    // affichage du message d'erreur si absence de couleur sélectionnée
+
     const error = document.querySelector("#color-error");
-
     if (optionsArticle.color == "") {
-      // si le champ couleur est vide (la pastille n'est pas cliquée)
-      error.classList.remove("error-hidden"); // on retire la class qui rend le message d'erreur invisible
-      error.classList.add("error-visible"); // on ajoute la class qui définit le message d'erreur
+      error.classList.remove("error-hidden");
+      error.classList.add("error-visible");
     } else {
-      // si tout ok, ne pas afficher le message d'erreur
-      error.classList.remove("error-visible"); // on retire la class qui rend le message d'erreur visible
-      error.classList.add("error-hidden"); // on ajoute la class qui rend le message d'erreur invisible
+      error.classList.remove("error-visible");
+      error.classList.add("error-hidden");
 
-      // fonction pour ouvrir le popup de confirmation de l'ajout au panier
-      let popupContainer = document.createElement("div"); // on crée une nouvelle div
-      popupContainer.setAttribute("id", "popup"); // on lui attribue un id = "popup"
-      popupContainer.classList.add("popup-container"); // on lui attribue une class = "popup-container"
-      let popupBloc = document.createElement("div"); // on crée une div à l'intérieur du container
-      popupBloc.classList.add("popup-bloc"); // on lui attribue une class = "popup-bloc"
+      // pop-up
+
+      let popupContainer = document.createElement("div");
+      popupContainer.setAttribute("id", "popup");
+      popupContainer.classList.add("popup-container");
+      let popupBloc = document.createElement("div");
+      popupBloc.classList.add("popup-bloc");
 
       const createPopup = () => {
-        // on intègre le contenu du popup dans la nouvelle div
         popupBloc.innerHTML = `<p>L'ourson <span class="teddy-item__name">${optionsArticle.name}</span> (${optionsArticle.color})<br />a bien été ajouté au panier !</p>`;
         popupBloc.innerHTML +=
-          '<a href="cart.html"><button class="button popup-button" id="go-to-cart">Voir le panier</button></a>'; // on ajoute le bouton "voir le panier"
+          '<a href="cart.html"><button class="button popup-button" id="go-to-cart">Voir le panier</button></a>';
         popupBloc.innerHTML +=
-          '<a href="../../index.html"><button class="button popup-button" id="continue-shopping">Continuer votre shopping</button></a>'; // on ajoute le bouton "continuer votre shopping"
-        openPopup(); // on applique la fonction pour ouvrir le popup créé
+          '<a href="../../index.html"><button class="button popup-button" id="continue-shopping">Continuer votre shopping</button></a>';
+        openPopup();
       };
 
-      // fonction pour ouvrir le popup de confirmation de l'ajout au panier
       function openPopup() {
-        document.body.append(popupContainer); // on ajoute la nouvelle div au DOM
-        popupContainer.append(popupBloc); // on ajoute la nouvelle div au DOM
-
+        document.body.append(popupContainer);
+        popupContainer.append(popupBloc);
         document.getElementById("continue-shopping").addEventListener("click", function () {
-          // on écoute au clic sur le bouton "continuer votre shopping"
-          closePopup(); // on applique la fonction pour fermer le popup
+          closePopup();
         });
         document.getElementById("go-to-cart").addEventListener("click", function () {
-          // on écoute au clic sur le bouton "voir le panier"
-          closePopup(); // on applique la fonction pour fermer le popup
+          closePopup();
         });
       }
 
-      // fonction pour fermer le popup de confirmation au clic
       function closePopup() {
         while (popupContainer.hasChildNodes()) {
-          // on vérifie si le popup a toujours des nodes descendantes et on boucle tant que c'est le cas
-          popupContainer.removeChild(popupContainer.firstChild); // si c'est le cas, on supprime le premier enfant
+          popupContainer.removeChild(popupContainer.firstChild);
         }
-        document.getElementById("product-detail").removeChild(popupContainer); // on supprime la nouvelle div popup
+        document.getElementById("product-detail").removeChild(popupContainer);
       }
 
-      // fonction pour modifier le nombre d'article d'un item déjà présent en au moins un exemplaire au panier
+      // ajout des articles au localStorage
+
       (() => {
         if (!articles) {
-          // si le localStorage est vide
           localStorage.setItem("products", JSON.stringify(optionsArticle));
-          // on ajoute l'article sélectionné à la liste du localStorage
         } else {
           const addSelectedArticle = (listOfArticles) => {
             if (
               listOfArticles.every((value) => value.color !== optionsArticle.color || value.id !== optionsArticle.id)
             ) {
-              // si pour toutes les lignes du localStorage, la couleur ou l'id diffère
-              listOfArticles.push(optionsArticle); // on ajoute l'article sélectionné à la liste du localStorage
+              listOfArticles.push(optionsArticle);
               localStorage.setItem("products", JSON.stringify(listOfArticles));
             } else {
-              // sinon (donc si une ligne présente couleur et id identique à celles sélectionnées)
               for (let n = 0; n < listOfArticles.length; n++) {
-                // on reboucle sur les lignes
                 if (listOfArticles[n].color === optionsArticle.color && listOfArticles[n].id === optionsArticle.id) {
-                  // pour la ligne identique uniquement
                   listOfArticles[n].quantity =
                     parseInt(listOfArticles[n].quantity, 10) + parseInt(optionsArticle.quantity, 10);
                   localStorage.setItem("products", JSON.stringify(listOfArticles));
@@ -189,14 +159,14 @@ const addToCart = async (teddy) => {
             addSelectedArticle(listOfArticles);
           }
         }
-
-        createPopup(); // on applique la fonction d'ouverture du popup de confirmation d'ajout au panier
+        createPopup();
       })();
     }
   });
 };
 
-// appel global des fonctions
+// appels
+
 (async () => {
   const { teddy } = await formatDataTeddies(
     Array.of(await getTeddies("http://localhost:3000/api/teddies/" + new URL(location.href).searchParams.get("id")))
@@ -205,5 +175,4 @@ const addToCart = async (teddy) => {
   selectColor(teddy); // affichage des pastilles de couleur
   addToCart(teddy); // bouton Ajouter au panier
 })();
-
 displayTotalQuantity();

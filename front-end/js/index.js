@@ -1,6 +1,5 @@
 import { getTeddies, formatDataTeddies } from "./modules/getTeddies.js";
 import { getFormattedPrice } from "./modules/getFormattedPrice.js";
-import { articles } from "./modules/getCart.js";
 import { displayTotalQuantity } from "./modules/getNumberOfArticles.js";
 
 const displayTeddies = (teddy) => {
@@ -29,5 +28,4 @@ const displayColors = async (teddy) => {
   displayColors(teddy);
   displayTeddies(teddy);
 })();
-
 displayTotalQuantity();

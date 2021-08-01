@@ -1,4 +1,4 @@
-import { cart, articles } from "./modules/getCart.js";
+import { articles } from "./modules/getCart.js";
 import { getFormattedPrice } from "./modules/getFormattedPrice.js";
 import { getTotalQuantity, displayTotalQuantity } from "./modules/getNumberOfArticles.js";
 
@@ -9,12 +9,12 @@ if (!articles[0]) {
   listOfArticles = articles;
 }
 
-const displayCart = async (articles) => {
-  const cartElement = document.querySelector("#cart"); // on sélectionne la section du panier
+// affichage du panier
 
-  cartElement.innerHTML =
-    // on crée la ligne d'en-tête
-    `<ul class="cart-head"> 
+const displayCart = async (articles) => {
+  const cartElement = document.querySelector("#cart");
+
+  cartElement.innerHTML = `<ul class="cart-head"> 
   <li class="cart-head__label" title="Article">Article</li>
   <li class="cart-head__label" title="Couleur">Couleur</li>
   <li class="cart-head__label" title="Prix">Prix</li>
@@ -22,7 +22,7 @@ const displayCart = async (articles) => {
   <li class="cart-head__label" title="Total">Total</li>
   <li class="cart-head__label" title="Supprimer">Suppr.</li></ul>`;
 
-  cartElement.innerHTML += listOfArticles // on crée les lignes pour chaque article enregistré au panier
+  cartElement.innerHTML += listOfArticles
     .map(
       (article) =>
         `<section class="cart-list">
@@ -43,23 +43,20 @@ const displayCart = async (articles) => {
   const calculateTotal = () => {
     const total = listOfArticles
       .map((article) => `${article.price}` * `${article.quantity}`)
-      .reduce((a, b) => parseInt(a, 10) + parseInt(b, 10)); // on additionne toutes les valeurs de l'array, ramenées en nombres en base 10
-
+      .reduce((a, b) => parseInt(a, 10) + parseInt(b, 10));
     return getFormattedPrice(total);
   };
 
   cartElement.innerHTML +=
-    `<h2 class="total-line">Total : <span class="total-line__number">` + calculateTotal() + ` €</span></h2>`; // on affiche le total du panier
+    `<h2 class="total-line">Total : <span class="total-line__number">` + calculateTotal() + ` €</span></h2>`;
 
-  cartElement.innerHTML += `<a href="cart.html"><button class="button" id="empty-cart"><span>Vider le panier</span></button></a>`; // ajout du bouton "Vider le panier"
+  cartElement.innerHTML += `<a href="cart.html"><button class="button" id="empty-cart"><span>Vider le panier</span></button></a>`;
 
-  cartElement.innerHTML += `<button class="button" id="validate-cart"><span>Valider le panier</span></button>`; // ajout du bouton "Valider le panier"
+  cartElement.innerHTML += `<button class="button" id="validate-cart"><span>Valider le panier</span></button>`;
 
   // fonctions modifications des produits du panier
 
-  // fonction suppression d'un article au clic sur la petite corbeille
-  const trashButton = document.querySelectorAll(".fa-trash-alt"); // on sélectionne les icônes de suppression d'un élément
-
+  const trashButton = document.querySelectorAll(".fa-trash-alt");
   Array.from(trashButton).forEach((button, index) =>
     button.addEventListener("click", () => {
       if (articles.length == 1) {
@@ -71,16 +68,12 @@ const displayCart = async (articles) => {
     })
   );
 
-  // fonction suppression de tous les articles du panier
-  const supprAll = document.getElementById("empty-cart"); // on sélectionne le bouton "vider le panier"
-
+  const supprAll = document.getElementById("empty-cart");
   supprAll.addEventListener("click", () => {
-    localStorage.removeItem("products"); // on ajoute la nouvelle valeur de la liste du localStorage dans le localStorage
+    localStorage.removeItem("products");
   });
 
-  // fonction ajout quantité +
-  const plusOneButtons = document.querySelectorAll(".plus"); // on sélectionne les icônes "+"
-
+  const plusOneButtons = document.querySelectorAll(".plus");
   Array.from(plusOneButtons).forEach((button, index) =>
     button.addEventListener("click", () => {
       localStorage.setItem(
@@ -90,7 +83,6 @@ const displayCart = async (articles) => {
             if (indexArticle === index) {
               return { ...article, quantity: parseInt(article.quantity, 10) + 1 };
             }
-
             return article;
           })
         )
@@ -99,9 +91,7 @@ const displayCart = async (articles) => {
     })
   );
 
-  // fonction retrait quantité -
-  const minusOneButtons = document.querySelectorAll(".minus"); // on sélectionne les icônes "+"
-
+  const minusOneButtons = document.querySelectorAll(".minus");
   Array.from(minusOneButtons).forEach((button, index) =>
     button.addEventListener("click", () => {
       if (getTotalQuantity(articles) == 1) {
@@ -116,7 +106,6 @@ const displayCart = async (articles) => {
               if (indexArticle === index) {
                 return { ...article, quantity: parseInt(article.quantity, 10) - 1 };
               }
-
               return article;
             })
           )
@@ -127,14 +116,12 @@ const displayCart = async (articles) => {
   );
 };
 
-// appel de la fonction affichage du panier
+// appels
+
 (async () => {
-  //const articles = getCart();
   if (!articles) {
-    // on n'affiche la page que s'il existe des articles au panier
   } else {
     displayCart(articles);
   }
 })();
-
 displayTotalQuantity();

@@ -14,7 +14,6 @@ export const getTotalQuantity = () => {
 };
 
 const cartLogo = document.getElementById("cart-logo");
-
 export const displayTotalQuantity = () => {
   if (getTotalQuantity() == 0) {
     cartLogo.innerHTML += ``;

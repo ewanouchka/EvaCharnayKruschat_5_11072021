@@ -1,4 +1,4 @@
-/* affichage grands boutons */
+/* grands boutons */
 
 .button {
   background: var(--color-gradient);
@@ -16,6 +16,8 @@
   transform: scale(1.05);
 }
 
+/* mini-boutons icons */
+
 .mini-button {
   margin: 0.25rem;
   transition: all 0.2s;
@@ -27,6 +29,8 @@
   transform: scale(1.35);
   color: var(--color-primary);
 }
+
+/* popup */
 
 .popup-container {
   background: var(--color-transparent);

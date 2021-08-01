@@ -1,6 +1,5 @@
 /* affichage d'un produit */
 
-/* bloc extérieur */
 .teddy-item {
   background: var(--color-background);
   border-radius: 10px;
@@ -18,7 +17,6 @@
   border-radius: 8px 0 0 8px;
 }
 
-/* bloc intérieur ensemble de la description du produit */
 .teddy-item__detail {
   padding: 1rem;
   width: 100%;
@@ -63,7 +61,7 @@
   display: flex;
 }
 
-/* design global des pastilles de couleur */
+/* pastilles de couleur */
 
 .teddy-item__color__list__bullet {
   background-color: transparent;
@@ -77,31 +75,6 @@
   transition: all 0.2s;
 }
 
-/* design du message d'erreur */
-.error-hidden {
-  opacity: 0;
-  width: 100%;
-}
-
-.error-visible {
-  color: var(--color-invalid);
-  font-size: 1.25rem;
-  text-align: center;
-  width: 100%;
-}
-
-/* on cache les boutons radio */
-.visually-hidden {
-  opacity: 0;
-  position: relative;
-  left: -2.7rem;
-  top: 0.1rem;
-  width: var(--size-xs);
-  height: var(--size-xs);
-  margin: 0.3rem;
-}
-
-/* design global des pastilles de couleur */
 .teddy-item__color__list__bullet--active,
 .teddy-item__color__list__bullet:active,
 .teddy-item__color__list__bullet:hover,
@@ -111,7 +84,6 @@
   opacity: 1;
 }
 
-/* coloris des pastilles */
 .teddy-item__color__list__bullet--tan {
   background-color: var(--teddy-tan);
 }
@@ -143,6 +115,18 @@
   background-color: var(--teddy-beige);
 }
 
+.visually-hidden {
+  opacity: 0;
+  position: relative;
+  left: -2.7rem;
+  top: 0.1rem;
+  width: var(--size-xs);
+  height: var(--size-xs);
+  margin: 0.3rem;
+}
+
+/* sélecteur quantité */
+
 .teddy-item__quantity {
   margin: 1rem 1rem 0 1rem;
 }
@@ -167,4 +151,18 @@
 .teddy-item__quantity__selector:active,
 .teddy-item__quantity__selector:visited {
   opacity: 1;
+}
+
+/* message d'erreur */
+
+.error-hidden {
+  opacity: 0;
+  width: 100%;
+}
+
+.error-visible {
+  color: var(--color-invalid);
+  font-size: 1.25rem;
+  text-align: center;
+  width: 100%;
 }

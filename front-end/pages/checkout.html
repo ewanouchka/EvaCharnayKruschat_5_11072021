@@ -1,42 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <link rel="stylesheet" type="text/css" href="../public/css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="../public/css/index.css" />
     <link rel="shortcut icon" type="image/png" href="../public/icons/teddy.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta charset="UTF-8" />
-    <title>Orinoco - Teddy Bears</title>
+    <meta name="keywords" content="Orinoco, teddy bear, ours en peluche, boutique, achat en ligne" />
+    <meta
+      name="description"
+      content="Orinoco, boutique en ligne par thématique, vous fait découvrir son univers OriTeddy, le teddy bear par Orinoco."
+    />
+    <title>OriTeddy - Le teddy bear par Orinoco</title>
+    <link rel="stylesheet" type="text/css" href="../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../css/product.css" />
+    <link rel="preconnect" href="https://ka-f.fontawesome.com" />
+    <script src="https://kit.fontawesome.com/ea9c752e95.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <a href="../index.html">
-      <header>
-        <img src="../public/icons/teddy.png" class="header-icon" />
-        <h1 class="header-title">Teddy Bears</h1>
-      </header>
-    </a>
+    <header>
+      <img src="../public/icons/teddy.png" class="header-logo" alt="logo OriTeddy" />
+      <h1 class="header-title">OriTeddy</h1>
+    </header>
+
+    <nav class="header-nav">
+      <a href="../../index.html" alt="index" title="index"><i class="fas fa-home header-nav__icon"></i></a>
+      Le teddy bear par Orinoco
+      <a href="../pages/cart.html" id="cartLogo" alt="panier" title="panier"
+        ><i class="fas fa-shopping-bag header-nav__icon"></i
+      ></a>
+    </nav>
+
     <main>
-      <div id="order-confirm">
-        <p>no item found</p>
+      <div id="order-form">
+        <!-- créer un loader -->
       </div>
-      <script src="../js/index.js"></script>
     </main>
+
     <footer>
-      <img src="../public/icons/logo.png" class="footer-logo" />
+      <img src="../public/icons/logo.png" class="footer-logo" alt="logo Orinoco" />
       <ul class="footer__list">
         <li>
-          <a class="footer__list__link"
-            ><img src="../public/icons/camera.svg" class="icons" />Appareils photos vintage</a
+          <h2>Découvrez nos autres univers</h2>
+          <a class="footer__list__link" href="https://www.oricam.fr/"
+            ><img src="../public/icons/camera.png" class="icons" alt="logo OriCam" />Appareils photos vintage</a
+          >
+          <a class="footer__list__link" href="https://www.orifurni.fr/"
+            ><img src="../public/icons/table.png" class="icons" alt="logo OriFurni" />Meubles en bois</a
           >
         </li>
-        <li>
-          <a class="footer__list__link"><img src="../public/icons/table.svg" class="icons" />Meubles en bois</a>
+        <li class="footer__list__center">
+          <h2 class="footer__list__link">A propos</h2>
+          <a class="footer__list__link" href="legal_notice.html">Mentions légales</a>
+          <a class="footer__list__link" href="confidentiality.html">Confidentialité</a>
+          <a class="footer__list__link" href="mailto:contact@orinoco.fr">Contact</a>
         </li>
         <li>
-          <a class="footer__list__link"><img src="../public/icons/contact.svg" class="icons" />Contact</a>
+          <h2>Nous suivre</h2>
+          <a href="https://www.linkedin.com/company/boutique-orinoco/" title="linkedin"
+            ><i class="fab fa-linkedin social"></i
+          ></a>
+          <a href="https://www.facebook.com/orinoco" title="facebook"><i class="fab fa-facebook-square social"></i></a>
+          <a href="https://www.instagram.com/orinoco/" title="instagram"><i class="fab fa-instagram social"></i></a>
+          <a href="https://twitter.com/orinoco" title="twitter"><i class="fab fa-twitter social"></i></a>
         </li>
       </ul>
     </footer>
+
+    <script src="../js/checkout.js" async></script>
   </body>
 </html>

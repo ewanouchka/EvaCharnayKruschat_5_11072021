@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <!-- liens css -->
-    <link rel="stylesheet" type="text/css" href="front-end/css/index.css" />
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="front-end/public/icons/teddy.png" />
-    <!-- balises meta affichage -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta charset="UTF-8" />
-    <!-- balises meta référencement -->
     <meta name="keywords" content="Orinoco, teddy bear, ours en peluche, boutique, achat en ligne" />
     <meta
       name="description"
       content="Orinoco, boutique en ligne par thématique, vous fait découvrir son univers OriTeddy, le teddy bear par Orinoco."
     />
-    <!-- titre -->
     <title>OriTeddy - Le teddy bear par Orinoco</title>
-    <!-- importation javascripts -->
+    <link rel="stylesheet" type="text/css" href="front-end/css/index.css" />
+    <link rel="shortcut icon" type="image/png" href="front-end/public/icons/teddy.png" />
     <link rel="preconnect" href="https://ka-f.fontawesome.com" />
     <script src="https://kit.fontawesome.com/ea9c752e95.js" crossorigin="anonymous" async></script>
   </head>
 
   <body>
-    <!-- début bloc header -->
     <header>
       <img src="front-end/public/icons/teddy.png" class="header-logo" alt="logo OriTeddy" />
       <h1 class="header-title">OriTeddy</h1>
     </header>
-    <!-- fin bloc header -->
-    <!-- début barre de navigation -->
+
     <nav class="header-nav">
       <a href="index.html" alt="index" title="index"><i class="fas fa-home header-nav__icon"></i></a>
       Le teddy bear par Orinoco
@@ -36,17 +28,16 @@
         ><i class="fas fa-shopping-bag header-nav__icon"></i
       ></a>
     </nav>
-    <!-- fin barre de navigation -->
-    <!-- début bloc principal -->
+
     <main>
-      <div id="products" class="products"></div>
+      <div id="products" class="products">
+        <!-- créer un loader -->
+      </div>
     </main>
-    <!-- fin bloc principal -->
-    <!-- début footer -->
+
     <footer>
       <img src="front-end/public/icons/logo.png" class="footer-logo" alt="logo Orinoco" />
       <ul class="footer-list">
-        <!-- début bloc gauche = liens vers les autres sites Orinoco -->
         <li>
           <h2>Découvrez nos autres univers</h2>
           <a class="footer-list__link" href="https://www.oricam.fr/"
@@ -56,16 +47,12 @@
             ><img src="front-end/public/icons/table.png" class="icons" alt="logo OriFurni" />Meubles en bois</a
           >
         </li>
-        <!-- fin bloc gauche = liens vers les autres sites Orinoco -->
-        <!-- début bloc central = mentions légales et à propos -->
         <li class="footer-list__center">
           <h2 class="footer-list__link">A propos</h2>
           <a class="footer-list__link" href="pages/legal_notice.html">Mentions légales</a>
           <a class="footer-list__link" href="pages/confidentiality.html">Confidentialité</a>
           <a class="footer-list__link" href="mailto:contact@orinoco.fr">Contact</a>
         </li>
-        <!-- fin bloc central = mentions légales et à propos -->
-        <!-- début bloc droite = réseaux sociaux -->
         <li>
           <h2>Nous suivre</h2>
           <a href="https://www.linkedin.com/company/boutique-orinoco/" title="linkedin"
@@ -75,10 +62,9 @@
           <a href="https://www.instagram.com/orinoco/" title="instagram"><i class="fab fa-instagram social"></i></a>
           <a href="https://twitter.com/orinoco" title="twitter"><i class="fab fa-twitter social"></i></a>
         </li>
-        <!-- fin bloc droite = réseaux sociaux -->
       </ul>
     </footer>
-    <!-- fin footer -->
+
     <script type="module" src="front-end/js/index.js" async></script>
   </body>
 </html>

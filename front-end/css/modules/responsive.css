@@ -2,27 +2,27 @@
 
 @media all and (max-width: 425px) {
   header {
-    font-size: 3rem; /* réduction de la police du titre */
+    font-size: 3rem;
     height: auto;
   }
 
   .header-logo {
-    margin: 0; /* suppression marge du logo pour affichage sur une seule ligne */
+    margin: 0;
   }
 
   main {
-    min-height: 50vh; /* augmentation de la hauteur du bloc principal pour y intégrer les cartes sans dépassement */
+    min-height: 50vh;
   }
 
   .product-detail,
   .products,
   .cart,
   .order-confirm {
-    margin: 0.5rem; /* réduction des marges autour des blocs modifiables en JS */
+    margin: 0.5rem;
   }
 
   .teddy-item {
-    flex-direction: column; /* affichage du contenu des cartes et bloc produit en colonne */
+    flex-direction: column;
     margin: 1rem 0;
     width: var(--size-md);
   }
@@ -88,15 +88,16 @@
   }
 
   .footer-list {
-    flex-direction: column; /* affichage du contenu du footer en colonne */
+    flex-direction: column;
   }
+
   .footer-list__link {
-    justify-content: center; /* centrage des liens */
+    justify-content: center;
     align-self: center;
   }
 
   .footer-list__center {
-    margin: 1.5rem 0; /* ajout d'une marge au bloc A propos */
+    margin: 1.5rem 0;
   }
 }
 
@@ -122,14 +123,14 @@
 
 @media all and (min-width: 426px) and (max-width: 1024px) {
   main {
-    min-height: 50vh; /* augmentation de la hauteur du bloc principal pour y intégrer les cartes sans dépassement */
+    min-height: 50vh;
   }
 
   .product-detail,
   .products,
   .cart,
   .order-confirm {
-    margin: 0.5rem; /* réduction des marges autour des blocs modifiables en JS */
+    margin: 0.5rem;
   }
 
   .cart-list:nth-child(3) {

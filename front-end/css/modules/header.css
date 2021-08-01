@@ -1,4 +1,4 @@
-/* affichage du header et de la barre de navigation */
+/* header */
 
 header {
   max-width: 1440px;
@@ -13,7 +13,6 @@ header {
   align-items: center;
 }
 
-/* taille et espacement du logo */
 .header-logo {
   width: 100px;
   height: 100px;
@@ -21,6 +20,7 @@ header {
 }
 
 /* barre de navigation */
+
 .header-nav {
   max-width: 1440px;
   height: 3rem;
