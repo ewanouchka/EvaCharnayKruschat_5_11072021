@@ -3,7 +3,7 @@
 .teddy-item {
   background: var(--color-background);
   border-radius: 1rem;
-  box-shadow: 0 0 6px var(--color-footer);
+  box-shadow: 0 0 0.5rem var(--color-footer);
   padding: 0 0 1rem 0;
   margin: 1rem;
   width: var(--size-md);
@@ -18,7 +18,7 @@
   object-fit: cover;
   width: var(--size-md);
   height: var(--size-sm);
-  border-radius: 8px 8px 0 0;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .teddy-item__name {

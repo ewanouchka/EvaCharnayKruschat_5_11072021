@@ -30,6 +30,17 @@
   --size-xl: 450px;
   --size-xxl: 600px;
 
+  /* tailles img */
+  --img-xs: 100px;
+  --img-sm: 110px;
+  --img-md: 320px;
+
+  /* bordures */
+  --border-neutral: 2px solid var(--color-footer);
+  --border-active: 2px solid var(--color-sescondary);
+  --border-input-neutral: 1px solid var(--color-footer);
+  --border-input-invalid: 1px solid var(--color-invalid);
+
   /* couleurs des produits */
   --teddy-tan: #d2b48c;
   --teddy-chocolate: #3d1f0a;

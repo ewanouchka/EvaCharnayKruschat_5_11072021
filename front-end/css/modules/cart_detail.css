@@ -2,8 +2,8 @@
 
 .cart-head {
   background: var(--color-background);
-  border-radius: 10px 10px 0 0;
-  box-shadow: 0 0 6px var(--color-footer);
+  border-radius: 0.5rem 0.5rem 0 0;
+  box-shadow: 0 0 0.5rem var(--color-footer);
   padding: 0;
   width: 100%;
   display: flex;
@@ -36,7 +36,7 @@
 
 .cart-list {
   background: var(--color-footer);
-  box-shadow: 0 0 6px var(--color-footer);
+  box-shadow: 0 0 0.5rem var(--color-footer);
   padding: 0;
   width: 100%;
   display: flex;

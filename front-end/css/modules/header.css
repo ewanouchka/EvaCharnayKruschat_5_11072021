@@ -14,8 +14,8 @@ header {
 }
 
 .header-logo {
-  width: 100px;
-  height: 100px;
+  width: var(--img-xs);
+  height: var(--img-xs);
   margin: 2rem;
 }
 

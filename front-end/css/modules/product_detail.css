@@ -2,8 +2,8 @@
 
 .teddy-item {
   background: var(--color-background);
-  border-radius: 10px;
-  box-shadow: 0 0 6px var(--color-footer);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem var(--color-footer);
   padding: 0;
   margin: 1rem;
   width: 100%;
@@ -14,7 +14,7 @@
   object-fit: cover;
   width: var(--size-xl);
   height: var(--size-xxl);
-  border-radius: 8px 0 0 8px;
+  border-radius: 0.5rem 0 0 0.5rem;
 }
 
 .teddy-item__detail {
@@ -68,8 +68,8 @@
   width: var(--size-xs);
   height: var(--size-xs);
   border-radius: var(--size-xs);
-  border: 2px solid var(--color-footer);
-  box-shadow: 0 0 3px var(--color-footer);
+  border: var(--border-neutral);
+  box-shadow: 0 0 0.25rem var(--color-footer);
   margin: 0.3rem;
   opacity: 0.5;
   transition: all 0.2s;
@@ -80,7 +80,7 @@
 .teddy-item__color__list__bullet:hover,
 .teddy-item__color__list__bullet:focus,
 .teddy-item__color__list__bullet:focus-visible {
-  border: 2px solid var(--color-secondary);
+  border: var(--border-active);
   opacity: 1;
 }
 
@@ -137,9 +137,9 @@
   width: 7rem;
   height: var(--size-xs);
   border-radius: var(--size-xs);
-  border: 2px solid var(--color-footer);
+  border: var(--border-neutral);
   background: var(--color-light);
-  box-shadow: 0 0 3px var(--color-footer);
+  box-shadow: 0 0 0.25rem var(--color-footer);
   opacity: 0.75;
   transition: all 0.2s;
 }

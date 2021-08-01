@@ -10,8 +10,8 @@
 
 .bloc-form {
   background: var(--color-background);
-  border-radius: 10px;
-  box-shadow: 0 0 6px var(--color-footer);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem var(--color-footer);
   padding: 1rem;
   margin: 1rem;
   position: relative;
@@ -27,9 +27,8 @@
   width: calc(100% - 2 * 0.2rem);
 }
 
-.bloc-form__input:not(:placeholder-shown):valid,
 .bloc-form__input {
-  border: 1px solid var(--color-footer);
+  border: var(--border-input-neutral);
   box-shadow: none;
   border-radius: 1rem;
   padding: 0.5rem 0.2rem;
@@ -39,8 +38,13 @@
 
 .bloc-form__input--invalid,
 .bloc-form__input:not(:placeholder-shown):invalid {
-  border: 1px solid var(--color-invalid);
-  box-shadow: 0 0 6px var(--color-invalid);
+  border: var(--border-input-invalid);
+  box-shadow: 0 0 0.5rem var(--color-invalid);
+}
+
+.bloc-form__input:not(:placeholder-shown):valid {
+  border: var(--border-input-neutral);
+  box-shadow: none;
 }
 
 .bloc-form__input::placeholder {
@@ -54,7 +58,7 @@
   font-size: 2em;
   position: absolute;
   right: 1.5rem;
-  z-index: 500;
+  z-index: 50;
 }
 
 .check-false {
@@ -62,7 +66,7 @@
   font-size: 2em;
   position: absolute;
   right: 1.5rem;
-  z-index: 500;
+  z-index: 50;
 }
 
 .visually-hidden {

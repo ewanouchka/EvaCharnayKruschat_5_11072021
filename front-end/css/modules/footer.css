@@ -9,8 +9,8 @@ footer {
 }
 
 .footer-logo {
-  width: 320px;
-  height: 110px;
+  width: var(--img-md);
+  height: var(--img-sm);
 }
 
 .footer-list {

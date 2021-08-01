@@ -36,7 +36,7 @@
   .teddy-item__img {
     width: inherit;
     height: var(--size-sm);
-    border-radius: 8px 8px 0 0;
+    border-radius: 0.5rem 0.5rem 0 0;
   }
 
   .teddy-item__detail {
@@ -162,6 +162,10 @@
 /* affichage écran tablette et petits écrans style laptop */
 
 @media all and (min-width: 426px) and (max-width: 768px) {
+  .teddy-item {
+    margin: 1rem 0;
+  }
+
   .teddy-item__img {
     width: var(--size-md);
   }
@@ -184,7 +188,7 @@
 
   .teddy-item__img {
     width: 100vw;
-    border-radius: 8px 8px 0 0;
+    border-radius: 0.5rem 0.5rem 0 0;
   }
   .teddy-item__detail {
     width: auto;
