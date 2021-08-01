@@ -162,8 +162,12 @@
 /* affichage écran tablette et petits écrans style laptop */
 
 @media all and (min-width: 426px) and (max-width: 768px) {
-  .teddy-item {
+  .product-detail .teddy-item {
     margin: 1rem 0;
+  }
+
+  .products .teddy-item {
+    margin: 0.5rem;
   }
 
   .teddy-item__img {
