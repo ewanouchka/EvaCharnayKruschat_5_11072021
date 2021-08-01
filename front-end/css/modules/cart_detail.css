@@ -45,7 +45,7 @@
 }
 
 .cart-list:last-of-type {
-  border-radius: 0 0 1rem 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .cart-list__info:first-child {

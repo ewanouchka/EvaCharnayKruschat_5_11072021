@@ -52,12 +52,10 @@ if (validate1)
       for (const eachInput of inputToCheck) {
         const errorMessage = document.getElementById(`error-message-${eachInput.name}`);
         eachInput.addEventListener("keyup", function () {
-          eachInput.classList.remove("bloc-form__input--invalid");
           if (eachInput.validity.patternMismatch || eachInput.validity.valueMissing) {
             inputChecked.classList.add("check-false");
             inputChecked.innerHTML = `&#xD7;`;
           } else {
-            eachInput.classList.remove("bloc-form__input--invalid");
             inputChecked.classList.remove("check-false");
             inputChecked.classList.add("check-true");
             inputChecked.innerHTML = `&#x2713;`;
@@ -85,7 +83,7 @@ if (validate1)
             inputName.classList.add("bloc-form__input--invalid");
           } else {
             inputName.setCustomValidity("");
-            inputName.classList.add("check-true");
+            inputName.classList.add("bloc-form__input:valid");
           }
         });
       };
@@ -136,6 +134,9 @@ if (validate1)
           (async () => {
             localStorage.setItem("contact", JSON.stringify(contact));
           })();
+
+          // créer un pop-up confirmation d'envoi "ok" --> page checkout
+          // voir fonction method post
         } else {
           // créer un pop-up ou un message d'erreur
           console.log("le formulaire  n'est pas valide");

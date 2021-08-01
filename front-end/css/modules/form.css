@@ -42,7 +42,7 @@
   box-shadow: 0 0 0.5rem var(--color-invalid);
 }
 
-.bloc-form__input:not(:placeholder-shown):valid {
+.bloc-form__input:valid {
   border: var(--border-input-neutral);
   box-shadow: none;
 }
