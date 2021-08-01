@@ -36,10 +36,14 @@
   .teddy-item__img {
     width: inherit;
     height: var(--size-sm);
+    border-radius: 8px 8px 0 0;
   }
 
   .teddy-item__detail {
     width: auto;
+  }
+  .teddy-item__color__list {
+    flex-wrap: wrap;
   }
 
   .popup-bloc {
@@ -101,12 +105,16 @@
   }
 }
 
-/* ajustement pour tout petit écran mobile */
+/* affichage pour tout petit portable 280px (galaxy fold) 320px (iphone5) */
 
-@media all and (max-width: 325px) {
-  .cart-head__label:last-child,
-  .cart-list__info:last-child {
-    width: 1.5rem;
+@media all and (max-width: 280px) {
+  .cart-head__label:first-child {
+    min-width: 30%;
+  }
+}
+@media all and (max-width: 320px) {
+  .teddy-item {
+    width: 100vw;
   }
 
   .cart-list__info:first-child {
@@ -116,6 +124,15 @@
 
   .cart-list__info:nth-child(n + 1) {
     padding: 0 1rem 0 0;
+  }
+
+  .cart-list__info:last-child {
+    padding: 0;
+    width: 1.5rem;
+  }
+
+  .footer-logo {
+    max-width: 100vw;
   }
 }
 
@@ -139,5 +156,63 @@
 
   .order-form {
     width: 100%;
+  }
+}
+
+/* affichage écran tablette et petits écrans style laptop */
+
+@media all and (min-width: 426px) and (max-width: 768px) {
+  .teddy-item__img {
+    width: var(--size-md);
+  }
+}
+
+/* affichage pour tout grand portable/phonelet/petite tablette (surface duo) */
+
+@media all and (min-width: 425px) and (max-width: 560px) {
+  .product-detail {
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: space-between;
+  }
+
+  .teddy-item {
+    flex-direction: column;
+    margin: 1rem 0;
+    width: 100vw;
+  }
+
+  .teddy-item__img {
+    width: 100vw;
+    border-radius: 8px 8px 0 0;
+  }
+  .teddy-item__detail {
+    width: auto;
+  }
+
+  .cart-list__info:nth-child(4) {
+    white-space: nowrap;
+    padding: 0;
+  }
+
+  footer {
+    height: auto;
+  }
+  .footer-list {
+    flex-wrap: wrap;
+  }
+  .footer-list h2:first-of-type {
+    width: 100%;
+  }
+  .footer-list li:first-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .footer-list__link {
+    justify-content: center;
+    align-self: center;
   }
 }

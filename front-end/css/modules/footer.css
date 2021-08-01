@@ -21,6 +21,7 @@ footer {
 .footer-list__center {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .footer-list__center > .footer-list__link:nth-child(2),
