@@ -1,12 +1,13 @@
-import { getTeddies, formatDataTeddies } from "./modules/getTeddies.js";
-import { articles } from "./modules/getCart.js";
+import { getOneTeddy, formatDataOneTeddy } from "./modules/getTeddies.js";
+import { setStorageItem } from "./modules/storage.js";
+import { productsInCart, arrayOfProducts } from "./modules/getCart.js";
 import { getFormattedPrice } from "./modules/getFormattedPrice.js";
 import { displayTotalQuantity } from "./modules/getNumberOfArticles.js";
+import { createPopup, createContentAddToCart } from "./modules/popup.js";
 
 // affichage du bloc produit
 
 const displayOneTeddy = async (teddy) => {
-  teddy = teddy[0];
   const teddyElement = document.querySelector("#product-detail");
 
   teddyElement.innerHTML =
@@ -29,11 +30,11 @@ const displayOneTeddy = async (teddy) => {
           <select id="teddy-item__quantity" class="teddy-item__quantity__selector"></select></div>
           <div id="color-error" class="error-hidden">Veuillez choisir une couleur.</div></div></form>`;
 
-  const optionQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  let blocOptionQuantity = [];
-  for (let i = 0; i < optionQuantity.length; i++) {
-    blocOptionQuantity = blocOptionQuantity + `<option value="${i + 1}">${optionQuantity[i]}</option>`;
-  }
+          let blocOptionQuantity = [];
+          for (let i = 1; i <= 10; i++) {
+            blocOptionQuantity = blocOptionQuantity + `<option value="${i}">${i}</option>`;
+          }
+
   document.getElementById("teddy-item__quantity").innerHTML += blocOptionQuantity;
 
   teddyElement.innerHTML += `<button class="button" id="add-to-cart"><span>Ajouter au panier</span></button>`;
@@ -43,7 +44,6 @@ const displayOneTeddy = async (teddy) => {
 
 let choiceColor = "";
 const selectColor = async (teddy) => {
-  teddy = teddy[0];
   const colorElement = document.querySelector("#teddy-item__color__list");
   for (const color of teddy.colors) {
     const lowercaseColor = color.toLowerCase().replace(/ /g, "");
@@ -73,11 +73,10 @@ const selectColor = async (teddy) => {
 // fonction Ajouter au panier
 
 const addToCart = async (teddy) => {
-  teddy = teddy[0];
   const addToCartButton = document.querySelector("#add-to-cart");
   addToCartButton.addEventListener("click", async () => {
     const choiceQuantity = parseInt(document.querySelector("#teddy-item__quantity").value);
-    const optionsArticle = {
+    const optionsItemSelected = {
       name: teddy.name,
       id: teddy.id,
       color: choiceColor,
@@ -86,7 +85,7 @@ const addToCart = async (teddy) => {
     };
 
     const error = document.querySelector("#color-error");
-    if (optionsArticle.color == "") {
+    if (optionsItemSelected.color == "") {
       error.classList.remove("error-hidden");
       error.classList.add("error-visible");
     } else {
@@ -95,71 +94,34 @@ const addToCart = async (teddy) => {
 
       // pop-up
 
-      let popupContainer = document.createElement("div");
-      popupContainer.setAttribute("id", "popup");
-      popupContainer.classList.add("popup-container");
-      let popupBloc = document.createElement("div");
-      popupBloc.classList.add("popup-bloc");
-
-      const createPopup = () => {
-        popupBloc.innerHTML = `<p>L'ourson <span class="teddy-item__name">${optionsArticle.name}</span> (${optionsArticle.color})<br />a bien été ajouté au panier !</p>`;
-        popupBloc.innerHTML +=
-          '<a href="cart.html"><button class="button popup-button" id="go-to-cart">Voir le panier</button></a>';
-        popupBloc.innerHTML +=
-          '<a href="../../index.html"><button class="button popup-button" id="continue-shopping">Continuer votre shopping</button></a>';
-        openPopup();
-      };
-
-      function openPopup() {
-        document.body.append(popupContainer);
-        popupContainer.append(popupBloc);
-        document.getElementById("continue-shopping").addEventListener("click", function () {
-          closePopup();
-        });
-        document.getElementById("go-to-cart").addEventListener("click", function () {
-          closePopup();
-        });
-      }
-
-      function closePopup() {
-        while (popupContainer.hasChildNodes()) {
-          popupContainer.removeChild(popupContainer.firstChild);
-        }
-        document.getElementById("product-detail").removeChild(popupContainer);
-      }
+createPopup();
+createContentAddToCart(optionsItemSelected);
 
       // ajout des articles au localStorage
 
       (() => {
-        if (!articles) {
-          localStorage.setItem("products", JSON.stringify(optionsArticle));
+        if (!productsInCart) {
+          setStorageItem("products", optionsItemSelected);
         } else {
-          const addSelectedArticle = (listOfArticles) => {
+          const addSelectedArticle = (arrayOfProducts) => {
             if (
-              listOfArticles.every((value) => value.color !== optionsArticle.color || value.id !== optionsArticle.id)
+              arrayOfProducts.every((value) => value.color !== optionsItemSelected.color || value.id !== optionsItemSelected.id)
             ) {
-              listOfArticles.push(optionsArticle);
-              localStorage.setItem("products", JSON.stringify(listOfArticles));
+              arrayOfProducts.push(optionsItemSelected);
+              setStorageItem("products", arrayOfProducts);
             } else {
-              for (let n = 0; n < listOfArticles.length; n++) {
-                if (listOfArticles[n].color === optionsArticle.color && listOfArticles[n].id === optionsArticle.id) {
-                  listOfArticles[n].quantity =
-                    parseInt(listOfArticles[n].quantity, 10) + parseInt(optionsArticle.quantity, 10);
-                  localStorage.setItem("products", JSON.stringify(listOfArticles));
+              for (let n = 0; n < arrayOfProducts.length; n++) {
+                if (arrayOfProducts[n].color === optionsItemSelected.color && arrayOfProducts[n].id === optionsItemSelected.id) {
+                  arrayOfProducts[n].quantity =
+                    parseInt(arrayOfProducts[n].quantity, 10) + parseInt(optionsItemSelected.quantity, 10);
+                    setStorageItem("products", arrayOfProducts);
                 }
               }
             }
             return;
-          };
-          if (!articles[0]) {
-            let listOfArticles = Array.of(articles);
-            addSelectedArticle(listOfArticles);
-          } else {
-            let listOfArticles = articles;
-            addSelectedArticle(listOfArticles);
-          }
+          };          
+            addSelectedArticle(arrayOfProducts);
         }
-        createPopup();
       })();
     }
   });
@@ -168,11 +130,9 @@ const addToCart = async (teddy) => {
 // appels
 
 (async () => {
-  const { teddy } = await formatDataTeddies(
-    Array.of(await getTeddies("http://localhost:3000/api/teddies/" + new URL(location.href).searchParams.get("id")))
-  );
-  displayOneTeddy(teddy); // affichage du bloc produit
-  selectColor(teddy); // affichage des pastilles de couleur
-  addToCart(teddy); // bouton Ajouter au panier
+  const {teddy} = await formatDataOneTeddy(await getOneTeddy());
+  displayOneTeddy(teddy); 
+  selectColor(teddy); 
+  addToCart(teddy); 
 })();
 displayTotalQuantity();
