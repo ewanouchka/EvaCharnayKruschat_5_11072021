@@ -1,14 +1,14 @@
-import { articles } from "./getCart.js";
+import { productsInCart } from "./getCart.js";
 
 export const getTotalQuantity = () => {
-  if (!articles) {
+  if (!productsInCart) {
     let number = 0;
     return number;
-  } else if (articles[0]) {
-    let number = articles.reduce((accumulator, { quantity }) => accumulator + quantity, 0);
+  } else if (productsInCart[0]) {
+    let number = productsInCart.reduce((accumulator, { quantity }) => accumulator + quantity, 0);
     return number;
   } else {
-    let number = articles.quantity;
+    let number = productsInCart.quantity;
     return number;
   }
 };
