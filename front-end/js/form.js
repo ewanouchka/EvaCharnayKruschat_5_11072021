@@ -1,9 +1,11 @@
+import { createPopup, createContentOrderInvalid, createContentValidateOrder } from "./modules/popup.js";
+
 // affichage du formulaire
 
-const validate1 = document.getElementById("validate-cart");
-if (validate1)
+const validateCart = document.getElementById("validate-cart");
+if (validateCart)
   (async () => {
-    validate1.addEventListener("click", function () {
+    validateCart.addEventListener("click", function () {
       const blocForm = document.getElementById("order-form");
       blocForm.innerHTML = `<section class="bloc-form">
     <h2 class="bloc-form__title">Merci de remplir ce formulaire pour valider votre commande</h2>
@@ -90,21 +92,21 @@ if (validate1)
 
       // messages d'erreur personnalisés
 
-      checkValidity("Name", 'Le nom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-".');
+      checkValidity("Name", 'Le nom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-" (minimum 2 caractères).');
       checkValidity(
         "Surname",
-        'Le prénom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-".'
+        'Le prénom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-" (minimum 2 caractères).'
       );
       checkValidity("Address", "Merci de saisir votre adresse complète.");
       checkValidity("Postcode", "Le code postal doit comporter quatre ou cinq chiffres.");
-      checkValidity("Town", "La ville doit être composée uniquement de lettres, accentuées ou non, espaces et/ou -.");
+      checkValidity("Town", 'La ville doit être composée uniquement de lettres, accentuées ou non, espaces et/ou "-" (minimum 2 caractères).');
       checkValidity("Email", 'Un e-mail doit comporter un "@" et un ".".');
       checkValidity("Phone", "Le numéro de téléphone doit comporter 10 chiffres.");
 
-      // récupération des valeurs du formulaire et envoi au localStorage au clic sur le bouton "Valider la commande"
+      // récupération des valeurs du formulaire au clic sur le bouton "Valider la commande" si tout est OK
 
-      const validate2 = document.getElementById("order-confirm");
-      validate2.addEventListener("click", function (event) {
+      const validateOrder = document.getElementById("order-confirm");
+      validateOrder.addEventListener("click", function (event) {
         event.preventDefault();
         const inputValues = document.getElementsByClassName("bloc-form__input");
         const checkAllValidity = () => {
@@ -117,29 +119,14 @@ if (validate1)
           return validity;
         };
 
-        if (checkAllValidity()) {
-          const getInputValue = (inputId) => {
-            const inputValue = document.getElementById(`${inputId}`).value;
-            return inputValue;
-          };
+        if (checkAllValidity()) {          
+          // pop-up
 
-          const contact = {
-            firstName: getInputValue("Surname"),
-            lastName: getInputValue("Name"),
-            address: getInputValue("Address"),
-            city: getInputValue("Town"),
-            email: getInputValue("Email"),
-          };
-
-          (async () => {
-            localStorage.setItem("contact", JSON.stringify(contact));
-          })();
-
-          // créer un pop-up confirmation d'envoi "ok" --> page checkout
-          // voir fonction method post
+          createPopup();
+          createContentValidateOrder();
         } else {
-          // créer un pop-up ou un message d'erreur
-          console.log("le formulaire  n'est pas valide");
+          createPopup();
+          createContentOrderInvalid();
         }
       });
     });

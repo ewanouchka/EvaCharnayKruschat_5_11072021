@@ -1,17 +1,11 @@
-import { articles } from "./modules/getCart.js";
+import { productsInCart, arrayOfProducts } from "./modules/getCart.js";
 import { getFormattedPrice } from "./modules/getFormattedPrice.js";
 import { getTotalQuantity, displayTotalQuantity } from "./modules/getNumberOfArticles.js";
-
-let listOfArticles;
-if (!articles[0]) {
-  listOfArticles = Array.of(articles);
-} else {
-  listOfArticles = articles;
-}
+import { setStorageItem } from "./modules/storage.js";
 
 // affichage du panier
 
-const displayCart = async (articles) => {
+const displayCart = async (arrayOfProducts) => {
   const cartElement = document.querySelector("#cart");
 
   cartElement.innerHTML = `<ul class="cart-head"> 
@@ -22,7 +16,7 @@ const displayCart = async (articles) => {
   <li class="cart-head__label" title="Total">Total</li>
   <li class="cart-head__label" title="Supprimer">Suppr.</li></ul>`;
 
-  cartElement.innerHTML += listOfArticles
+  cartElement.innerHTML += arrayOfProducts
     .map(
       (article) =>
         `<section class="cart-list">
@@ -41,7 +35,7 @@ const displayCart = async (articles) => {
     .join("");
 
   const calculateTotal = () => {
-    const total = listOfArticles
+    const total = arrayOfProducts
       .map((article) => `${article.price}` * `${article.quantity}`)
       .reduce((a, b) => parseInt(a, 10) + parseInt(b, 10));
     return getFormattedPrice(total);
@@ -49,20 +43,20 @@ const displayCart = async (articles) => {
 
   cartElement.innerHTML +=
     `<h2 class="total-line">Total : <span class="total-line__number">` + calculateTotal() + ` €</span></h2>`;
+      setStorageItem("total", calculateTotal());
 
   cartElement.innerHTML += `<a href="cart.html"><button class="button" id="empty-cart"><span>Vider le panier</span></button></a>`;
 
   cartElement.innerHTML += `<button class="button" id="validate-cart"><span>Valider le panier</span></button>`;
 
   // fonctions modifications des produits du panier
-
   const trashButton = document.querySelectorAll(".fa-trash-alt");
   Array.from(trashButton).forEach((button, index) =>
     button.addEventListener("click", () => {
-      if (articles.length == 1) {
+      if (arrayOfProducts.length == 1) {
         localStorage.removeItem("products");
-      } else {
-        localStorage.setItem("products", JSON.stringify(articles.splice(index, 1)));
+      } else {arrayOfProducts.splice(index, 1);
+        localStorage.setItem("products", JSON.stringify(arrayOfProducts));
       }
       window.location.reload();
     })
@@ -79,7 +73,7 @@ const displayCart = async (articles) => {
       localStorage.setItem(
         "products",
         JSON.stringify(
-          listOfArticles.map((article, indexArticle) => {
+          arrayOfProducts.map((article, indexArticle) => {
             if (indexArticle === index) {
               return { ...article, quantity: parseInt(article.quantity, 10) + 1 };
             }
@@ -94,15 +88,15 @@ const displayCart = async (articles) => {
   const minusOneButtons = document.querySelectorAll(".minus");
   Array.from(minusOneButtons).forEach((button, index) =>
     button.addEventListener("click", () => {
-      if (getTotalQuantity(articles) == 1) {
+      if (getTotalQuantity(arrayOfProducts) == 1) {
         localStorage.removeItem("products");
-      } else if (articles[index].quantity == 1) {
-        localStorage.setItem("products", JSON.stringify(articles.splice(index, 1)));
+      } else if (arrayOfProducts[index].quantity == 1) {arrayOfProducts.splice(index, 1)
+        localStorage.setItem("products", JSON.stringify(arrayOfProducts));
       } else {
         localStorage.setItem(
           "products",
           JSON.stringify(
-            articles.map((article, indexArticle) => {
+            arrayOfProducts.map((article, indexArticle) => {
               if (indexArticle === index) {
                 return { ...article, quantity: parseInt(article.quantity, 10) - 1 };
               }
@@ -119,9 +113,9 @@ const displayCart = async (articles) => {
 // appels
 
 (async () => {
-  if (!articles) {
-  } else {
-    displayCart(articles);
+  if (productsInCart !== null) {
+
+    displayCart(arrayOfProducts);
   }
 })();
 displayTotalQuantity();
