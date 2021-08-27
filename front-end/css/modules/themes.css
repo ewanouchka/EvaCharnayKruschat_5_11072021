@@ -37,7 +37,7 @@
 
   /* bordures */
   --border-neutral: 2px solid var(--color-footer);
-  --border-active: 2px solid var(--color-sescondary);
+  --border-active: 2px solid var(--color-secondary);
   --border-input-neutral: 1px solid var(--color-footer);
   --border-input-invalid: 1px solid var(--color-invalid);
 
