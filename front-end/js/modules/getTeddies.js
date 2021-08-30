@@ -12,7 +12,7 @@ export const formatDataTeddies = async (teddyApiJSON) => {
         name,
         price,
         img,
-        colors,
+        colors: colors.join(", "),
         description,
       };
     })
