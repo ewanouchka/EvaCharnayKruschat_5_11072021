@@ -37,6 +37,10 @@ header {
   padding: 0 1rem;
 }
 
+.header-nav__text {
+  text-align:center;
+}
+
 .cart-logo {
   position: relative;
 }
