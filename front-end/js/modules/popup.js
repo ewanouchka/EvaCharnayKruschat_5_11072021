@@ -1,4 +1,5 @@
 import { arrayOfProducts } from "./getCart.js";
+import { setStorageItem } from "./storage.js";
 
 export const popupContainer = document.createElement("div");
 export const popupBloc = document.createElement("div");
@@ -30,13 +31,13 @@ document.getElementById("go-to-cart").addEventListener("click", function () {
   closePopup();
 });
 };
-//<a href="../pages/checkout.html"></a>
+
 export const createContentValidateOrder = () => {
     popupBloc.innerHTML = `<p>Êtes-vous sûr de vouloir valider ?</p>
-  <button class="button popup-button" id="validate-order">Confirmer votre commande</button>`;
+    <a href="../pages/checkout.html"><button class="button popup-button" id="validate-order">Confirmer votre commande</button></a>`;
     document.getElementById("validate-order").addEventListener("click", function () {
 
-      // envoi au back
+      // création de l'objet contact à partir des champs du formulaire
 
       const getInputValue = (inputId) => {
         const inputValue = document.getElementById(`${inputId}`).value;
@@ -53,21 +54,32 @@ export const createContentValidateOrder = () => {
       
       // récupération des ID des objets commandés
     
-      const productsID = arrayOfProducts.map((product) => product.id)
+      const productsID = arrayOfProducts.map((product) => product.id);
 
+      // envoi au back de l'objet contact et du tableau d'ID
 
-      const sendToBack = fetch("http://localhost:3000/api/teddies/order", {
-        method: "POST",
-        body: JSON.stringify({
-            contact: contact,
-            products: productsID
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-  });
+      const orderSent = fetch("http://localhost:3000/api/teddies/order", {
+      method: "POST",
+      body: JSON.stringify({
+          contact: contact,
+          products: productsID
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      });
 
-  console.log(sendToBack);
+      // envoi de l'ID de commande retourné par le back au localStorage
+
+      orderSent.then(async(response) => {
+        const orderFromBack = await response.json();
+        setStorageItem("orderId", orderFromBack.orderId);
+      });
+
+      // vider les produits du panier à la validation de la commande
+
+      localStorage.removeItem("products");
+
       closePopup();
     });};
 

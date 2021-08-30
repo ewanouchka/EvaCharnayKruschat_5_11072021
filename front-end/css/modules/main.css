@@ -12,11 +12,17 @@ main {
 
 .products,
 .product-detail,
-.cart,
-.order-confirm {
+.cart {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 2rem;
+  position: relative;
+}
+
+.checkout {    
+  text-align: center;
+  width: 50%;
   margin: 2rem;
   position: relative;
 }
