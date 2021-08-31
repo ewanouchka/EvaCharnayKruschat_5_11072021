@@ -76,7 +76,7 @@ export const createContentValidateOrder = () => {
         setStorageItem("orderId", orderFromBack.orderId);
       });
 
-      // vider les produits du panier à la validation de la commande
+      // vider les produits du localStorage à la validation de la commande
 
       localStorage.removeItem("products");
 
