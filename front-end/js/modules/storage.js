@@ -11,3 +11,12 @@ export const setStorageItem = (name, value) => {
     return false;
   }
 };
+
+export const removeStorageItem = (name) => {
+  localStorage.removeItem(name);
+};
+
+export const emptyLocalStorage = (orderId, total) => {
+  removeStorageItem(orderId);
+  removeStorageItem(total);
+};
