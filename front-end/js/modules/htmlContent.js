@@ -43,8 +43,9 @@ export const productContent = (teddy) => {
           <div id="teddy-item__color__list" class="teddy-item__color__list"></div></div>
           <div class="teddy-item__quantity"><label for="teddy-item__quantity">Quantité choisie :</label>
           <select id="teddy-item__quantity" class="teddy-item__quantity__selector">${blocOptionQuantity}</select></div>
-          <div id="color-error" class="error-hidden">Veuillez choisir une couleur.</div></div></form>
-          <button class="button" id="add-to-cart"><span>Ajouter au panier</span></button>`;
+          <div id="color-error" class="error-hidden">Veuillez choisir une couleur.</div></div></form>`;
+
+  teddyElement.innerHTML += `<button class="button" id="add-to-cart"><span>Ajouter au panier</span></button>`;
 };
 
 // contenu HTML de la page panier
