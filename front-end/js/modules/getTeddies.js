@@ -32,5 +32,3 @@ export const formatDataOneTeddy = async (oneTeddyJSON) => {
 
   return { teddy };
 };
-
-export const { teddy } = await formatDataOneTeddy(await getOneTeddy());
