@@ -22,15 +22,15 @@ export const formatDataTeddies = async (teddyApiJSON) => {
   };
 };
 
-export const getOneTeddy = () => getTeddies("http://localhost:3000/api/teddies/" + new URL(location.href).searchParams.get("id"));
-
+export const getOneTeddy = () =>
+  getTeddies("http://localhost:3000/api/teddies/" + new URL(location.href).searchParams.get("id"));
 
 export const formatDataOneTeddy = async (oneTeddyJSON) => {
   const { _id: id, name, price, imageUrl: img, colors, description } = oneTeddyJSON;
 
   const teddy = { id, name, price, img, colors, description };
 
-  return {teddy};
+  return { teddy };
 };
 
-
+export const { teddy } = await formatDataOneTeddy(await getOneTeddy());

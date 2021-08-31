@@ -19,6 +19,7 @@ export const displayTeddies = (teddy) => {
 };
 
 // contenu HTML de la page produit
+// --> affichage des informations produit
 
 export const displayOneTeddy = (teddy) => {
   const teddyElement = document.querySelector("#product-detail");
@@ -46,6 +47,35 @@ export const displayOneTeddy = (teddy) => {
           <div id="color-error" class="error-hidden">Veuillez choisir une couleur.</div></div></form>`;
 
   teddyElement.innerHTML += `<button class="button" id="add-to-cart"><span>Ajouter au panier</span></button>`;
+};
+
+// --> affichage des couleurs
+// fonction affichage de la pastille de couleur en fonction des données colors
+
+export let choiceColor = "";
+export const selectColor = async (teddy) => {
+  const colorElement = document.querySelector("#teddy-item__color__list");
+  for (const color of teddy.colors) {
+    const lowercaseColor = color.toLowerCase().replace(/ /g, "");
+    colorElement.innerHTML += `<label for="toggle-${lowercaseColor}" id="toggle-${lowercaseColor}-label" class="teddy-item__color__list__bullet teddy-item__color__list__bullet--${lowercaseColor}" title="${color}">
+    </label><input type="radio" name="teddy-item__color__list" id="toggle-${lowercaseColor}" class="visually-hidden" title="${color}">`;
+  }
+
+  const selectedColor = document.querySelector("#teddy-item__color__list");
+  const otherColor = document.querySelectorAll(".teddy-item__color__list__bullet");
+  selectedColor.addEventListener("change", () => {
+    const elts = document.querySelectorAll("input");
+    otherColor.forEach((element) => element.classList.remove("teddy-item__color__list__bullet--active"));
+    for (let m = 0; m < elts.length; m++) {
+      if (elts[m].checked === true) {
+        const idSelected = "#" + elts[m].id + "-label";
+        document.querySelector(idSelected).classList.add("teddy-item__color__list__bullet--active");
+        choiceColor = elts[m].title;
+        break;
+      }
+    }
+    return choiceColor;
+  });
 };
 
 // contenu HTML de la page panier
