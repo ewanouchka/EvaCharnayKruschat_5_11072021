@@ -32,11 +32,11 @@ export const createContentAddToCart = (optionsItemSelected) => {
 <a href="../pages/cart.html"><button class="button popup-button" id="go-to-cart">Voir le panier</button></a>
 <button class="button popup-button" id="continue-shopping">Continuer votre shopping</button>`;
 
-  document.getElementById("continue-shopping").addEventListener("click", function () {
+  document.querySelector("#continue-shopping").addEventListener("click", function () {
     window.location.reload();
     closePopup();
   });
-  document.getElementById("go-to-cart").addEventListener("click", function () {
+  document.querySelector("#go-to-cart").addEventListener("click", function () {
     closePopup();
   });
 };
@@ -46,7 +46,7 @@ export const createContentAddToCart = (optionsItemSelected) => {
 export const createContentOrderInvalid = () => {
   popupBloc.innerHTML = `<p>Le formulaire n'est pas valide. Merci de le compléter entièrement.</p>
     <button class="button popup-button" id="order-invalid">Revenir au formulaire</button>`;
-  document.getElementById("order-invalid").addEventListener("click", function () {
+  document.querySelector("#order-invalid").addEventListener("click", function () {
     closePopup();
   });
 };
@@ -56,11 +56,11 @@ export const createContentOrderInvalid = () => {
 export const createContentValidateOrder = () => {
   popupBloc.innerHTML = `<p>Êtes-vous sûr de vouloir valider ?</p>
     <a href="../pages/checkout.html"><button class="button popup-button" id="validate-order">Confirmer votre commande</button></a>`;
-  document.getElementById("validate-order").addEventListener("click", function () {
+  document.querySelector("#validate-order").addEventListener("click", function () {
     // création de l'objet contact à partir des champs du formulaire
 
     const getInputValue = (inputId) => {
-      const inputValue = document.getElementById(`${inputId}`).value;
+      const inputValue = document.querySelector(`#${inputId}`).value;
       return inputValue;
     };
 

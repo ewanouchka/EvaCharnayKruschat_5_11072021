@@ -3,7 +3,7 @@ import { createPopup, createContentOrderInvalid, createContentValidateOrder } fr
 
 // affichage du formulaire
 
-const validateCart = document.getElementById("validate-cart");
+const validateCart = document.querySelector("#validate-cart");
 if (validateCart)
   (async () => {
     validateCart.addEventListener("click", function () {
@@ -11,10 +11,10 @@ if (validateCart)
 
       // vérification en cours de frappe des champs du formulaire
 
-      const inputToCheck = document.getElementsByTagName("input");
+      const inputToCheck = document.querySelectorAll("input");
       const inputChecked = document.createElement("div");
       for (const eachInput of inputToCheck) {
-        const errorMessage = document.getElementById(`error-message-${eachInput.name}`);
+        const errorMessage = document.querySelector(`#error-message-${eachInput.name}`);
         eachInput.addEventListener("keyup", function () {
           if (eachInput.validity.patternMismatch || eachInput.validity.valueMissing) {
             inputChecked.classList.add("check-false");
@@ -32,17 +32,17 @@ if (validateCart)
       // vérification au clic sur le bouton "valider la commande"
 
       const checkValidity = (inputId, errorMess) => {
-        const inputName = document.getElementById(`${inputId}`);
-        const submitButton = document.getElementById(`order-confirm`);
+        const inputName = document.querySelector(`#${inputId}`);
+        const submitButton = document.querySelector(`#order-confirm`);
         submitButton.addEventListener("click", function () {
           if (inputName.validity.valueMissing) {
             inputName.setCustomValidity(`Merci de compléter cette information.`);
-            const errorMessage = document.getElementById(`error-message-${inputId}`);
+            const errorMessage = document.querySelector(`#error-message-${inputId}`);
             errorMessage.innerHTML = "Merci de compléter cette information.";
             inputName.classList.add("bloc-form__input--invalid");
           } else if (inputName.validity.patternMismatch) {
             inputName.setCustomValidity(`${errorMess}`);
-            const errorMessage = document.getElementById(`error-message-${inputId}`);
+            const errorMessage = document.querySelector(`#error-message-${inputId}`);
             errorMessage.innerHTML = `${errorMess}`;
             inputName.classList.add("bloc-form__input--invalid");
           } else {
@@ -73,10 +73,10 @@ if (validateCart)
 
       // récupération des valeurs du formulaire au clic sur le bouton "Valider la commande" si tout est OK
 
-      const validateOrder = document.getElementById("order-confirm");
+      const validateOrder = document.querySelector("#order-confirm");
       validateOrder.addEventListener("click", function (event) {
         event.preventDefault();
-        const inputValues = document.getElementsByClassName("bloc-form__input");
+        const inputValues = document.querySelectorAll(".bloc-form__input");
         const checkAllValidity = () => {
           let validity = true;
           for (const inputValue of inputValues) {

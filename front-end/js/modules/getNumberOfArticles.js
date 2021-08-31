@@ -13,7 +13,7 @@ export const getTotalQuantity = () => {
   }
 };
 
-const cartLogo = document.getElementById("cart-logo");
+const cartLogo = document.querySelector("#cart-logo");
 export const displayTotalQuantity = () => {
   if (getTotalQuantity() !== 0) {
     cartLogo.innerHTML += `<span id="cart-logo__number" class="cart-logo__number">${getTotalQuantity()}</span>`;

@@ -22,7 +22,7 @@ const displayCart = async (arrayOfProducts) => {
     })
   );
 
-  const supprAll = document.getElementById("empty-cart");
+  const supprAll = document.querySelector("#empty-cart");
   supprAll.addEventListener("click", () => {
     removeStorageItem("products");
   });

@@ -3,6 +3,6 @@ import { checkoutContent } from "./modules/htmlContent.js";
 
 checkoutContent();
 
-document.getElementById("back-to-index").addEventListener("click", function () {
+document.querySelector("#back-to-index").addEventListener("click", function () {
   emptyLocalStorage("orderId", "total");
 });

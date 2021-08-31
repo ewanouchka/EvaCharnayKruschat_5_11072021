@@ -119,7 +119,7 @@ export const cartContent = () => {
 // --> formulaire
 
 export const formContent = () => {
-  const blocForm = document.getElementById("order-form");
+  const blocForm = document.querySelector("#order-form");
   blocForm.innerHTML = `<section class="bloc-form">
     <h2 class="bloc-form__title">Merci de remplir ce formulaire pour valider votre commande</h2>
     <label for="Name" class="bloc-form__label">Votre nom : <span class="error-visible" id="error-message-Name"></span>
