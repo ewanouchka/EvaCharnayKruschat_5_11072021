@@ -1,15 +1,9 @@
-import { productContent } from "./modules/htmlContent.js";
+import { displayOneTeddy } from "./modules/htmlContent.js";
 import { getOneTeddy, formatDataOneTeddy } from "./modules/getTeddies.js";
 import { setStorageItem } from "./modules/storage.js";
 import { productsInCart, arrayOfProducts } from "./modules/getCart.js";
 import { displayTotalQuantity } from "./modules/getNumberOfArticles.js";
 import { createPopup, createContentAddToCart } from "./modules/popup.js";
-
-// affichage du bloc produit
-
-const displayOneTeddy = async (teddy) => {
-  productContent(teddy);
-};
 
 // fonction affichage de la pastille de couleur en fonction des données colors
 
@@ -62,11 +56,6 @@ const addToCart = async (teddy) => {
       error.classList.remove("error-visible");
       error.classList.add("error-hidden");
 
-      // pop-up
-
-      createPopup();
-      createContentAddToCart(optionsItemSelected);
-
       // ajout des articles au localStorage
 
       if (!productsInCart) {
@@ -96,6 +85,11 @@ const addToCart = async (teddy) => {
         };
         addSelectedArticle(arrayOfProducts);
       }
+
+      // pop-up
+
+      createPopup();
+      createContentAddToCart(optionsItemSelected);
     }
   });
 };

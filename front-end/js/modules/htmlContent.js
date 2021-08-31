@@ -4,7 +4,7 @@ import { arrayOfProducts } from "./getCart.js";
 
 // contenu HTML de la page d'index
 
-export const indexContent = (teddy) => {
+export const displayTeddies = (teddy) => {
   const teddyElement = document.querySelector("#products");
 
   teddyElement.innerHTML = teddy
@@ -20,7 +20,7 @@ export const indexContent = (teddy) => {
 
 // contenu HTML de la page produit
 
-export const productContent = (teddy) => {
+export const displayOneTeddy = (teddy) => {
   const teddyElement = document.querySelector("#product-detail");
 
   let blocOptionQuantity = [];
