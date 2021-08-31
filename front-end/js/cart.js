@@ -1,6 +1,7 @@
 import { productsInCart, arrayOfProducts } from "./modules/getCart.js";
 import { getTotalQuantity, displayTotalQuantity } from "./modules/getNumberOfArticles.js";
 import { cartContent } from "./modules/htmlContent.js";
+import { setStorageItem, removeStorageItem } from "./modules/storage.js";
 
 // affichage du panier
 
@@ -12,10 +13,10 @@ const displayCart = async (arrayOfProducts) => {
   Array.from(trashButton).forEach((button, index) =>
     button.addEventListener("click", () => {
       if (arrayOfProducts.length == 1) {
-        localStorage.removeItem("products");
+        removeStorageItem("products");
       } else {
         arrayOfProducts.splice(index, 1);
-        localStorage.setItem("products", JSON.stringify(arrayOfProducts));
+        setStorageItem("products", arrayOfProducts);
       }
       window.location.reload();
     })
@@ -23,22 +24,20 @@ const displayCart = async (arrayOfProducts) => {
 
   const supprAll = document.getElementById("empty-cart");
   supprAll.addEventListener("click", () => {
-    localStorage.removeItem("products");
+    removeStorageItem("products");
   });
 
   const plusOneButtons = document.querySelectorAll(".plus");
   Array.from(plusOneButtons).forEach((button, index) =>
     button.addEventListener("click", () => {
-      localStorage.setItem(
+      setStorageItem(
         "products",
-        JSON.stringify(
-          arrayOfProducts.map((article, indexArticle) => {
-            if (indexArticle === index) {
-              return { ...article, quantity: parseInt(article.quantity, 10) + 1 };
-            }
-            return article;
-          })
-        )
+        arrayOfProducts.map((article, indexArticle) => {
+          if (indexArticle === index) {
+            return { ...article, quantity: parseInt(article.quantity, 10) + 1 };
+          }
+          return article;
+        })
       );
       window.location.reload();
     })
@@ -48,21 +47,19 @@ const displayCart = async (arrayOfProducts) => {
   Array.from(minusOneButtons).forEach((button, index) =>
     button.addEventListener("click", () => {
       if (getTotalQuantity(arrayOfProducts) == 1) {
-        localStorage.removeItem("products");
+        removeStorageItem("products");
       } else if (arrayOfProducts[index].quantity == 1) {
         arrayOfProducts.splice(index, 1);
-        localStorage.setItem("products", JSON.stringify(arrayOfProducts));
+        setStorageItem("products", arrayOfProducts);
       } else {
-        localStorage.setItem(
+        setStorageItem(
           "products",
-          JSON.stringify(
-            arrayOfProducts.map((article, indexArticle) => {
-              if (indexArticle === index) {
-                return { ...article, quantity: parseInt(article.quantity, 10) - 1 };
-              }
-              return article;
-            })
-          )
+          arrayOfProducts.map((article, indexArticle) => {
+            if (indexArticle === index) {
+              return { ...article, quantity: parseInt(article.quantity, 10) - 1 };
+            }
+            return article;
+          })
         );
       }
       window.location.reload();
