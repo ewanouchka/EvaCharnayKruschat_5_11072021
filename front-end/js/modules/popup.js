@@ -30,9 +30,10 @@ export const closePopup = () => {
 export const createContentAddToCart = (optionsItemSelected) => {
   popupBloc.innerHTML = `<p>L'ourson <span class="teddy-item__name">${optionsItemSelected.name}</span> (${optionsItemSelected.color})<br />a bien été ajouté au panier !</p>
 <a href="../pages/cart.html"><button class="button popup-button" id="go-to-cart">Voir le panier</button></a>
-<a href="../../index.html"><button class="button popup-button" id="continue-shopping">Continuer votre shopping</button></a>`;
+<button class="button popup-button" id="continue-shopping">Continuer votre shopping</button>`;
 
   document.getElementById("continue-shopping").addEventListener("click", function () {
+    window.location.reload();
     closePopup();
   });
   document.getElementById("go-to-cart").addEventListener("click", function () {
