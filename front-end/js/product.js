@@ -22,30 +22,29 @@ const selectColor = async (teddy) => {
     </label><input type="radio" name="teddy-item__color__list" id="toggle-${lowercaseColor}" class="visually-hidden" title="${color}">`;
   }
 
-  (async () => {
-    const selectedColor = document.querySelector("#teddy-item__color__list");
-    const otherColor = document.querySelectorAll(".teddy-item__color__list__bullet");
-    selectedColor.addEventListener("change", () => {
-      const elts = document.querySelectorAll("input");
-      otherColor.forEach((element) => element.classList.remove("teddy-item__color__list__bullet--active"));
-      for (let m = 0; m < elts.length; m++) {
-        if (elts[m].checked === true) {
-          const idSelected = "#" + elts[m].id + "-label";
-          document.querySelector(idSelected).classList.add("teddy-item__color__list__bullet--active");
-          choiceColor = elts[m].title;
-          break;
-        }
+  const selectedColor = document.querySelector("#teddy-item__color__list");
+  const otherColor = document.querySelectorAll(".teddy-item__color__list__bullet");
+  selectedColor.addEventListener("change", () => {
+    const elts = document.querySelectorAll("input");
+    otherColor.forEach((element) => element.classList.remove("teddy-item__color__list__bullet--active"));
+    for (let m = 0; m < elts.length; m++) {
+      if (elts[m].checked === true) {
+        const idSelected = "#" + elts[m].id + "-label";
+        document.querySelector(idSelected).classList.add("teddy-item__color__list__bullet--active");
+        choiceColor = elts[m].title;
+        break;
       }
-      return choiceColor;
-    });
-  })();
+    }
+    return choiceColor;
+  });
 };
 
 // fonction Ajouter au panier
 
 const addToCart = async (teddy) => {
   const addToCartButton = document.querySelector("#add-to-cart");
-  addToCartButton.addEventListener("click", async () => {
+  addToCartButton.addEventListener("click", async (event) => {
+    event.preventDefault();
     const choiceQuantity = parseInt(document.querySelector("#teddy-item__quantity").value);
     const optionsItemSelected = {
       name: teddy.name,
@@ -70,35 +69,33 @@ const addToCart = async (teddy) => {
 
       // ajout des articles au localStorage
 
-      (() => {
-        if (!productsInCart) {
-          setStorageItem("products", optionsItemSelected);
-        } else {
-          const addSelectedArticle = (arrayOfProducts) => {
-            if (
-              arrayOfProducts.every(
-                (value) => value.color !== optionsItemSelected.color || value.id !== optionsItemSelected.id
-              )
-            ) {
-              arrayOfProducts.push(optionsItemSelected);
-              setStorageItem("products", arrayOfProducts);
-            } else {
-              for (let n = 0; n < arrayOfProducts.length; n++) {
-                if (
-                  arrayOfProducts[n].color === optionsItemSelected.color &&
-                  arrayOfProducts[n].id === optionsItemSelected.id
-                ) {
-                  arrayOfProducts[n].quantity =
-                    parseInt(arrayOfProducts[n].quantity, 10) + parseInt(optionsItemSelected.quantity, 10);
-                  setStorageItem("products", arrayOfProducts);
-                }
+      if (!productsInCart) {
+        setStorageItem("products", optionsItemSelected);
+      } else {
+        const addSelectedArticle = (arrayOfProducts) => {
+          if (
+            arrayOfProducts.every(
+              (value) => value.color !== optionsItemSelected.color || value.id !== optionsItemSelected.id
+            )
+          ) {
+            arrayOfProducts.push(optionsItemSelected);
+            setStorageItem("products", arrayOfProducts);
+          } else {
+            for (let n = 0; n < arrayOfProducts.length; n++) {
+              if (
+                arrayOfProducts[n].color === optionsItemSelected.color &&
+                arrayOfProducts[n].id === optionsItemSelected.id
+              ) {
+                arrayOfProducts[n].quantity =
+                  parseInt(arrayOfProducts[n].quantity, 10) + parseInt(optionsItemSelected.quantity, 10);
+                setStorageItem("products", arrayOfProducts);
               }
             }
-            return;
-          };
-          addSelectedArticle(arrayOfProducts);
-        }
-      })();
+          }
+          return;
+        };
+        addSelectedArticle(arrayOfProducts);
+      }
     }
   });
 };
