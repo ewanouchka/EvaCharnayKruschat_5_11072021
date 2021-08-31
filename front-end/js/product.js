@@ -1,40 +1,14 @@
+import { productContent } from "./modules/htmlContent.js";
 import { getOneTeddy, formatDataOneTeddy } from "./modules/getTeddies.js";
 import { setStorageItem } from "./modules/storage.js";
 import { productsInCart, arrayOfProducts } from "./modules/getCart.js";
-import { getFormattedPrice } from "./modules/getFormattedPrice.js";
 import { displayTotalQuantity } from "./modules/getNumberOfArticles.js";
 import { createPopup, createContentAddToCart } from "./modules/popup.js";
 
 // affichage du bloc produit
 
 const displayOneTeddy = async (teddy) => {
-  const teddyElement = document.querySelector("#product-detail");
-
-  teddyElement.innerHTML = `<form class="teddy-item">
-  <img src="${teddy.img}" class="teddy-item__img" alt="image ourson ${teddy.name}" />
-  <div class="teddy-item__detail">
-  <div class="teddy-item__id">Ref : ${teddy.id}</div>
-          <h1 class="teddy-item__name">${teddy.name}</h1>
-          <h2 class="teddy-item__price">${getFormattedPrice(`${teddy.price}`)} €</h2>
-          <p class="teddy-item__desc">
-          <h3>Description du produit :</h3>
-          ${teddy.description}</p>
-          <div class="teddy-item__options">
-          <h3>Options :</h3> 
-          <div class="teddy-item__color">Coloris disponibles :
-          <div id="teddy-item__color__list" class="teddy-item__color__list"></div></div>
-          <div class="teddy-item__quantity"><label for="teddy-item__quantity">Quantité choisie :</label>
-          <select id="teddy-item__quantity" class="teddy-item__quantity__selector"></select></div>
-          <div id="color-error" class="error-hidden">Veuillez choisir une couleur.</div></div></form>`;
-
-  let blocOptionQuantity = [];
-  for (let i = 1; i <= 10; i++) {
-    blocOptionQuantity = blocOptionQuantity + `<option value="${i}">${i}</option>`;
-  }
-
-  document.getElementById("teddy-item__quantity").innerHTML += blocOptionQuantity;
-
-  teddyElement.innerHTML += `<button class="button" id="add-to-cart"><span>Ajouter au panier</span></button>`;
+  productContent(teddy);
 };
 
 // fonction affichage de la pastille de couleur en fonction des données colors

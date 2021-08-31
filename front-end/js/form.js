@@ -1,3 +1,4 @@
+import { formContent } from "./modules/htmlContent.js";
 import { createPopup, createContentOrderInvalid, createContentValidateOrder } from "./modules/popup.js";
 
 // affichage du formulaire
@@ -6,46 +7,7 @@ const validateCart = document.getElementById("validate-cart");
 if (validateCart)
   (async () => {
     validateCart.addEventListener("click", function () {
-      const blocForm = document.getElementById("order-form");
-      blocForm.innerHTML = `<section class="bloc-form">
-    <h2 class="bloc-form__title">Merci de remplir ce formulaire pour valider votre commande</h2>
-    <label for="Name" class="bloc-form__label">Votre nom : <span class="error-visible" id="error-message-Name"></span>
-    </label>
-    <input placeholder="ex: Dupont" name="Name" id="Name" class="bloc-form__input" type="text" required pattern="^[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z\-\ \']{2,}$" oninput="checkValidity(this)">
-    </input>
-
-    <label for="Surname" class="bloc-form__label">Votre prénom : <span class="error-visible" id="error-message-Surname"></span>
-    </label>
-    <input placeholder="ex: Jeanne" name="Surname" id="Surname" class="bloc-form__input" type="text" required pattern="^[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z\-\ ]{2,}$" oninput="checkValidity(this)">
-    </input>
-    
-    <label for="Address" class="bloc-form__label">Votre adresse : <span class="error-visible" id="error-message-Address"></span>
-    </label>
-    <input placeholder="ex: 1 place du marché" name="Address" id="Address" class="bloc-form__input" type="text" required pattern="^.+[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z0-9]+.+$" oninput="checkValidity(this)">
-    </input>
-    
-    <label for="Postcode" class="bloc-form__label">Votre code postal : <span class="error-visible" id="error-message-Postcode"></span>
-    </label>
-    <input placeholder="ex: 75001" name="Postcode" id="Postcode" class="bloc-form__input" type="text" required pattern="^[0-9]{4,5}$" oninput="checkValidity(this)">
-    </input>
-    
-    <label for="Town" class="bloc-form__label">Votre ville : <span class="error-visible" id="error-message-Town"></span>
-    </label>
-    <input placeholder="ex: Paris" name="Town" id="Town" class="bloc-form__input" type="text" required pattern="^[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z]+[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z\-\ ]*[àáâãäåçèéêëìíîïðòóôõöùúûüýÿa-zA-Z]+$" oninput="checkValidity(this)">
-    </input>
-    
-    <label for="Email" class="bloc-form__label">Votre e-mail : <span class="error-visible" id="error-message-Email"></span>
-    </label>
-    <input placeholder="contact@orinoco.fr" name="Email" id="Email" class="bloc-form__input" type="email" required pattern="^[a-zA-Z0-9]+[a-zA-Z\-\.\_]*@{1}[a-zA-Z0-9]+[\.]{1}[a-zA-Z]+$" oninput="checkValidity(this)">
-    </input>
-    
-    <label for="Phone" class="bloc-form__label">Votre téléphone (facultatif) : <span class="error-visible" id="error-message-Phone"></span>
-    </label>
-    <input placeholder="0123456789" name="Phone" id="Phone" class="bloc-form__input" type="text" pattern="^[0-9]{10}$" oninput="checkValidity(this)">
-    </input>
-    </section>`;
-      blocForm.innerHTML += `<button class="button" id="order-confirm"><span>Valider la commande</span></button>`;
-      blocForm.classList.remove("visually-hidden");
+      formContent();
 
       // vérification en cours de frappe des champs du formulaire
 
@@ -92,14 +54,20 @@ if (validateCart)
 
       // messages d'erreur personnalisés
 
-      checkValidity("Name", 'Le nom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-" (minimum 2 caractères).');
+      checkValidity(
+        "Name",
+        'Le nom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-" (minimum 2 caractères).'
+      );
       checkValidity(
         "Surname",
         'Le prénom doit être composé uniquement de lettres, accentuées ou non, espaces et/ou "-" (minimum 2 caractères).'
       );
       checkValidity("Address", "Merci de saisir votre adresse complète.");
       checkValidity("Postcode", "Le code postal doit comporter quatre ou cinq chiffres.");
-      checkValidity("Town", 'La ville doit être composée uniquement de lettres, accentuées ou non, espaces et/ou "-" (minimum 2 caractères).');
+      checkValidity(
+        "Town",
+        'La ville doit être composée uniquement de lettres, accentuées ou non, espaces et/ou "-" (minimum 2 caractères).'
+      );
       checkValidity("Email", 'Un e-mail doit comporter un "@" et un ".".');
       checkValidity("Phone", "Le numéro de téléphone doit comporter 10 chiffres.");
 
@@ -119,13 +87,13 @@ if (validateCart)
           return validity;
         };
 
-        if (checkAllValidity()) {          
-          // pop-up
+        // pop-up
 
-          createPopup();
+        createPopup();
+
+        if (checkAllValidity()) {
           createContentValidateOrder();
         } else {
-          createPopup();
           createContentOrderInvalid();
         }
       });
