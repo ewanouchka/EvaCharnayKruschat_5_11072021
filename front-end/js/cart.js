@@ -23,13 +23,11 @@ const displayCart = async (arrayOfProducts) => {
         <a href="product.html?id=${article.id}" class="cart-list__info">
         Ourson ${article.name}</a>
         <div class="cart-list__info">${article.color}</div>
-        <div class="cart-list__info">` +
-        getFormattedPrice(`${article.price}`) +
-        ` €</div>
-        <div class="cart-list__info"><button class="mini-button minus">-</button>${article.quantity}<button class="mini-button plus">+</button></div>
-        <div class="cart-list__info">` +
-        getFormattedPrice(`${article.price}` * `${article.quantity}`) +
-        ` €</div>
+        <div class="cart-list__info">${getFormattedPrice(`${article.price}`)} €</div>
+        <div class="cart-list__info"><button class="mini-button minus">-</button>${
+          article.quantity
+        }<button class="mini-button plus">+</button></div>
+        <div class="cart-list__info">${getFormattedPrice(`${article.price}` * `${article.quantity}`)} €</div>
         <button class="fas fa-trash-alt mini-button cart-list__info"></button></section>`
     )
     .join("");
@@ -41,9 +39,8 @@ const displayCart = async (arrayOfProducts) => {
     return getFormattedPrice(total);
   };
 
-  cartElement.innerHTML +=
-    `<h2 class="total-line">Total : <span class="total-line__number">` + calculateTotal() + ` €</span></h2>`;
-      setStorageItem("total", calculateTotal());
+  cartElement.innerHTML += `<h2 class="total-line">Total : <span class="total-line__number">${calculateTotal()} €</span></h2>`;
+  setStorageItem("total", calculateTotal());
 
   cartElement.innerHTML += `<a href="cart.html"><button class="button" id="empty-cart"><span>Vider le panier</span></button></a>`;
 
@@ -55,7 +52,8 @@ const displayCart = async (arrayOfProducts) => {
     button.addEventListener("click", () => {
       if (arrayOfProducts.length == 1) {
         localStorage.removeItem("products");
-      } else {arrayOfProducts.splice(index, 1);
+      } else {
+        arrayOfProducts.splice(index, 1);
         localStorage.setItem("products", JSON.stringify(arrayOfProducts));
       }
       window.location.reload();
@@ -90,7 +88,8 @@ const displayCart = async (arrayOfProducts) => {
     button.addEventListener("click", () => {
       if (getTotalQuantity(arrayOfProducts) == 1) {
         localStorage.removeItem("products");
-      } else if (arrayOfProducts[index].quantity == 1) {arrayOfProducts.splice(index, 1)
+      } else if (arrayOfProducts[index].quantity == 1) {
+        arrayOfProducts.splice(index, 1);
         localStorage.setItem("products", JSON.stringify(arrayOfProducts));
       } else {
         localStorage.setItem(
@@ -114,7 +113,6 @@ const displayCart = async (arrayOfProducts) => {
 
 (async () => {
   if (productsInCart !== null) {
-
     displayCart(arrayOfProducts);
   }
 })();

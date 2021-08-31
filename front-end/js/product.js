@@ -10,15 +10,12 @@ import { createPopup, createContentAddToCart } from "./modules/popup.js";
 const displayOneTeddy = async (teddy) => {
   const teddyElement = document.querySelector("#product-detail");
 
-  teddyElement.innerHTML =
-    `<form class="teddy-item">
+  teddyElement.innerHTML = `<form class="teddy-item">
   <img src="${teddy.img}" class="teddy-item__img" alt="image ourson ${teddy.name}" />
   <div class="teddy-item__detail">
   <div class="teddy-item__id">Ref : ${teddy.id}</div>
           <h1 class="teddy-item__name">${teddy.name}</h1>
-          <h2 class="teddy-item__price">` +
-    getFormattedPrice(`${teddy.price}`) +
-    ` €</h2>
+          <h2 class="teddy-item__price">${getFormattedPrice(`${teddy.price}`)} €</h2>
           <p class="teddy-item__desc">
           <h3>Description du produit :</h3>
           ${teddy.description}</p>
@@ -30,10 +27,10 @@ const displayOneTeddy = async (teddy) => {
           <select id="teddy-item__quantity" class="teddy-item__quantity__selector"></select></div>
           <div id="color-error" class="error-hidden">Veuillez choisir une couleur.</div></div></form>`;
 
-          let blocOptionQuantity = [];
-          for (let i = 1; i <= 10; i++) {
-            blocOptionQuantity = blocOptionQuantity + `<option value="${i}">${i}</option>`;
-          }
+  let blocOptionQuantity = [];
+  for (let i = 1; i <= 10; i++) {
+    blocOptionQuantity = blocOptionQuantity + `<option value="${i}">${i}</option>`;
+  }
 
   document.getElementById("teddy-item__quantity").innerHTML += blocOptionQuantity;
 
@@ -94,8 +91,8 @@ const addToCart = async (teddy) => {
 
       // pop-up
 
-createPopup();
-createContentAddToCart(optionsItemSelected);
+      createPopup();
+      createContentAddToCart(optionsItemSelected);
 
       // ajout des articles au localStorage
 
@@ -105,22 +102,27 @@ createContentAddToCart(optionsItemSelected);
         } else {
           const addSelectedArticle = (arrayOfProducts) => {
             if (
-              arrayOfProducts.every((value) => value.color !== optionsItemSelected.color || value.id !== optionsItemSelected.id)
+              arrayOfProducts.every(
+                (value) => value.color !== optionsItemSelected.color || value.id !== optionsItemSelected.id
+              )
             ) {
               arrayOfProducts.push(optionsItemSelected);
               setStorageItem("products", arrayOfProducts);
             } else {
               for (let n = 0; n < arrayOfProducts.length; n++) {
-                if (arrayOfProducts[n].color === optionsItemSelected.color && arrayOfProducts[n].id === optionsItemSelected.id) {
+                if (
+                  arrayOfProducts[n].color === optionsItemSelected.color &&
+                  arrayOfProducts[n].id === optionsItemSelected.id
+                ) {
                   arrayOfProducts[n].quantity =
                     parseInt(arrayOfProducts[n].quantity, 10) + parseInt(optionsItemSelected.quantity, 10);
-                    setStorageItem("products", arrayOfProducts);
+                  setStorageItem("products", arrayOfProducts);
                 }
               }
             }
             return;
-          };          
-            addSelectedArticle(arrayOfProducts);
+          };
+          addSelectedArticle(arrayOfProducts);
         }
       })();
     }
@@ -130,9 +132,9 @@ createContentAddToCart(optionsItemSelected);
 // appels
 
 (async () => {
-  const {teddy} = await formatDataOneTeddy(await getOneTeddy());
-  displayOneTeddy(teddy); 
-  selectColor(teddy); 
-  addToCart(teddy); 
+  const { teddy } = await formatDataOneTeddy(await getOneTeddy());
+  displayOneTeddy(teddy);
+  selectColor(teddy);
+  addToCart(teddy);
 })();
 displayTotalQuantity();
