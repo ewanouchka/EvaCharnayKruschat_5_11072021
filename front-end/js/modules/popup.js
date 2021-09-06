@@ -25,6 +25,18 @@ export const closePopup = () => {
 
 // création des contenus
 
+// page index + produit -> erreur accès back-end
+
+export const createErrorMessage = (error) => {
+  createPopup();
+  // Si l'envoi ne se fait pas : message d'erreur et fermeture du popup de confirmation de commande
+  popupBloc.innerHTML = `<div>Une erreur est survenue : '${error}'. Veuillez renouveler votre demande ultérieurement.</div>
+<button class="button popup-button" id="error-message">Fermer</button>`;
+  document.querySelector("#error-message").addEventListener("click", function () {
+    closePopup();
+  });
+};
+
 // page produit -> ajout au panier
 
 export const createContentAddToCart = (optionsItemSelected) => {

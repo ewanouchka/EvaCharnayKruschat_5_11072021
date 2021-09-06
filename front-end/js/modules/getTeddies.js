@@ -1,5 +1,8 @@
+import { createPopup, closePopup, popupBloc } from "./popup.js";
+
 export const getTeddies = async (url) => {
   const teddy = await fetch(url);
+
   return teddy.json();
 };
 
