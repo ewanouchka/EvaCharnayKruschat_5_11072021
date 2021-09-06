@@ -29,7 +29,6 @@
 
   .product-detail {
     flex-direction: column;
-    align-items: space-between;
     justify-content: space-between;
   }
 
@@ -89,7 +88,7 @@
 
   .checkout {
     width: 80%;
-}
+  }
 
   footer {
     height: auto;
@@ -184,7 +183,6 @@
 @media all and (min-width: 425px) and (max-width: 560px) {
   .product-detail {
     flex-direction: column;
-    align-items: space-between;
     justify-content: space-between;
   }
 
