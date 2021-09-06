@@ -51,12 +51,12 @@ export const createContentOrderInvalid = () => {
   });
 };
 
-// page panier -> confirmation validation de commande
+// page panier -> confirmation de la validation de la commande
 
 export const createContentValidateOrder = () => {
   popupBloc.innerHTML = `<p>Êtes-vous sûr de vouloir valider ?</p>
-    <a href="../pages/checkout.html"><button class="button popup-button" id="validate-order">Confirmer votre commande</button></a>`;
-  document.querySelector("#validate-order").addEventListener("click", function () {
+    <button class="button popup-button" id="validate-order">Confirmer votre commande</button>`;
+  document.querySelector("#validate-order").addEventListener("click", function (event) {
     // création de l'objet contact à partir des champs du formulaire
 
     const getInputValue = (inputId) => {
@@ -89,17 +89,33 @@ export const createContentValidateOrder = () => {
       },
     });
 
-    // envoi de l'ID de commande retourné par le back au localStorage
+    orderSent
+      .then(async (response) => {
+        const orderFromBack = await response.json();
 
-    orderSent.then(async (response) => {
-      const orderFromBack = await response.json();
-      setStorageItem("orderId", orderFromBack.orderId);
-    });
-
-    // vider les produits du localStorage à la validation de la commande
-
-    removeStorageItem("products");
-
-    closePopup();
+        if (orderFromBack.orderId) {
+          // envoi de l'ID de commande retourné par le back au localStorage
+          setStorageItem("orderId", orderFromBack.orderId);
+          // vider les produits du localStorage à la validation de la commande
+          removeStorageItem("products");
+          // redirection vers la page checkout
+          window.location = "../pages/checkout.html";
+        } else {
+          // Si l'ID n'est pas retourné : message d'erreur et fermeture du popup de confirmation de commande
+          popupBloc.innerHTML += `<div>Une erreur est survenue : 'TypeError: error ${response.status}'. Veuillez renouveler votre demande.</div>
+  <button class="button popup-button" id="error-message">Fermer</button>`;
+          document.querySelector("#error-message").addEventListener("click", function () {
+            closePopup();
+          });
+        }
+      })
+      .catch((error) => {
+        // Si l'envoi ne se fait pas : message d'erreur et fermeture du popup de confirmation de commande
+        popupBloc.innerHTML += `<div>Une erreur est survenue : '${error}'. Veuillez renouveler votre demande.</div>
+<button class="button popup-button" id="error-message">Fermer</button>`;
+        document.querySelector("#error-message").addEventListener("click", function () {
+          closePopup();
+        });
+      });
   });
 };
