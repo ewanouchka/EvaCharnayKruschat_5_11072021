@@ -46,6 +46,15 @@ footer {
   opacity: 1;
 }
 
+.footer-list__link__social {
+  opacity: 0.75;
+  transition: all 0.2s;
+}
+
+.footer-list__link__social:hover {
+  opacity: 1;
+}
+
 .social {
   color: transparent;
   font-size: 2.25rem;
@@ -54,10 +63,4 @@ footer {
   -moz-background-clip: text;
   -o-background-clip: text;
   -webkit-background-clip: text;
-  opacity: 0.75;
-  transition: all 0.2s;
-}
-
-.social:hover {
-  opacity: 1;
 }
