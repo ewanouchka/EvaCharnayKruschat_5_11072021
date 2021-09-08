@@ -1,4 +1,4 @@
-import { productsInCart, arrayOfProducts } from "./modules/getCart.js";
+import { productsInCart, arrayOfProducts } from "./modules/formatCart.js";
 import { getTotalQuantity, displayTotalQuantity } from "./modules/getNumberOfProducts.js";
 import { cartContent } from "./modules/htmlContent.js";
 import { setStorageItem, removeStorageItem } from "./modules/storage.js";

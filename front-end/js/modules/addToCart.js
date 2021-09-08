@@ -1,5 +1,5 @@
 import { setStorageItem } from "./storage.js";
-import { productsInCart, arrayOfProducts } from "./getCart.js";
+import { productsInCart, arrayOfProducts } from "./formatCart.js";
 import { createPopup, createContentAddToCart } from "./popup.js";
 import { choiceColor } from "./htmlContent.js";
 

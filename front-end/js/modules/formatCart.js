@@ -2,7 +2,7 @@ import { getStorageItem } from "./storage.js";
 
 export let productsInCart = getStorageItem("products");
 
-export const getCart = () => {
+export const formatCart = () => {
   if (!productsInCart) {
     return [];
   }
@@ -14,4 +14,4 @@ export const getCart = () => {
   return productsInCart;
 };
 
-export let arrayOfProducts = getCart();
+export let arrayOfProducts = formatCart();

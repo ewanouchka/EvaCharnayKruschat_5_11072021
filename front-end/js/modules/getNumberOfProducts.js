@@ -1,4 +1,4 @@
-import { productsInCart } from "./getCart.js";
+import { productsInCart } from "./formatCart.js";
 
 export const getTotalQuantity = () => {
   if (!productsInCart) {

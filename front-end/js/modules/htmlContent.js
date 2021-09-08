@@ -1,6 +1,6 @@
 import { getFormattedPrice, calculateTotal } from "./getFormattedPrice.js";
 import { setStorageItem, getStorageItem } from "./storage.js";
-import { arrayOfProducts } from "./getCart.js";
+import { arrayOfProducts } from "./formatCart.js";
 
 // contenu HTML de la page d'index
 

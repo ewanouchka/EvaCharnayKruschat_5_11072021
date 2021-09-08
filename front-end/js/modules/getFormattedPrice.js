@@ -1,4 +1,4 @@
-import { arrayOfProducts } from "./getCart.js";
+import { arrayOfProducts } from "./formatCart.js";
 
 export const getFormattedPrice = (number) => {
   const newPrice = new Intl.NumberFormat("Fr-FR", {

@@ -1,4 +1,4 @@
-import { arrayOfProducts } from "./getCart.js";
+import { arrayOfProducts } from "./formatCart.js";
 import { setStorageItem, removeStorageItem } from "./storage.js";
 
 // fonction création du bloc popup
