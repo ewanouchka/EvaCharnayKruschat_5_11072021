@@ -1,6 +1,6 @@
 import { displayOneTeddy, selectColor } from "./modules/htmlContent.js";
 import { formatDataOneTeddy, getOneTeddy } from "./modules/getTeddies.js";
-import { displayTotalQuantity } from "./modules/getNumberOfArticles.js";
+import { displayTotalQuantity } from "./modules/getNumberOfProducts.js";
 import { addToCart } from "./modules/addToCart.js";
 import { createErrorMessage } from "./modules/popup.js";
 

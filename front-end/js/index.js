@@ -1,5 +1,5 @@
 import { getTeddies, formatDataTeddies } from "./modules/getTeddies.js";
-import { displayTotalQuantity } from "./modules/getNumberOfArticles.js";
+import { displayTotalQuantity } from "./modules/getNumberOfProducts.js";
 import { displayTeddies } from "./modules/htmlContent.js";
 import { createErrorMessage } from "./modules/popup.js";
 
