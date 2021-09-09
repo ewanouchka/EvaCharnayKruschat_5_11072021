@@ -49,31 +49,36 @@ export const displayOneTeddy = (teddy) => {
   teddyElement.innerHTML += `<button class="button" id="add-to-cart"><span>Ajouter au panier</span></button>`;
 };
 
-// --> affichage des couleurs
-// fonction affichage de la pastille de couleur en fonction des données colors
+// --> affichage des couleurs : affichage d'une pastille de couleur en fonction des données colors
 
 export let choiceColor = "";
 export const selectColor = async (teddy) => {
   const colorElement = document.querySelector("#teddy-item__color__list");
+
   for (const color of teddy.colors) {
     const lowercaseColor = color.toLowerCase().replace(/ /g, "");
+
     colorElement.innerHTML += `<label for="toggle-${lowercaseColor}" id="toggle-${lowercaseColor}-label" class="teddy-item__color__list__bullet teddy-item__color__list__bullet--${lowercaseColor}" title="${color}">
     </label><input type="radio" name="teddy-item__color__list" id="toggle-${lowercaseColor}" class="visually-hidden" title="${color}">`;
   }
 
   const selectedColor = document.querySelector("#teddy-item__color__list");
   const otherColor = document.querySelectorAll(".teddy-item__color__list__bullet");
+
   selectedColor.addEventListener("change", () => {
-    const elts = document.querySelectorAll("input");
+    const elements = document.querySelectorAll("input");
+
     otherColor.forEach((element) => element.classList.remove("teddy-item__color__list__bullet--active"));
-    for (let m = 0; m < elts.length; m++) {
-      if (elts[m].checked === true) {
-        const idSelected = "#" + elts[m].id + "-label";
+
+    for (let m = 0; m < elements.length; m++) {
+      if (elements[m].checked === true) {
+        const idSelected = "#" + elements[m].id + "-label";
         document.querySelector(idSelected).classList.add("teddy-item__color__list__bullet--active");
-        choiceColor = elts[m].title;
+        choiceColor = elements[m].title;
         break;
       }
     }
+
     return choiceColor;
   });
 };
@@ -120,6 +125,7 @@ export const cartContent = () => {
 
 export const formContent = () => {
   const blocForm = document.querySelector("#order-form");
+
   blocForm.innerHTML = `<section class="bloc-form">
     <h2 class="bloc-form__title">Merci de remplir ce formulaire pour valider votre commande</h2>
     <label for="Name" class="bloc-form__label">Votre nom : <span class="error-visible" id="error-message-Name"></span>
@@ -158,6 +164,7 @@ export const formContent = () => {
     </input>
     </section>
     <button class="button" id="order-confirm"><span>Valider la commande</span></button>`;
+
   blocForm.classList.remove("visually-hidden");
 };
 

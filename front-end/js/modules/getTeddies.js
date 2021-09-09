@@ -1,3 +1,5 @@
+// pour la page d'index : accès à la liste des produits du serveur et formattage de l'objet
+
 export const getTeddies = async (url) => {
   const teddy = await fetch(url);
 
@@ -8,6 +10,7 @@ export const formatDataTeddies = async (teddyApiJSON) => {
   const teddy = await Promise.all(
     teddyApiJSON.map((teddy) => {
       const { _id: id, name, price, imageUrl: img, colors, description } = teddy;
+
       return {
         id,
         name,
@@ -18,10 +21,13 @@ export const formatDataTeddies = async (teddyApiJSON) => {
       };
     })
   );
+
   return {
     teddy,
   };
 };
+
+// pour la page produit : accès au détail du produit sélectionné en page d'accueil et formattage de l'objet
 
 export const getOneTeddy = () =>
   getTeddies("http://localhost:3000/api/teddies/" + new URL(location.href).searchParams.get("id"));

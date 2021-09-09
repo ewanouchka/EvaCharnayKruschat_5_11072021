@@ -13,7 +13,10 @@ export const getTotalQuantity = () => {
   }
 };
 
+// affichage du nombre d'articles dans une pastille sur le logo panier dans la barre de navigation
+
 const cartLogo = document.querySelector("#cart-logo");
+
 export const displayTotalQuantity = () => {
   if (getTotalQuantity() !== 0) {
     cartLogo.innerHTML += `<span id="cart-logo__number" class="cart-logo__number">${getTotalQuantity()}</span>`;
