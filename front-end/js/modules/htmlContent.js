@@ -52,6 +52,7 @@ export const displayOneTeddy = (teddy) => {
 // --> affichage des couleurs : affichage d'une pastille de couleur en fonction des données colors
 
 export let choiceColor = "";
+
 export const selectColor = async (teddy) => {
   const colorElement = document.querySelector("#teddy-item__color__list");
 
@@ -155,7 +156,7 @@ export const formContent = () => {
     
     <label for="Email" class="bloc-form__label">Votre e-mail : <span class="error-visible" id="error-message-Email"></span>
     </label>
-    <input placeholder="contact@orinoco.fr" name="Email" id="Email" class="bloc-form__input" type="email" required pattern="^[a-zA-Z0-9]+[a-zA-Z\-\.\_]*@{1}[a-zA-Z0-9]+[\.]{1}[a-zA-Z]+$" oninput="checkValidity(this)">
+    <input placeholder="contact@orinoco.fr" name="Email" id="Email" class="bloc-form__input" type="email" required pattern="^[a-zA-Z0-9]+[a-zA-Z\-\.\_]*@{1}[a-zA-Z0-9]+[\.]{1}[a-zA-Z]{2,}$" oninput="checkValidity(this)">
     </input>
     
     <label for="Phone" class="bloc-form__label">Votre téléphone (facultatif) : <span class="error-visible" id="error-message-Phone"></span>

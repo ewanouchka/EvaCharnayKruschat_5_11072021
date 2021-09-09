@@ -74,7 +74,10 @@ if (validateCart)
         "Town",
         'La ville doit être composée uniquement de lettres, accentuées ou non, espaces et/ou "-" (minimum 2 caractères).'
       );
-      checkValidity("Email", 'Un e-mail doit comporter un "@" et un ".".');
+      checkValidity(
+        "Email",
+        `Un e-mail doit comporter un "@" et un ".". L'extension du nom de domaine doit comporter au moins deux lettres.`
+      );
       checkValidity("Phone", "Le numéro de téléphone doit comporter 10 chiffres.");
 
       // récupération des valeurs du formulaire au clic sur le bouton "Valider la commande" si tout est OK
