@@ -1,0 +1,27 @@
+.popup-container {
+  background: var(--color-transparent);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+.popup-bloc {
+  height: auto;
+  width: 35%;
+  background: var(--color-light);
+  border-radius: 3rem;
+  box-shadow: 0 0 0.5rem var(--color-footer);
+  text-align: center;
+  padding: 2rem;
+}
+
+.popup-button {
+  font-size: 1rem;
+  margin: 1rem;
+}
