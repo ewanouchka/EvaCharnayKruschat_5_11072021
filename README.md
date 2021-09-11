@@ -33,4 +33,4 @@ Le code devra être accompagné d'un document planifiant de futurs test unitaire
 
 Installation préalable : `Node, npm`.
 
-Afin de faire fonctionner l'API et de visualiser le MVP intégralement, il est nécessaire de cloner le repo du back-end, et de lancer `npm install`. Lancer ensuite `node server` dans ce même dossier. Le serveur doit écouter `le port 3000`, faute de quoi l'accès aux informations reçues et générées par l'API ne sera pas possible.
+Afin de faire fonctionner l'API et de visualiser le MVP intégralement, il est nécessaire de cloner ce repo, et de lancer `npm install`. Lancer ensuite `node server` dans ce même dossier. Le serveur doit écouter `le port 3000`, faute de quoi l'accès aux informations reçues et générées par l'API ne sera pas possible.
